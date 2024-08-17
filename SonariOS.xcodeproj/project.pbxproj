@@ -43,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		756EABCE2C7152B400EFBE33 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		756EABD02C71588200EFBE33 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = .sonarcloud.properties; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		75E56BDC2C70B929000CA0BC = {
 			isa = PBXGroup;
 			children = (
+				756EABD02C71588200EFBE33 /* .sonarcloud.properties */,
 				756EABCE2C7152B400EFBE33 /* .swift-version */,
 				75E56C362C70D71B000CA0BC /* Cuckoofile.toml */,
 				75E56C1F2C70BAF3000CA0BC /* README.md */,
