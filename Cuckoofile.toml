@@ -1,0 +1,20 @@
+[modules.SonariOS]
+output = "SonariOSTests/Generated/GeneratedMocks+SonariOS.swift"
+# Standard imports added to the generated file(s).
+imports = ["Foundation"]
+# @testable imports if needed.
+testableImports = ["SonariOS"]
+sources = [
+    "SonariOS/Client/*.swift",
+]
+exclude = ["ExcludedTestClass"]
+# Optionally you can use a regular expression to filter only specific classes/protocols.
+# regex = ""
+
+[modules.SonariOS.options]
+# glob = false
+# Docstrings are preserved by default, comments are omitted.
+keepDocumentation = false
+# enableInheritance = false
+# protocolsOnly = true
+# omitHeaders = true

@@ -1,0 +1,703 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
+		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
+		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
+		75E56BF02C70B92A000CA0BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEF2C70B92A000CA0BC /* Preview Assets.xcassets */; };
+		75E56BFA2C70B92A000CA0BC /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BF92C70B92A000CA0BC /* ContentViewModelTests.swift */; };
+		75E56C042C70B92A000CA0BC /* SonariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C032C70B92A000CA0BC /* SonariOSUITests.swift */; };
+		75E56C062C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C052C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift */; };
+		75E56C142C70B972000CA0BC /* SonarClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C132C70B972000CA0BC /* SonarClient.swift */; };
+		75E56C172C70B9C7000CA0BC /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C162C70B9C7000CA0BC /* Project.swift */; };
+		75E56C192C70BA11000CA0BC /* SonarTypeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C182C70BA11000CA0BC /* SonarTypeClient.swift */; };
+		75E56C1B2C70BA1D000CA0BC /* SonarCloudClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C1A2C70BA1D000CA0BC /* SonarCloudClient.swift */; };
+		75E56C1E2C70BACA000CA0BC /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 75E56C1D2C70BACA000CA0BC /* Factory */; };
+		75E56C212C70BB6E000CA0BC /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C202C70BB6E000CA0BC /* DependencyContainer.swift */; };
+		75E56C232C70BBE1000CA0BC /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56C222C70BBE1000CA0BC /* ContentViewModel.swift */; };
+		75E56C282C70C341000CA0BC /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 75E56C272C70C341000CA0BC /* Cuckoo */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75E56BF62C70B92A000CA0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75E56BDD2C70B929000CA0BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75E56BE42C70B929000CA0BC;
+			remoteInfo = SonariOS;
+		};
+		75E56C002C70B92A000CA0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75E56BDD2C70B929000CA0BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75E56BE42C70B929000CA0BC;
+			remoteInfo = SonariOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		756EABCE2C7152B400EFBE33 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
+		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		75E56BEC2C70B92A000CA0BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		75E56BEF2C70B92A000CA0BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		75E56BF52C70B92A000CA0BC /* SonariOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonariOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75E56BF92C70B92A000CA0BC /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
+		75E56BFF2C70B92A000CA0BC /* SonariOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonariOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75E56C032C70B92A000CA0BC /* SonariOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSUITests.swift; sourceTree = "<group>"; };
+		75E56C052C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		75E56C132C70B972000CA0BC /* SonarClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarClient.swift; sourceTree = "<group>"; };
+		75E56C162C70B9C7000CA0BC /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		75E56C182C70BA11000CA0BC /* SonarTypeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarTypeClient.swift; sourceTree = "<group>"; };
+		75E56C1A2C70BA1D000CA0BC /* SonarCloudClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarCloudClient.swift; sourceTree = "<group>"; };
+		75E56C1F2C70BAF3000CA0BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		75E56C202C70BB6E000CA0BC /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		75E56C222C70BBE1000CA0BC /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		75E56C362C70D71B000CA0BC /* Cuckoofile.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cuckoofile.toml; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		75E56BE22C70B929000CA0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56C1E2C70BACA000CA0BC /* Factory in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BF22C70B92A000CA0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56C282C70C341000CA0BC /* Cuckoo in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BFC2C70B92A000CA0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		75E56BDC2C70B929000CA0BC = {
+			isa = PBXGroup;
+			children = (
+				756EABCE2C7152B400EFBE33 /* .swift-version */,
+				75E56C362C70D71B000CA0BC /* Cuckoofile.toml */,
+				75E56C1F2C70BAF3000CA0BC /* README.md */,
+				75E56BE72C70B929000CA0BC /* SonariOS */,
+				75E56BF82C70B92A000CA0BC /* SonariOSTests */,
+				75E56C022C70B92A000CA0BC /* SonariOSUITests */,
+				75E56BE62C70B929000CA0BC /* Products */,
+				75E56C2D2C70C3F5000CA0BC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		75E56BE62C70B929000CA0BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75E56BE52C70B929000CA0BC /* SonariOS.app */,
+				75E56BF52C70B92A000CA0BC /* SonariOSTests.xctest */,
+				75E56BFF2C70B92A000CA0BC /* SonariOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75E56BE72C70B929000CA0BC /* SonariOS */ = {
+			isa = PBXGroup;
+			children = (
+				75E56C152C70B9BA000CA0BC /* Model */,
+				75E56C122C70B940000CA0BC /* Client */,
+				75E56BE82C70B929000CA0BC /* SonariOSApp.swift */,
+				75E56BEA2C70B929000CA0BC /* ContentView.swift */,
+				75E56BEC2C70B92A000CA0BC /* Assets.xcassets */,
+				75E56BEE2C70B92A000CA0BC /* Preview Content */,
+				75E56C202C70BB6E000CA0BC /* DependencyContainer.swift */,
+				75E56C222C70BBE1000CA0BC /* ContentViewModel.swift */,
+			);
+			path = SonariOS;
+			sourceTree = "<group>";
+		};
+		75E56BEE2C70B92A000CA0BC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				75E56BEF2C70B92A000CA0BC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		75E56BF82C70B92A000CA0BC /* SonariOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				75E56BF92C70B92A000CA0BC /* ContentViewModelTests.swift */,
+			);
+			path = SonariOSTests;
+			sourceTree = "<group>";
+		};
+		75E56C022C70B92A000CA0BC /* SonariOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				75E56C032C70B92A000CA0BC /* SonariOSUITests.swift */,
+				75E56C052C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift */,
+			);
+			path = SonariOSUITests;
+			sourceTree = "<group>";
+		};
+		75E56C122C70B940000CA0BC /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				75E56C132C70B972000CA0BC /* SonarClient.swift */,
+				75E56C182C70BA11000CA0BC /* SonarTypeClient.swift */,
+				75E56C1A2C70BA1D000CA0BC /* SonarCloudClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		75E56C152C70B9BA000CA0BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75E56C162C70B9C7000CA0BC /* Project.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75E56C2D2C70C3F5000CA0BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75E56BE42C70B929000CA0BC /* SonariOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75E56C092C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOS" */;
+			buildPhases = (
+				75E56BE12C70B929000CA0BC /* Sources */,
+				75E56BE22C70B929000CA0BC /* Frameworks */,
+				75E56BE32C70B929000CA0BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SonariOS;
+			packageProductDependencies = (
+				75E56C1D2C70BACA000CA0BC /* Factory */,
+			);
+			productName = SonariOS;
+			productReference = 75E56BE52C70B929000CA0BC /* SonariOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		75E56BF42C70B92A000CA0BC /* SonariOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75E56C0C2C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOSTests" */;
+			buildPhases = (
+				75E56BF12C70B92A000CA0BC /* Sources */,
+				75E56BF22C70B92A000CA0BC /* Frameworks */,
+				75E56BF32C70B92A000CA0BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				756EABAD2C70DE3900EFBE33 /* PBXTargetDependency */,
+				75E56BF72C70B92A000CA0BC /* PBXTargetDependency */,
+			);
+			name = SonariOSTests;
+			packageProductDependencies = (
+				75E56C272C70C341000CA0BC /* Cuckoo */,
+			);
+			productName = SonariOSTests;
+			productReference = 75E56BF52C70B92A000CA0BC /* SonariOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		75E56BFE2C70B92A000CA0BC /* SonariOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75E56C0F2C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOSUITests" */;
+			buildPhases = (
+				75E56BFB2C70B92A000CA0BC /* Sources */,
+				75E56BFC2C70B92A000CA0BC /* Frameworks */,
+				75E56BFD2C70B92A000CA0BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75E56C012C70B92A000CA0BC /* PBXTargetDependency */,
+			);
+			name = SonariOSUITests;
+			productName = SonariOSUITests;
+			productReference = 75E56BFF2C70B92A000CA0BC /* SonariOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		75E56BDD2C70B929000CA0BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					75E56BE42C70B929000CA0BC = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					75E56BF42C70B92A000CA0BC = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 75E56BE42C70B929000CA0BC;
+					};
+					75E56BFE2C70B92A000CA0BC = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 75E56BE42C70B929000CA0BC;
+					};
+				};
+			};
+			buildConfigurationList = 75E56BE02C70B929000CA0BC /* Build configuration list for PBXProject "SonariOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 75E56BDC2C70B929000CA0BC;
+			packageReferences = (
+				75E56C1C2C70BACA000CA0BC /* XCRemoteSwiftPackageReference "Factory" */,
+				75E56C262C70C341000CA0BC /* XCRemoteSwiftPackageReference "Cuckoo" */,
+			);
+			productRefGroup = 75E56BE62C70B929000CA0BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				75E56BE42C70B929000CA0BC /* SonariOS */,
+				75E56BF42C70B92A000CA0BC /* SonariOSTests */,
+				75E56BFE2C70B92A000CA0BC /* SonariOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75E56BE32C70B929000CA0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56BF02C70B92A000CA0BC /* Preview Assets.xcassets in Resources */,
+				75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BF32C70B92A000CA0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BFD2C70B92A000CA0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75E56BE12C70B929000CA0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56C232C70BBE1000CA0BC /* ContentViewModel.swift in Sources */,
+				75E56C212C70BB6E000CA0BC /* DependencyContainer.swift in Sources */,
+				75E56C142C70B972000CA0BC /* SonarClient.swift in Sources */,
+				75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */,
+				75E56C192C70BA11000CA0BC /* SonarTypeClient.swift in Sources */,
+				75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */,
+				75E56C1B2C70BA1D000CA0BC /* SonarCloudClient.swift in Sources */,
+				75E56C172C70B9C7000CA0BC /* Project.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BF12C70B92A000CA0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56BFA2C70B92A000CA0BC /* ContentViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75E56BFB2C70B92A000CA0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E56C062C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift in Sources */,
+				75E56C042C70B92A000CA0BC /* SonariOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		756EABAD2C70DE3900EFBE33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 756EABAC2C70DE3900EFBE33 /* CuckooPluginSingleFile */;
+		};
+		75E56BF72C70B92A000CA0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75E56BE42C70B929000CA0BC /* SonariOS */;
+			targetProxy = 75E56BF62C70B92A000CA0BC /* PBXContainerItemProxy */;
+		};
+		75E56C012C70B92A000CA0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75E56BE42C70B929000CA0BC /* SonariOS */;
+			targetProxy = 75E56C002C70B92A000CA0BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		75E56C072C70B92A000CA0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		75E56C082C70B92A000CA0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		75E56C0A2C70B92A000CA0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SonariOS/Preview Content\"";
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		75E56C0B2C70B92A000CA0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SonariOS/Preview Content\"";
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		75E56C0D2C70B92A000CA0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SonariOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SonariOS";
+			};
+			name = Debug;
+		};
+		75E56C0E2C70B92A000CA0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SonariOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SonariOS";
+			};
+			name = Release;
+		};
+		75E56C102C70B92A000CA0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SonariOS;
+			};
+			name = Debug;
+		};
+		75E56C112C70B92A000CA0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UF5D59LRLU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.mattwhitaker.SonariOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SonariOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75E56BE02C70B929000CA0BC /* Build configuration list for PBXProject "SonariOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E56C072C70B92A000CA0BC /* Debug */,
+				75E56C082C70B92A000CA0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75E56C092C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E56C0A2C70B92A000CA0BC /* Debug */,
+				75E56C0B2C70B92A000CA0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75E56C0C2C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E56C0D2C70B92A000CA0BC /* Debug */,
+				75E56C0E2C70B92A000CA0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75E56C0F2C70B92A000CA0BC /* Build configuration list for PBXNativeTarget "SonariOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E56C102C70B92A000CA0BC /* Debug */,
+				75E56C112C70B92A000CA0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		75E56C1C2C70BACA000CA0BC /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+		75E56C262C70C341000CA0BC /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		756EABAC2C70DE3900EFBE33 /* CuckooPluginSingleFile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75E56C262C70C341000CA0BC /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = "plugin:CuckooPluginSingleFile";
+		};
+		75E56C1D2C70BACA000CA0BC /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75E56C1C2C70BACA000CA0BC /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		75E56C272C70C341000CA0BC /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75E56C262C70C341000CA0BC /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 75E56BDD2C70B929000CA0BC /* Project object */;
+}
