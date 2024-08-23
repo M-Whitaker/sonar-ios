@@ -1,7 +1,7 @@
 [modules.SonariOS]
 output = "SonariOSTests/Generated/GeneratedMocks+SonariOS.swift"
 # Standard imports added to the generated file(s).
-imports = ["Foundation"]
+imports = ["Foundation", "HTTPTypes"]
 # @testable imports if needed.
 testableImports = ["SonariOS"]
 sources = [

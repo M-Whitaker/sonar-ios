@@ -6,10 +6,22 @@
 //
 
 import Foundation
+import HTTPTypes
 
 class SonarTypeClient: SonarClient {
-    func retrieveProjects() -> [Project] {
+    var baseUrl: String
+    var apiKey: String = ""
+
+    init(baseUrl: String) {
+        self.baseUrl = baseUrl
+    }
+
+    func retrieveIssues(projectKey _: String) async throws -> [Issue] {
+        [Issue()]
+    }
+
+    func retrieveProjects() async throws -> APIListResponse<Project> {
         print("Retriving projects from sonar type...")
-        return [Project(id: 1)]
+        throw URLError(.unknown)
     }
 }

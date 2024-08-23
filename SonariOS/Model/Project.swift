@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct Project: Equatable {
-    var id: Int
+struct Project: Equatable, Codable, Identifiable {
+    var id: String {
+        key
+    }
+
+    var key: String
 }

@@ -9,6 +9,6 @@ import Factory
 
 extension Container {
     var sonarClient: Factory<SonarClient> {
-        self { SonarTypeClient() }
+        self { SonarCloudClient() }
     }
 }
