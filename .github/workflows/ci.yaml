@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Cancel Previous Runs
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🛠️ Install Tools
+        run: |
+          brew install sonar-scanner
       - name: SwiftFormat
         run: swiftformat . --lint
       # - name: SwiftLint
@@ -25,3 +32,9 @@ jobs:
            -derivedDataPath Build/ -allowProvisioningUpdates -enableCodeCoverage YES clean test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || exit 1
       - name: Format Coverage
         run: ./tools/xcov_to_sonar_cov.sh Build/Logs/Test/Run-SonariOS-*.xcresult > Coverage.xml
+      - name: 📡 Run Sonar
+        run: |
+          git fetch --unshallow --no-tags
+          sonar-scanner -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
