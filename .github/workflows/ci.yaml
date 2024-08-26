@@ -1,0 +1,40 @@
+name: "SonariOS"
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  build_project:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Cancel Previous Runs
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🛠️ Install Tools
+        run: |
+          brew install sonar-scanner
+      - name: SwiftFormat
+        run: swiftformat . --lint
+      # - name: SwiftLint
+      #   run: swiftlint lint --strict
+      - name: Build and Test
+        run: |
+          xcodebuild \
+           -project SonariOS.xcodeproj \
+           -scheme CI -testPlan UnitTests \
+           -skipPackagePluginValidation \
+           -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5' \
+           -derivedDataPath Build/ -allowProvisioningUpdates -enableCodeCoverage YES clean test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || exit 1
+      - name: Format Coverage
+        run: ./tools/xcov_to_sonar_cov.sh Build/Logs/Test/Run-CI-*.xcresult > Coverage.xml
+      - name: 📡 Run Sonar
+        run: |
+          git fetch --unshallow --no-tags
+          sonar-scanner -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.coverageReportPaths=Coverage.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

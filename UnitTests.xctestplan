@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "9EECD056-FBB3-4EE9-A5F6-C07925107E6E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SonariOS.xcodeproj",
+        "identifier" : "75E56BF42C70B92A000CA0BC",
+        "name" : "SonariOSTests"
+      }
+    }
+  ],
+  "version" : 1
+}

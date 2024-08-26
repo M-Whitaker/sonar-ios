@@ -28,4 +28,5 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
-
+Build/
+Coverage.xml
