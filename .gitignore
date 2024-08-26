@@ -29,3 +29,4 @@ playground.xcworkspace
 
 .build/
 Build/
+Coverage.xml
