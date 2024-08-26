@@ -21,6 +21,20 @@
                ReferencedContainer = "container:SonariOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "75E56BFE2C70B92A000CA0BC"
+               BuildableName = "SonariOSUITests.xctest"
+               BlueprintName = "SonariOSUITests"
+               ReferencedContainer = "container:SonariOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -30,7 +44,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:FullTests.xctestplan"
+            reference = "container:UnitTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -43,17 +57,6 @@
                BlueprintIdentifier = "75E56BF42C70B92A000CA0BC"
                BuildableName = "SonariOSTests.xctest"
                BlueprintName = "SonariOSTests"
-               ReferencedContainer = "container:SonariOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75E56BFE2C70B92A000CA0BC"
-               BuildableName = "SonariOSUITests.xctest"
-               BlueprintName = "SonariOSUITests"
                ReferencedContainer = "container:SonariOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
