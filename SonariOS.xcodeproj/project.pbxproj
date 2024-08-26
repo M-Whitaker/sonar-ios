@@ -57,7 +57,6 @@
 		755A9F112C72214800570528 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		756AED5B2C78E4EB00F7972C /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		756EABCE2C7152B400EFBE33 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
-		756EABD02C71588200EFBE33 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = .sonarcloud.properties; sourceTree = "<group>"; };
 		756EABD12C71633300EFBE33 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		7597CBB02C7684AB003810AF /* BundleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleData.swift; sourceTree = "<group>"; };
 		7597CBB22C768DE4003810AF /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
@@ -126,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				7500685E2C7CD45D00213AB2 /* UnitTests.xctestplan */,
-				756EABD02C71588200EFBE33 /* .sonarcloud.properties */,
 				756EABCE2C7152B400EFBE33 /* .swift-version */,
 				75E56C362C70D71B000CA0BC /* Cuckoofile.toml */,
 				75E56C1F2C70BAF3000CA0BC /* README.md */,

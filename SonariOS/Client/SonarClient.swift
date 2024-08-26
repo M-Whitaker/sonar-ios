@@ -19,9 +19,7 @@ protocol SonarClient {
 
 extension SonarClient {
     func call<T: Decodable>(method: HTTPRequest.Method, path: String) async throws -> T {
-        var request = HTTPRequest(method: method, scheme: "https", authority: baseUrl, path: path)
-        request.headerFields[.userAgent] = buildUserAgent()
-        request.headerFields[.authorization] = buildAuth()
+        let request = buildRequest(method: method, path: path)
         var wrappedResponse: HTTPResponse?
         var wrappedResponseBody: Data?
         do {
@@ -55,7 +53,13 @@ extension SonarClient {
         }
     }
 
-    private func buildRequest() {}
+    private func buildRequest(method: HTTPRequest.Method, path: String) -> HTTPRequest {
+        var request = HTTPRequest(method: method, scheme: "https", authority: baseUrl, path: path)
+        request.headerFields[.accept] = "application/json"
+        request.headerFields[.userAgent] = buildUserAgent()
+        request.headerFields[.authorization] = buildAuth()
+        return request
+    }
 
     private func buildAuth() -> String {
         let loginString = "\(apiKey):"
