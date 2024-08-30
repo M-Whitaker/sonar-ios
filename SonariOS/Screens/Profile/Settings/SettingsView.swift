@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Preference(\.sonarCloudApiKey) var apiKey
+  
+    @Preference(\.profiles) var profiles
+    @Preference(\.currentProfileIdx) var currentProfileIdx
 
     var body: some View {
         List {
+          if !profiles.isEmpty {
             Section {
-                Text("One of One")
-                TextField("API Key", text: $apiKey)
+              // Text("Profile Type: \($profiles[currentProfileIdx].type)")
+              TextField(text: $profiles[currentProfileIdx].apiKey) {
+                Text("API KEY")
+              }
             }
-            Section {
-                Text("One of Two")
-            }
+          }
+          Section {
+            NavigationLink(destination: ProfilePicker()) {Text("Manage Accounts")}
+          }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)

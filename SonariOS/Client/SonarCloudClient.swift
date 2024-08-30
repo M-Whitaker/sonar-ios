@@ -11,7 +11,7 @@ class SonarCloudClient: SonarClient {
     private static let SONAR_CLOUD_BASE_URL = "sonarcloud.io/api"
 
     var baseUrl: String
-    @Preference(\.sonarCloudApiKey) var apiKey: String
+    @UserScopedPreference(\.apiKey) var apiKey: String
 
     convenience init() {
         self.init(baseUrl: SonarCloudClient.SONAR_CLOUD_BASE_URL)
