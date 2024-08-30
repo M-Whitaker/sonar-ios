@@ -25,7 +25,7 @@ final class Preferences {
     }
 
     @CustomUserDefault("profiles")
-    var profiles: [SonarTypeUserDefaults] = []
+    var profiles: [SonarUserDefaults] = [SonarTypeUserDefaults()]
   
     @UserDefault("current_profile_idx")
     var currentProfileIdx: Int = 0
@@ -152,10 +152,10 @@ struct Preference<Value>: DynamicProperty {
 @propertyWrapper
 struct UserScopedPreference<Value>: DynamicProperty {
     @ObservedObject private var preferencesObserver: PublisherObservableObject
-    private let keyPath: ReferenceWritableKeyPath<SonarTypeUserDefaults, Value>
+    private let keyPath: ReferenceWritableKeyPath<SonarUserDefaults, Value>
     private let preferences: Preferences
 
-    init(_ keyPath: ReferenceWritableKeyPath<SonarTypeUserDefaults, Value>, preferences: Preferences = .standard) {
+    init(_ keyPath: ReferenceWritableKeyPath<SonarUserDefaults, Value>, preferences: Preferences = .standard) {
         self.keyPath = keyPath
         self.preferences = preferences
       let publisher = preferences
@@ -168,6 +168,7 @@ struct UserScopedPreference<Value>: DynamicProperty {
     }
 
     var wrappedValue: Value {
+      // TODO: Empty profiles array
       get { preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] }
       nonmutating set { preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] = newValue }
     }

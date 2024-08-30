@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserDefaultsType: CaseIterable, Identifiable, CustomStringConvertible {
+enum UserDefaultsType: CaseIterable, Identifiable, CustomStringConvertible, Codable {
   case sonarType
   case sonarCloud
   
@@ -27,33 +27,23 @@ enum InvalidStateError: Error {
     case runtimeError(String)
 }
 
-protocol SonarUserDefaults : Identifiable {
-  var id: String { get set }
-  var name: String { get set }
-  var apiKey: String { get set }
-  var userDefaults: UserDefaults? { get set }
-}
-
-class SonarTypeUserDefaults : SonarUserDefaults, Codable {
-  
-  let type: UserDefaultsType = .sonarType
+class SonarUserDefaults : Identifiable, Codable {
+  var id: String = ""
+  var name: String = ""
+  let type: UserDefaultsType
+  var apiKey: String = ""
   var userDefaults: UserDefaults?
   
-  var id = ""
-  var name = ""
-  var baseUrl = ""
-  var apiKey = ""
-  
-  init() {
-    
+  init(type: UserDefaultsType) {
+    self.type = type
   }
   
   required init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    
+
     self.id = try container.decode(String.self, forKey: .id)
     self.name = try container.decode(String.self, forKey: .name)
-    self.baseUrl = try container.decode(String.self, forKey: .baseUrl)
+    self.type = try container.decode(UserDefaultsType.self, forKey: .type)
     self.apiKey = try container.decode(String.self, forKey: .apiKey)
     
     let wrappedUserDefaults = UserDefaults(suiteName: self.id)
@@ -64,6 +54,25 @@ class SonarTypeUserDefaults : SonarUserDefaults, Codable {
   }
   
   private enum CodingKeys: String, CodingKey {
-      case id, name, baseUrl, apiKey
+      case id, name, type, apiKey
+  }
+}
+
+class SonarTypeUserDefaults : SonarUserDefaults {
+
+  var baseUrl = ""
+  
+  init() {
+    super.init(type: .sonarType)
+  }
+  
+  required init(from decoder: any Decoder) throws {
+    try super.init(from: decoder)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.baseUrl = try container.decode(String.self, forKey: .baseUrl)
+  }
+  
+  private enum CodingKeys: String, CodingKey {
+      case baseUrl
   }
 }

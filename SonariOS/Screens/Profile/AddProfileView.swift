@@ -25,19 +25,19 @@ struct AddProfileView: View {
       }
       .pickerStyle(.wheel)
       Button {
-        var sonarUserDefaults: (any SonarUserDefaults)? = nil
+        var sonarUserDefaults: SonarUserDefaults? = nil
         if userDefaultsType == .sonarType {
           sonarUserDefaults = SonarTypeUserDefaults()
         } else if userDefaultsType == .sonarCloud {
           sonarUserDefaults = SonarCloudUserDefaults()
         }
-        guard var userDefaults = sonarUserDefaults else {
+        guard let userDefaults = sonarUserDefaults else {
           return
         }
         
         userDefaults.id = "suite-name"
         userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
-        profiles.append(userDefaults as! SonarTypeUserDefaults)
+        profiles.append(userDefaults)
       } label: {
         Text("Add")
       }
