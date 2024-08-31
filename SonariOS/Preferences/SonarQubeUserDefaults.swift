@@ -1,16 +1,16 @@
 //
-//  SonarTypeUserDefaults.swift
+//  SonarQubeUserDefaults.swift
 //  SonariOS
 //
 //  Created by Matt Whitaker on 27/08/2024.
 //
 
-class SonarTypeUserDefaults : SonarUserDefaults {
+class SonarQubeUserDefaults : SonarUserDefaults {
 
   var baseUrl = ""
   
   init(id: String, name: String, apiKey: String, baseUrl: String) {
-    super.init(id: id, name: name, type: .sonarType, apiKey: apiKey)
+    super.init(id: id, name: name, type: .sonarQube, apiKey: apiKey)
     self.baseUrl = baseUrl
   }
   

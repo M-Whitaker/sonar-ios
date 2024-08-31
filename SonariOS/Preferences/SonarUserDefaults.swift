@@ -8,14 +8,14 @@
 import Foundation
 
 enum UserDefaultsType: CaseIterable, Identifiable, CustomStringConvertible, Codable {
-  case sonarType
+  case sonarQube
   case sonarCloud
   
   var id: Self { self }
   var description: String {
     switch self {
-      case .sonarType:
-        return "Sonar Type"
+      case .sonarQube:
+        return "Sonar Qube"
       case .sonarCloud:
         return "Sonar Cloud"
     }

@@ -26,7 +26,7 @@ struct AddProfileView: View {
           }
       }
       .pickerStyle(.wheel)
-      if userDefaultsType == .sonarType {
+      if userDefaultsType == .sonarQube {
         TextField(text: $baseUrl) {
           Text("Base URL")
         }
@@ -37,8 +37,8 @@ struct AddProfileView: View {
       Button {
         // TODO: Need some validation
         var sonarUserDefaults: SonarUserDefaults? = nil
-        if userDefaultsType == .sonarType {
-          sonarUserDefaults = SonarTypeUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey, baseUrl: baseUrl)
+        if userDefaultsType == .sonarQube {
+          sonarUserDefaults = SonarQubeUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey, baseUrl: baseUrl)
         } else if userDefaultsType == .sonarCloud {
           sonarUserDefaults = SonarCloudUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey)
         }

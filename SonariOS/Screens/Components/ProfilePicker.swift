@@ -19,7 +19,7 @@ struct ProfilePicker: View {
               currentProfileIdx = idx
               print(currentProfileIdx)
             } label: {
-              Text("\(profile.apiKey)")
+              Text("\(profile.name)")
             }
           }
         .onDelete(perform: delete)

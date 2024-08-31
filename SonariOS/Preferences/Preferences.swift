@@ -186,3 +186,47 @@ struct UserScopedPreference<Value>: DynamicProperty {
         )
     }
 }
+
+@propertyWrapper
+struct SonarQubeUserScopedPreference<Value>: DynamicProperty {
+    @ObservedObject private var preferencesObserver: PublisherObservableObject
+    private let keyPath: ReferenceWritableKeyPath<SonarQubeUserDefaults, Value>
+    private let preferences: Preferences
+
+    init(_ keyPath: ReferenceWritableKeyPath<SonarQubeUserDefaults, Value>, preferences: Preferences = .standard) {
+        self.keyPath = keyPath
+        self.preferences = preferences
+      let publisher = preferences
+            .preferencesChangedSubject
+            .filter { changedKeyPath in
+                changedKeyPath == keyPath
+            }.map { _ in () }
+            .eraseToAnyPublisher()
+        preferencesObserver = .init(publisher: publisher)
+    }
+
+    var wrappedValue: Value {
+      get {
+        assert(!preferences.profiles.isEmpty)
+        guard let currProfile = preferences.profiles[preferences.currentProfileIdx] as? SonarQubeUserDefaults else {
+          preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+        }
+        return currProfile[keyPath: keyPath]
+        
+      }
+      nonmutating set {
+        assert(!preferences.profiles.isEmpty)
+        guard let currProfile = preferences.profiles[preferences.currentProfileIdx] as? SonarQubeUserDefaults else {
+          preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+        }
+        currProfile[keyPath: keyPath] = newValue
+      }
+    }
+
+    var projectedValue: Binding<Value> {
+        Binding(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
+    }
+}
