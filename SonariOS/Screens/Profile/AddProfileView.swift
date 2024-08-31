@@ -11,12 +11,14 @@ struct AddProfileView: View {
   
   @Preference(\.profiles) var profiles
   @State var userDefaultsType: UserDefaultsType = .sonarCloud
+  @State var name: String = ""
   @State var apiKey: String = ""
+  @State var baseUrl: String = ""
   
   var body: some View {
-    VStack {
-      TextField(text: $apiKey) {
-        Text("API Key")
+    Form {
+      TextField(text: $name) {
+        Text("Name")
       }
       Picker("Account Type", selection: $userDefaultsType) {
           ForEach(UserDefaultsType.allCases) { option in
@@ -24,20 +26,26 @@ struct AddProfileView: View {
           }
       }
       .pickerStyle(.wheel)
+      if userDefaultsType == .sonarType {
+        TextField(text: $baseUrl) {
+          Text("Base URL")
+        }
+      }
+      TextField(text: $apiKey) {
+        Text("API Key")
+      }
       Button {
+        // TODO: Need some validation
         var sonarUserDefaults: SonarUserDefaults? = nil
         if userDefaultsType == .sonarType {
-          sonarUserDefaults = SonarTypeUserDefaults()
+          sonarUserDefaults = SonarTypeUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey, baseUrl: baseUrl)
         } else if userDefaultsType == .sonarCloud {
-          sonarUserDefaults = SonarCloudUserDefaults()
+          sonarUserDefaults = SonarCloudUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey)
         }
         guard let userDefaults = sonarUserDefaults else {
           return
         }
-        
-        userDefaults.id = "suite-name"
         userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
-        userDefaults.apiKey = apiKey
         profiles.append(userDefaults)
       } label: {
         Text("Add")

@@ -1,0 +1,66 @@
+//
+//  SonarUserDefaults.swift
+//  SonariOS
+//
+//  Created by Matt Whitaker on 31/08/2024.
+//
+
+import Foundation
+
+enum UserDefaultsType: CaseIterable, Identifiable, CustomStringConvertible, Codable {
+  case sonarType
+  case sonarCloud
+  
+  var id: Self { self }
+  var description: String {
+    switch self {
+      case .sonarType:
+        return "Sonar Type"
+      case .sonarCloud:
+        return "Sonar Cloud"
+    }
+  }
+  
+}
+
+enum InvalidStateError: Error {
+    case runtimeError(String)
+}
+
+class SonarUserDefaults : Identifiable, Codable {
+  var id: String = ""
+  var name: String = ""
+  let type: UserDefaultsType
+  var apiKey: String = ""
+  var userDefaults: UserDefaults?
+  
+  init(id: String, name: String, type: UserDefaultsType, apiKey: String) {
+    self.id = id
+    self.name = name
+    self.type = type
+    self.apiKey = apiKey
+  }
+  
+  required init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    self.id = try container.decode(String.self, forKey: .id)
+    self.name = try container.decode(String.self, forKey: .name)
+    self.type = try container.decode(UserDefaultsType.self, forKey: .type)
+    self.apiKey = try container.decode(String.self, forKey: .apiKey)
+    
+    let wrappedUserDefaults = UserDefaults(suiteName: self.id)
+    guard let userDefaults = wrappedUserDefaults else {
+      throw InvalidStateError.runtimeError("Error constructing user defaults with key: \(self.id)")
+    }
+    self.userDefaults = userDefaults
+  }
+
+  func deleteUserDefaults() throws {
+    UserDefaults.standard.removeSuite(named: self.id)
+  }
+  
+  private enum CodingKeys: String, CodingKey {
+      case id, name, type, apiKey
+  }
+}

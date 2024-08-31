@@ -9,8 +9,8 @@ import Foundation
 
 class SonarCloudUserDefaults : SonarUserDefaults {
   
-  init() {
-    super.init(type: .sonarCloud)
+  init(id: String, name: String, apiKey: String) {
+    super.init(id: id, name: name, type: .sonarType, apiKey: apiKey)
   }
   
   required init(from decoder: any Decoder) throws {
