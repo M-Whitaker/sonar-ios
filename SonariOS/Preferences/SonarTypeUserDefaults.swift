@@ -52,6 +52,10 @@ class SonarUserDefaults : Identifiable, Codable {
     }
     self.userDefaults = userDefaults
   }
+
+  func deleteUserDefaults() throws {
+    UserDefaults.standard.removeSuite(named: self.id)
+  }
   
   private enum CodingKeys: String, CodingKey {
       case id, name, type, apiKey

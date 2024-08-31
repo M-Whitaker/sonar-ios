@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @Preference(\.profiles) var profiles
+  
     var body: some View {
+      if profiles.isEmpty {
+        AddProfileView()
+      } else {
         TabView {
             ProjectsView()
                 .tabItem {
@@ -31,5 +37,6 @@ struct ContentView: View {
                     Text("Profile")
                 }
         }
+      }
     }
 }

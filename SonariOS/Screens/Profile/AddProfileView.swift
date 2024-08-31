@@ -37,6 +37,7 @@ struct AddProfileView: View {
         
         userDefaults.id = "suite-name"
         userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
+        userDefaults.apiKey = apiKey
         profiles.append(userDefaults)
       } label: {
         Text("Add")

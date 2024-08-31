@@ -13,21 +13,23 @@ struct ProfilePicker: View {
   @Preference(\.currentProfileIdx) var currentProfileIdx
   
   var body: some View {
-    VStack {
       List {
-        ForEach(profiles.indices) { idx in
+        ForEach(Array(profiles.enumerated()), id: \.offset) { idx, profile in
             Button {
               currentProfileIdx = idx
               print(currentProfileIdx)
             } label: {
-              Text("\(profiles[idx].apiKey)")
+              Text("\(profile.apiKey)")
             }
-
           }
+        .onDelete(perform: delete)
       }
       NavigationLink(destination: AddProfileView()) {Text("Add Accounts")}
     }
-    
+  
+  func delete(atOffsets: IndexSet) {
+    // TODO: Call delete on the profile associated with the row
+    profiles.remove(atOffsets: atOffsets)
   }
 }
 

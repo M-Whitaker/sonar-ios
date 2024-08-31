@@ -25,7 +25,7 @@ final class Preferences {
     }
 
     @CustomUserDefault("profiles")
-    var profiles: [SonarUserDefaults] = [SonarTypeUserDefaults()]
+    var profiles: [SonarUserDefaults] = []
   
     @UserDefault("current_profile_idx")
     var currentProfileIdx: Int = 0
@@ -168,9 +168,15 @@ struct UserScopedPreference<Value>: DynamicProperty {
     }
 
     var wrappedValue: Value {
-      // TODO: Empty profiles array
-      get { preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] }
-      nonmutating set { preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] = newValue }
+      get {
+        assert(!preferences.profiles.isEmpty)
+        return preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath]
+        
+      }
+      nonmutating set {
+        assert(!preferences.profiles.isEmpty)
+        preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] = newValue
+      }
     }
 
     var projectedValue: Binding<Value> {
