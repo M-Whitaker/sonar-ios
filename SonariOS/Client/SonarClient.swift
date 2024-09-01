@@ -93,3 +93,15 @@ extension SonarClient {
         return str
     }
 }
+
+class StaticSonarClient {
+  static var current: SonarClient {
+      let type = Preferences.standard.profiles[Preferences.standard.currentProfileIdx].userDefaults.type
+      switch type {
+        case .sonarQube:
+          return SonarQubeClient()
+        case .sonarCloud:
+          return SonarCloudClient()
+      }
+  }
+}

@@ -20,7 +20,13 @@ class SonarQubeUserDefaults : SonarUserDefaults {
     self.baseUrl = try container.decode(String.self, forKey: .baseUrl)
   }
   
-  private enum CodingKeys: String, CodingKey {
+  override func encode(to encoder: any Encoder) throws {
+    try super.encode(to: encoder)
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(baseUrl, forKey: .baseUrl)
+  }
+  
+  enum CodingKeys: String, CodingKey {
       case baseUrl
   }
 }

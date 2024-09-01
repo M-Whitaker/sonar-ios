@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Factory
 
 struct ProfilePicker: View {
   
@@ -19,7 +20,7 @@ struct ProfilePicker: View {
               currentProfileIdx = idx
               print(currentProfileIdx)
             } label: {
-              Text("\(profile.name)")
+              Text("\(profile.userDefaults.name)")
             }
           }
         .onDelete(perform: delete)

@@ -21,6 +21,15 @@ enum UserDefaultsType: CaseIterable, Identifiable, CustomStringConvertible, Coda
     }
   }
   
+  var metatype: SonarUserDefaults.Type {
+      switch self {
+        case .sonarQube:
+          return SonarQubeUserDefaults.self
+      case .sonarCloud:
+          return SonarCloudUserDefaults.self
+      }
+    }
+  
 }
 
 enum InvalidStateError: Error {
@@ -55,12 +64,42 @@ class SonarUserDefaults : Identifiable, Codable {
     }
     self.userDefaults = userDefaults
   }
+  
+  func encode(to encoder: any Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(id, forKey: .id)
+    try container.encode(name, forKey: .name)
+    try container.encode(type, forKey: .type)
+    try container.encode(apiKey, forKey: .apiKey)
+  }
+  
+  enum CodingKeys: String, CodingKey {
+      case id, name, type, apiKey
+  }
 
   func deleteUserDefaults() throws {
     UserDefaults.standard.removeSuite(named: self.id)
   }
-  
-  private enum CodingKeys: String, CodingKey {
-      case id, name, type, apiKey
-  }
+}
+
+struct SonarUserDefaultsWrapper {
+    var userDefaults: SonarUserDefaults
+}
+
+extension SonarUserDefaultsWrapper: Codable {
+    private enum CodingKeys: CodingKey {
+        case type, userDefaults
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(UserDefaultsType.self, forKey: .type)
+        self.userDefaults = try type.metatype.init(from: container.superDecoder(forKey: .userDefaults))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(userDefaults.type, forKey: .type)
+        try userDefaults.encode(to: container.superEncoder(forKey: .userDefaults))
+    }
 }

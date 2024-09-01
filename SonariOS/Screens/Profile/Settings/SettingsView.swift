@@ -17,7 +17,7 @@ struct SettingsView: View {
           if !profiles.isEmpty {
             Section {
               // Text("Profile Type: \($profiles[currentProfileIdx].type)")
-              TextField(text: $profiles[currentProfileIdx].apiKey) {
+              TextField(text: $profiles[currentProfileIdx].userDefaults.apiKey) {
                 Text("API KEY")
               }
             }

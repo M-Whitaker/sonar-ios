@@ -25,7 +25,7 @@ final class Preferences {
     }
 
     @CustomUserDefault("profiles")
-    var profiles: [SonarUserDefaults] = []
+    var profiles: [SonarUserDefaultsWrapper] = []
   
     @UserDefault("current_profile_idx")
     var currentProfileIdx: Int = 0
@@ -170,12 +170,12 @@ struct UserScopedPreference<Value>: DynamicProperty {
     var wrappedValue: Value {
       get {
         assert(!preferences.profiles.isEmpty)
-        return preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath]
+        return preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath]
         
       }
       nonmutating set {
         assert(!preferences.profiles.isEmpty)
-        preferences.profiles[preferences.currentProfileIdx][keyPath: keyPath] = newValue
+        preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath] = newValue
       }
     }
 
@@ -208,7 +208,7 @@ struct SonarQubeUserScopedPreference<Value>: DynamicProperty {
     var wrappedValue: Value {
       get {
         assert(!preferences.profiles.isEmpty)
-        guard let currProfile = preferences.profiles[preferences.currentProfileIdx] as? SonarQubeUserDefaults else {
+        guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
           preconditionFailure("Should be used on type of SonarQubeUserDefaults")
         }
         return currProfile[keyPath: keyPath]
@@ -216,7 +216,7 @@ struct SonarQubeUserScopedPreference<Value>: DynamicProperty {
       }
       nonmutating set {
         assert(!preferences.profiles.isEmpty)
-        guard let currProfile = preferences.profiles[preferences.currentProfileIdx] as? SonarQubeUserDefaults else {
+        guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
           preconditionFailure("Should be used on type of SonarQubeUserDefaults")
         }
         currProfile[keyPath: keyPath] = newValue

@@ -46,7 +46,8 @@ struct AddProfileView: View {
           return
         }
         userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
-        profiles.append(userDefaults)
+        profiles.append(SonarUserDefaultsWrapper(userDefaults: userDefaults))
+        print("Added new profile")
       } label: {
         Text("Add")
       }
