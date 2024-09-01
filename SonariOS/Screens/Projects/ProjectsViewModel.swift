@@ -9,7 +9,6 @@ import Factory
 import Foundation
 
 class ProjectsViewModel: ObservableObject {
-
     func getProjects() async -> [Project] {
         do {
             let projects = try await StaticSonarClient.current.retrieveProjects()

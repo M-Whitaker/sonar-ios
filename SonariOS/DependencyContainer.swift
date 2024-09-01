@@ -7,5 +7,4 @@
 
 import Factory
 
-extension Container {
-}
+extension Container {}

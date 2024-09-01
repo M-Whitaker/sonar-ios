@@ -8,35 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @Preference(\.profiles) var profiles
-  
+
     var body: some View {
-      if profiles.isEmpty {
-        AddProfileView()
-      } else {
-        TabView {
-            ProjectsView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Projects")
-                }
-            Text("Issues")
-                .tabItem {
-                    Image(systemName: "exclamationmark.triangle")
-                    Text("Issues")
-                }
-            Text("Explore")
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Explore")
-                }
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                    Text("Profile")
-                }
+        if profiles.isEmpty {
+            AddProfileView()
+        } else {
+            TabView {
+                ProjectsView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Projects")
+                    }
+                Text("Issues")
+                    .tabItem {
+                        Image(systemName: "exclamationmark.triangle")
+                        Text("Issues")
+                    }
+                Text("Explore")
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Explore")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.crop.circle")
+                        Text("Profile")
+                    }
+            }
         }
-      }
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 import HTTPTypes
 
 class SonarQubeClient: SonarClient {
-    
     @SonarQubeUserScopedPreference(\.baseUrl) var baseUrl: String
     @UserScopedPreference(\.apiKey) var apiKey: String
 

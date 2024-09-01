@@ -26,7 +26,7 @@ final class Preferences {
 
     @CustomUserDefault("profiles")
     var profiles: [SonarUserDefaultsWrapper] = []
-  
+
     @UserDefault("current_profile_idx")
     var currentProfileIdx: Int = 0
 }
@@ -77,7 +77,7 @@ struct UserDefault<Value> {
 }
 
 @propertyWrapper
-struct CustomUserDefault<Value : Codable> {
+struct CustomUserDefault<Value: Codable> {
     let key: String
     let defaultValue: Value
 
@@ -101,9 +101,9 @@ struct CustomUserDefault<Value : Codable> {
             let key = instance[keyPath: storageKeyPath].key
             let defaultValue = instance[keyPath: storageKeyPath].defaultValue
             if let data = container.object(forKey: key) as? Data,
-                let user = try? JSONDecoder().decode(Value.self, from: data) {
+               let user = try? JSONDecoder().decode(Value.self, from: data)
+            {
                 return user
-
             }
             return defaultValue
         }
@@ -158,7 +158,7 @@ struct UserScopedPreference<Value>: DynamicProperty {
     init(_ keyPath: ReferenceWritableKeyPath<SonarUserDefaults, Value>, preferences: Preferences = .standard) {
         self.keyPath = keyPath
         self.preferences = preferences
-      let publisher = preferences
+        let publisher = preferences
             .preferencesChangedSubject
             .filter { changedKeyPath in
                 changedKeyPath == keyPath
@@ -168,15 +168,14 @@ struct UserScopedPreference<Value>: DynamicProperty {
     }
 
     var wrappedValue: Value {
-      get {
-        assert(!preferences.profiles.isEmpty)
-        return preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath]
-        
-      }
-      nonmutating set {
-        assert(!preferences.profiles.isEmpty)
-        preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath] = newValue
-      }
+        get {
+            assert(!preferences.profiles.isEmpty)
+            return preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath]
+        }
+        nonmutating set {
+            assert(!preferences.profiles.isEmpty)
+            preferences.profiles[preferences.currentProfileIdx].userDefaults[keyPath: keyPath] = newValue
+        }
     }
 
     var projectedValue: Binding<Value> {
@@ -196,7 +195,7 @@ struct SonarQubeUserScopedPreference<Value>: DynamicProperty {
     init(_ keyPath: ReferenceWritableKeyPath<SonarQubeUserDefaults, Value>, preferences: Preferences = .standard) {
         self.keyPath = keyPath
         self.preferences = preferences
-      let publisher = preferences
+        let publisher = preferences
             .preferencesChangedSubject
             .filter { changedKeyPath in
                 changedKeyPath == keyPath
@@ -206,21 +205,20 @@ struct SonarQubeUserScopedPreference<Value>: DynamicProperty {
     }
 
     var wrappedValue: Value {
-      get {
-        assert(!preferences.profiles.isEmpty)
-        guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
-          preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+        get {
+            assert(!preferences.profiles.isEmpty)
+            guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
+                preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+            }
+            return currProfile[keyPath: keyPath]
         }
-        return currProfile[keyPath: keyPath]
-        
-      }
-      nonmutating set {
-        assert(!preferences.profiles.isEmpty)
-        guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
-          preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+        nonmutating set {
+            assert(!preferences.profiles.isEmpty)
+            guard let currProfile = preferences.profiles[preferences.currentProfileIdx].userDefaults as? SonarQubeUserDefaults else {
+                preconditionFailure("Should be used on type of SonarQubeUserDefaults")
+            }
+            currProfile[keyPath: keyPath] = newValue
         }
-        currProfile[keyPath: keyPath] = newValue
-      }
     }
 
     var projectedValue: Binding<Value> {
