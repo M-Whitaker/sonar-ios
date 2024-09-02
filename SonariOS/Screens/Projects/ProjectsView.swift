@@ -20,10 +20,17 @@ struct ProjectsView: View {
             }
             .onAppear {
                 Task {
-                    projects = await viewModel.getProjects()
+                    await getProjects()
                 }
             }
             .navigationTitle("Projects")
+            .refreshable {
+                await getProjects()
+            }
         }
+    }
+
+    private func getProjects() async {
+        projects = await viewModel.getProjects()
     }
 }

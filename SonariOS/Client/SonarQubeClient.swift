@@ -16,7 +16,7 @@ class SonarQubeClient: SonarClient {
         [Issue()]
     }
 
-    func retrieveProjects() async throws -> APIListResponse<Project> {
+    func retrieveProjects() async throws -> ProjectListResponse {
         print("Retriving projects from sonarqube url \(baseUrl)...")
         return try await call(method: .get, path: "/api/components/search?qualifiers=TRK")
     }

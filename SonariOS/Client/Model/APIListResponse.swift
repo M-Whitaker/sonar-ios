@@ -5,11 +5,8 @@
 //  Created by Matt Whitaker on 19/08/2024.
 //
 
-import Foundation
-
-struct APIListResponse<T: Codable>: Codable {
-    var paging: Page
-    var components: [T]
+class APIListResponse: Codable {
+    var paging: Page = .init(pageIndex: 0, pageSize: 0, total: 0)
 }
 
 extension APIListResponse {

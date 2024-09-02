@@ -13,7 +13,7 @@ class ProjectsViewModel: ObservableObject {
         do {
             let projects = try await StaticSonarClient.current.retrieveProjects()
             print(projects)
-            return projects.components
+            return projects.items
         } catch {
             print("Some error in viewModel")
             return []

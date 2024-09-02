@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751256A22C86376A000234C0 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256A12C86376A000234C0 /* Organization.swift */; };
+		751256A52C863988000234C0 /* ProjectListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256A42C863988000234C0 /* ProjectListResponse.swift */; };
+		751256A72C863AB1000234C0 /* OrganizationListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256A62C863AB1000234C0 /* OrganizationListResponse.swift */; };
+		751256AA2C863C4B000234C0 /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256A92C863C4B000234C0 /* ArrayUtils.swift */; };
 		7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */; };
 		7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */; };
 		7545E6E12C7FC90E0078B903 /* AddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E02C7FC90E0078B903 /* AddProfileView.swift */; };
@@ -65,6 +69,10 @@
 
 /* Begin PBXFileReference section */
 		7500685E2C7CD45D00213AB2 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
+		751256A12C86376A000234C0 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		751256A42C863988000234C0 /* ProjectListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListResponse.swift; sourceTree = "<group>"; };
+		751256A62C863AB1000234C0 /* OrganizationListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListResponse.swift; sourceTree = "<group>"; };
+		751256A92C863C4B000234C0 /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
 		7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicker.swift; sourceTree = "<group>"; };
 		7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarQubeUserDefaults.swift; sourceTree = "<group>"; };
 		7545E6E02C7FC90E0078B903 /* AddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileView.swift; sourceTree = "<group>"; };
@@ -136,9 +144,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		751256A32C863959000234C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				755A9F112C72214800570528 /* APIError.swift */,
+				75EF1A7C2C72B4A800E3D879 /* APIListResponse.swift */,
+				751256A42C863988000234C0 /* ProjectListResponse.swift */,
+				751256A62C863AB1000234C0 /* OrganizationListResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		751256A82C863C3C000234C0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				751256A92C863C4B000234C0 /* ArrayUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		7545E6E62C84D8FD0078B903 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				751256A82C863C3C000234C0 /* Utils */,
 				7545E6E72C84D9090078B903 /* Profile */,
 			);
 			path = Service;
@@ -254,11 +282,10 @@
 		75E56C122C70B940000CA0BC /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				751256A32C863959000234C0 /* Model */,
 				75E56C132C70B972000CA0BC /* SonarClient.swift */,
 				75E56C182C70BA11000CA0BC /* SonarQubeClient.swift */,
 				75E56C1A2C70BA1D000CA0BC /* SonarCloudClient.swift */,
-				755A9F112C72214800570528 /* APIError.swift */,
-				75EF1A7C2C72B4A800E3D879 /* APIListResponse.swift */,
 				7597CBB22C768DE4003810AF /* Headers.swift */,
 			);
 			path = Client;
@@ -267,6 +294,7 @@
 		75E56C152C70B9BA000CA0BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				751256A12C86376A000234C0 /* Organization.swift */,
 				75E56C162C70B9C7000CA0BC /* Project.swift */,
 				756EABD12C71633300EFBE33 /* Issue.swift */,
 			);
@@ -472,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7545E6EC2C84D97C0078B903 /* ProfileSettingsValidatorFactory.swift in Sources */,
+				751256A22C86376A000234C0 /* Organization.swift in Sources */,
 				75E56C232C70BBE1000CA0BC /* ProjectsViewModel.swift in Sources */,
 				75E56C212C70BB6E000CA0BC /* DependencyContainer.swift in Sources */,
 				7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */,
@@ -484,7 +513,9 @@
 				7545E6EF2C84DB190078B903 /* BaseUrlValidator.swift in Sources */,
 				75EF1A7D2C72B4A800E3D879 /* APIListResponse.swift in Sources */,
 				75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */,
+				751256A52C863988000234C0 /* ProjectListResponse.swift in Sources */,
 				7545E6EA2C84D9240078B903 /* ProfileSettingsValidator.swift in Sources */,
+				751256A72C863AB1000234C0 /* OrganizationListResponse.swift in Sources */,
 				7545E6F32C8508580078B903 /* SonarQubeSettingsView.swift in Sources */,
 				7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */,
 				7545E6E52C83498B0078B903 /* SonarUserDefaults.swift in Sources */,
@@ -495,6 +526,7 @@
 				75FFC47A2C792D7100FD945E /* SettingsView.swift in Sources */,
 				756AED5C2C78E4EB00F7972C /* Preferences.swift in Sources */,
 				7597CBB12C7684AB003810AF /* BundleData.swift in Sources */,
+				751256AA2C863C4B000234C0 /* ArrayUtils.swift in Sources */,
 				75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */,
 				75E56C1B2C70BA1D000CA0BC /* SonarCloudClient.swift in Sources */,
 				75E56C172C70B9C7000CA0BC /* Project.swift in Sources */,

@@ -25,8 +25,13 @@ class SonarCloudClient: SonarClient {
         [Issue()]
     }
 
-    func retrieveProjects() async throws -> APIListResponse<Project> {
+    func retrieveProjects() async throws -> ProjectListResponse {
         print("Retriving projects from sonar cloud...")
-        return try await call(method: .get, path: "/projects/search?organization=m-whitaker")
+        let orgs: OrganizationListResponse = try await call(method: .get, path: "/organizations/search?member=true")
+        if let org = orgs.items.find(at: 0) {
+            return try await call(method: .get, path: "/projects/search?organization=\(org)")
+        } else {
+            return ProjectListResponse()
+        }
     }
 }
