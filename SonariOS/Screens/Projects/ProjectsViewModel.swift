@@ -8,15 +8,24 @@
 import Factory
 import Foundation
 
+enum ViewLoadingState<T> {
+    case isLoading
+    case loaded(T)
+    case failed(Error)
+}
+
 class ProjectsViewModel: ObservableObject {
-    func getProjects() async -> [Project] {
+    @Published var state: ViewLoadingState<[Project]> = .isLoading
+
+    @MainActor
+    func getProjects() async {
         do {
             let projects = try await StaticSonarClient.current.retrieveProjects()
-            print(projects)
-            return projects.items
+            print(projects.items)
+            state = .loaded(projects.items)
         } catch {
             print("Some error in viewModel")
-            return []
+            state = .failed(error)
         }
     }
 }

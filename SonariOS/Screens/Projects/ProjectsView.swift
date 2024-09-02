@@ -9,28 +9,52 @@ import SwiftUI
 
 struct ProjectsView: View {
     @StateObject var viewModel = ProjectsViewModel()
-    @State var projects: [Project] = []
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(projects) { project in
-                    Text(project.key)
-                }
+            switch viewModel.state {
+            case .isLoading:
+                loadingView()
+            case let .loaded(projects):
+                loadedView(projects: projects)
+            case let .failed(error):
+                failedView(error)
             }
-            .onAppear {
-                Task {
-                    await getProjects()
-                }
-            }
-            .navigationTitle("Projects")
-            .refreshable {
+        }
+        .onAppear {
+            Task {
                 await getProjects()
             }
         }
     }
 
+    private func loadedView(projects: [Project]) -> some View {
+        List {
+            ForEach(projects) { project in
+                Text(project.key)
+            }
+        }
+        .navigationTitle("Projects")
+        .refreshable {
+            await getProjects()
+        }
+    }
+
     private func getProjects() async {
-        projects = await viewModel.getProjects()
+        await viewModel.getProjects()
+    }
+}
+
+// MARK: - Loading Content
+
+private extension ProjectsView {
+    func loadingView() -> some View {
+        AnyView(ProgressView().padding())
+    }
+
+    func failedView(_ error: Error) -> some View {
+        ErrorView(error: error, retryAction: {
+            await self.getProjects()
+        })
     }
 }

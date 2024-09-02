@@ -34,9 +34,7 @@ struct SettingsView: View {
                 }
                 Section(header: Text("Profiles")) {
                     Text(profiles[currentProfileIdx].userDefaults.type.description)
-                    SecureField(text: $profiles[currentProfileIdx].userDefaults.apiKey, prompt: Text("Required")) {
-                        Text("API Key")
-                    }
+                    SecureTextField("Required", prompt: $profiles[currentProfileIdx].userDefaults.apiKey)
                 }
             }
             Section(header: Text("Accounts")) {

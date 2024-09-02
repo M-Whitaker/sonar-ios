@@ -29,7 +29,7 @@ class SonarCloudClient: SonarClient {
         print("Retriving projects from sonar cloud...")
         let orgs: OrganizationListResponse = try await call(method: .get, path: "/organizations/search?member=true")
         if let org = orgs.items.find(at: 0) {
-            return try await call(method: .get, path: "/projects/search?organization=\(org)")
+            return try await call(method: .get, path: "/components/search?organization=\(org.key)")
         } else {
             return ProjectListResponse()
         }
