@@ -19,12 +19,22 @@ struct ProfilePicker: View {
                     currentProfileIdx = idx
                     print(currentProfileIdx)
                 } label: {
-                    Text("\(profile.userDefaults.name)")
+                    HStack {
+                        Text("\(profile.userDefaults.name)")
+                        if idx == currentProfileIdx {
+                            Spacer()
+                            Image(systemName: "checkmark.circle")
+                        }
+                    }
                 }
             }
             .onDelete(perform: delete)
         }
-        NavigationLink(destination: AddProfileView()) { Text("Add Accounts") }
+        .navigationTitle("Accounts")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            NavigationLink(destination: AddProfileView()) { Text("Add") }
+        }
     }
 
     func delete(atOffsets: IndexSet) {

@@ -7,4 +7,9 @@
 
 import Factory
 
-extension Container {}
+extension Container {
+    var profileSettingsValidatorFactory: Factory<ProfileSettingsValidatorFactory> {
+        Factory(self) { ProfileSettingsValidatorFactory() }
+            .singleton
+    }
+}

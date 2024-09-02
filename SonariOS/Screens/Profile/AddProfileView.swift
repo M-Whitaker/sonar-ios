@@ -8,50 +8,49 @@
 import SwiftUI
 
 struct AddProfileView: View {
-    @Preference(\.profiles) var profiles
-    @State var userDefaultsType: UserDefaultsType = .sonarCloud
-    @State var name: String = ""
-    @State var apiKey: String = ""
-    @State var baseUrl: String = ""
+    @ObservedObject var viewModel = AddProfileViewModel()
 
     var body: some View {
         Form {
-            TextField(text: $name) {
+            TextField(text: $viewModel.name) {
                 Text("Name")
+            }.onChange(of: viewModel.name) {
+                viewModel.formValidate()
             }
-            Picker("Account Type", selection: $userDefaultsType) {
+            Picker("Account Type", selection: $viewModel.userDefaultsType) {
                 ForEach(UserDefaultsType.allCases) { option in
                     Text(String(describing: option))
                 }
+            }.onChange(of: viewModel.userDefaultsType) {
+                viewModel.formValidate()
             }
-            .pickerStyle(.wheel)
-            if userDefaultsType == .sonarQube {
-                TextField(text: $baseUrl) {
+            if viewModel.userDefaultsType == .sonarQube {
+                TextField(text: $viewModel.baseUrl) {
                     Text("Base URL")
                 }
+                .keyboardType(.URL)
+                .textContentType(.URL)
+                .textInputAutocapitalization(.never)
+                .onChange(of: viewModel.baseUrl) {
+                    viewModel.formValidate()
+                }
             }
-            TextField(text: $apiKey) {
+            TextField(text: $viewModel.apiKey) {
                 Text("API Key")
-            }
-            Button {
-                // TODO: Need some validation
-                var sonarUserDefaults: SonarUserDefaults? = nil
-                if userDefaultsType == .sonarQube {
-                    sonarUserDefaults = SonarQubeUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey, baseUrl: baseUrl)
-                } else if userDefaultsType == .sonarCloud {
-                    sonarUserDefaults = SonarCloudUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey)
-                }
-                guard let userDefaults = sonarUserDefaults else {
-                    return
-                }
-                userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
-                profiles.append(SonarUserDefaultsWrapper(userDefaults: userDefaults))
-                print("Added new profile")
-            } label: {
-                Text("Add")
+            }.onChange(of: viewModel.apiKey) {
+                viewModel.formValidate()
             }
         }
         .navigationTitle("Create Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button {
+                viewModel.formSubmit()
+            } label: {
+                Text("Add")
+            }
+            .disabled(!viewModel.valid)
+        }
     }
 }
 

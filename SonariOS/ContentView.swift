@@ -12,7 +12,9 @@ struct ContentView: View {
 
     var body: some View {
         if profiles.isEmpty {
-            AddProfileView()
+            NavigationStack {
+                AddProfileView()
+            }
         } else {
             TabView {
                 ProjectsView()

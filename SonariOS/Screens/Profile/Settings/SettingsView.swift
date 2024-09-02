@@ -12,16 +12,34 @@ struct SettingsView: View {
     @Preference(\.currentProfileIdx) var currentProfileIdx
 
     var body: some View {
-        List {
+        Form {
             if !profiles.isEmpty {
-                Section {
-                    // Text("Profile Type: \($profiles[currentProfileIdx].type)")
-                    TextField(text: $profiles[currentProfileIdx].userDefaults.apiKey) {
-                        Text("API KEY")
+                Group {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            Image(systemName: "person")
+                                .resizable()
+                                .frame(width: 100, height: 100, alignment: .center)
+                            Text("First Second")
+                                .font(.title)
+                            Text("FirstSecond@example.com")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
+                Section(header: Text("Profiles")) {
+                    Text(profiles[currentProfileIdx].userDefaults.type.description)
+                    SecureField(text: $profiles[currentProfileIdx].userDefaults.apiKey, prompt: Text("Required")) {
+                        Text("API Key")
                     }
                 }
             }
-            Section {
+            Section(header: Text("Accounts")) {
                 NavigationLink(destination: ProfilePicker()) { Text("Manage Accounts") }
             }
         }
