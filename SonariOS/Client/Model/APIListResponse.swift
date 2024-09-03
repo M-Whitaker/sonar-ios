@@ -6,13 +6,9 @@
 //
 
 class APIListResponse: Codable {
-    var paging: Page = .init(pageIndex: 0, pageSize: 0, total: 0)
-}
+    var paging: Page
 
-extension APIListResponse {
-    struct Page: Codable {
-        var pageIndex: Int
-        var pageSize: Int
-        var total: Int
+    init() {
+        paging = Page()
     }
 }

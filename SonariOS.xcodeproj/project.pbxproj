@@ -13,6 +13,8 @@
 		751256AA2C863C4B000234C0 /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256A92C863C4B000234C0 /* ArrayUtils.swift */; };
 		751256AC2C8646D3000234C0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AB2C8646D3000234C0 /* ErrorView.swift */; };
 		751256AE2C866172000234C0 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AD2C866172000234C0 /* SecureTextField.swift */; };
+		751256B02C866C27000234C0 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AF2C866C27000234C0 /* Page.swift */; };
+		751256B22C877B36000234C0 /* IntUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256B12C877B36000234C0 /* IntUtils.swift */; };
 		7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */; };
 		7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */; };
 		7545E6E12C7FC90E0078B903 /* AddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E02C7FC90E0078B903 /* AddProfileView.swift */; };
@@ -77,6 +79,8 @@
 		751256A92C863C4B000234C0 /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
 		751256AB2C8646D3000234C0 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		751256AD2C866172000234C0 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		751256AF2C866C27000234C0 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		751256B12C877B36000234C0 /* IntUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntUtils.swift; sourceTree = "<group>"; };
 		7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicker.swift; sourceTree = "<group>"; };
 		7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarQubeUserDefaults.swift; sourceTree = "<group>"; };
 		7545E6E02C7FC90E0078B903 /* AddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileView.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				75EF1A7C2C72B4A800E3D879 /* APIListResponse.swift */,
 				751256A42C863988000234C0 /* ProjectListResponse.swift */,
 				751256A62C863AB1000234C0 /* OrganizationListResponse.swift */,
+				751256AF2C866C27000234C0 /* Page.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				751256A92C863C4B000234C0 /* ArrayUtils.swift */,
+				751256B12C877B36000234C0 /* IntUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				751256A22C86376A000234C0 /* Organization.swift in Sources */,
 				75E56C232C70BBE1000CA0BC /* ProjectsViewModel.swift in Sources */,
 				75E56C212C70BB6E000CA0BC /* DependencyContainer.swift in Sources */,
+				751256B02C866C27000234C0 /* Page.swift in Sources */,
 				7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */,
 				7545E6F12C84E1890078B903 /* AddProfileViewModel.swift in Sources */,
 				75E56C142C70B972000CA0BC /* SonarClient.swift in Sources */,
@@ -533,6 +540,7 @@
 				7545E6E32C80FEC70078B903 /* SonarCloudUserDefaults.swift in Sources */,
 				75FFC47A2C792D7100FD945E /* SettingsView.swift in Sources */,
 				756AED5C2C78E4EB00F7972C /* Preferences.swift in Sources */,
+				751256B22C877B36000234C0 /* IntUtils.swift in Sources */,
 				7597CBB12C7684AB003810AF /* BundleData.swift in Sources */,
 				751256AA2C863C4B000234C0 /* ArrayUtils.swift in Sources */,
 				75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */,

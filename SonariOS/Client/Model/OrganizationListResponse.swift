@@ -8,6 +8,11 @@
 class OrganizationListResponse: APIListResponse {
     var items: [Organization]
 
+    init(items: [Organization]) {
+        self.items = items
+        super.init()
+    }
+
     required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         items = try container.decode([Organization].self, forKey: .items)

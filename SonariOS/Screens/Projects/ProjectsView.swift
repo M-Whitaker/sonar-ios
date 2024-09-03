@@ -30,12 +30,23 @@ struct ProjectsView: View {
 
     private func loadedView(projects: [Project]) -> some View {
         List {
-            ForEach(projects) { project in
+            ForEach(Array(projects.enumerated()), id: \.offset) { idx, project in
                 Text(project.key)
+                    .onAppear {
+                        Task {
+                            await viewModel.getProjects(index: idx)
+                        }
+                    }
             }
         }
         .navigationTitle("Projects")
+        .overlay {
+            if viewModel.newItemsLoading {
+                ProgressView()
+            }
+        }
         .refreshable {
+            viewModel.resetProjects()
             await getProjects()
         }
     }
