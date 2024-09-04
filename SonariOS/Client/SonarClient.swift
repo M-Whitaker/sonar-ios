@@ -22,12 +22,8 @@ extension SonarClient {
         let request = buildRequest(method: method, path: path)
         var wrappedResponse: HTTPResponse?
         var wrappedResponseBody: Data?
-        do {
-            logRequest(request: request)
-            (wrappedResponseBody, wrappedResponse) = try await URLSession.shared.data(for: request)
-        } catch {
-            print("Some URL Error")
-        }
+        logRequest(request: request)
+        (wrappedResponseBody, wrappedResponse) = try await URLSession.shared.data(for: request)
 
         guard let response = wrappedResponse else {
             print("Response is empty")
@@ -45,7 +41,6 @@ extension SonarClient {
             throw APIError.httpCode(response.status)
         }
         do {
-            print(String(bytes: responseBody, encoding: .utf8) ?? "nil")
             return try JSONDecoder().decode(T.self, from: responseBody)
         } catch is DecodingError {
             print("Decoding error")
@@ -102,8 +97,8 @@ extension SonarClient {
     }
 }
 
-class StaticSonarClient {
-    static var current: SonarClient {
+class SonarClientFactory {
+    var current: SonarClient {
         let type = Preferences.standard.profiles[Preferences.standard.currentProfileIdx].userDefaults.type
         switch type {
         case .sonarQube:

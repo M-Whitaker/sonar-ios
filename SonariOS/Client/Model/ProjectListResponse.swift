@@ -13,6 +13,11 @@ class ProjectListResponse: APIListResponse {
         super.init()
     }
 
+    init(items: [Project]) {
+        self.items = items
+        super.init()
+    }
+
     required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         items = try container.decode([Project].self, forKey: .items)

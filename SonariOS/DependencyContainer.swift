@@ -12,4 +12,9 @@ extension Container {
         Factory(self) { ProfileSettingsValidatorFactory() }
             .singleton
     }
+
+    var sonarClientFactory: Factory<SonarClientFactory> {
+        Factory(self) { SonarClientFactory() }
+            .singleton
+    }
 }

@@ -8,13 +8,24 @@
 import Factory
 import Foundation
 
-enum ViewLoadingState<T> {
+enum ViewLoadingState<T: Equatable>: Equatable {
     case isLoading
     case loaded(T)
     case failed(Error)
+
+    static func == (lhs: ViewLoadingState<T>, rhs: ViewLoadingState<T>) -> Bool {
+        switch (lhs, rhs) {
+        case let (.loaded(lhsObj), .loaded(rhsObj)):
+            lhsObj == rhsObj
+        default:
+            false
+        }
+    }
 }
 
 class ProjectsViewModel: ObservableObject {
+    @Injected(\.sonarClientFactory) var sonarClientFactory
+
     @Published var state: ViewLoadingState<[Project]> = .isLoading
     @Published var newItemsLoading = false
 
@@ -47,7 +58,7 @@ class ProjectsViewModel: ObservableObject {
     @MainActor
     func getProjects(requestedPage: Page) async {
         do {
-            let projects = try await StaticSonarClient.current.retrieveProjects(page: requestedPage)
+            let projects = try await sonarClientFactory.current.retrieveProjects(page: requestedPage)
             page = projects.paging
             if var itemCount = itemsLoadedCount {
                 itemCount += projects.items.count
