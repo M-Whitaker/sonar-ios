@@ -9,6 +9,8 @@ import Combine
 import Foundation
 import SwiftUI
 
+private let WRAPPED_VALUE_FATAL_ERROR = "Wrapped value should not be used."
+
 /**
  https://www.avanderlee.com/swift/appstorage-explained
  */
@@ -47,8 +49,8 @@ struct UserDefault<Value> {
     let defaultValue: Value
 
     var wrappedValue: Value {
-        get { fatalError("Wrapped value should not be used.") }
-        set { fatalError("Wrapped value should not be used.") }
+        get { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
+        set { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
     }
 
     init(wrappedValue: Value, _ key: String) {
@@ -63,14 +65,14 @@ struct UserDefault<Value> {
     ) -> Value {
         get {
             let container = instance.userDefaults
-            let key = instance[keyPath: storageKeyPath].key
-            let defaultValue = instance[keyPath: storageKeyPath].defaultValue
-            return container.object(forKey: key) as? Value ?? defaultValue
+            let instanceKey = instance[keyPath: storageKeyPath].key
+            let instanceDefaultValue = instance[keyPath: storageKeyPath].defaultValue
+            return container.object(forKey: instanceKey) as? Value ?? instanceDefaultValue
         }
         set {
             let container = instance.userDefaults
-            let key = instance[keyPath: storageKeyPath].key
-            container.set(newValue, forKey: key)
+            let instanceKey = instance[keyPath: storageKeyPath].key
+            container.set(newValue, forKey: instanceKey)
             instance.preferencesChangedSubject.send(wrappedKeyPath)
         }
     }
@@ -82,8 +84,8 @@ struct CustomUserDefault<Value: Codable> {
     let defaultValue: Value
 
     var wrappedValue: Value {
-        get { fatalError("Wrapped value should not be used.") }
-        set { fatalError("Wrapped value should not be used.") }
+        get { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
+        set { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
     }
 
     init(wrappedValue: Value, _ key: String) {
@@ -98,20 +100,20 @@ struct CustomUserDefault<Value: Codable> {
     ) -> Value {
         get {
             let container = instance.userDefaults
-            let key = instance[keyPath: storageKeyPath].key
-            let defaultValue = instance[keyPath: storageKeyPath].defaultValue
-            if let data = container.object(forKey: key) as? Data,
-               let user = try? JSONDecoder().decode(Value.self, from: data)
+            let instanceKey = instance[keyPath: storageKeyPath].key
+            let instanceDefaultValue = instance[keyPath: storageKeyPath].defaultValue
+            if let data = container.object(forKey: instanceKey) as? Data,
+               let userDefault = try? JSONDecoder().decode(Value.self, from: data)
             {
-                return user
+                return userDefault
             }
-            return defaultValue
+            return instanceDefaultValue
         }
         set {
             let container = instance.userDefaults
-            let key = instance[keyPath: storageKeyPath].key
+            let instanceKey = instance[keyPath: storageKeyPath].key
             if let encoded = try? JSONEncoder().encode(newValue) {
-                container.set(encoded, forKey: key)
+                container.set(encoded, forKey: instanceKey)
             }
             instance.preferencesChangedSubject.send(wrappedKeyPath)
         }

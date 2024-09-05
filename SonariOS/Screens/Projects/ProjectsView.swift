@@ -32,10 +32,8 @@ struct ProjectsView: View {
         List {
             ForEach(Array(projects.enumerated()), id: \.offset) { idx, project in
                 Text(project.key)
-                    .onAppear {
-                        Task {
-                            await viewModel.getProjects(index: idx)
-                        }
+                    .task {
+                        await viewModel.getProjects(index: idx)
                     }
             }
         }

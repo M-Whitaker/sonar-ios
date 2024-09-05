@@ -8,13 +8,13 @@
 import Foundation
 
 class SonarCloudClient: SonarClient {
-    private static let SONAR_CLOUD_BASE_URL = "sonarcloud.io/api"
+    private static let sonarCloudBaseUrl = "sonarcloud.io/api"
 
     var baseUrl: String
     @UserScopedPreference(\.apiKey) var apiKey: String
 
     convenience init() {
-        self.init(baseUrl: SonarCloudClient.SONAR_CLOUD_BASE_URL)
+        self.init(baseUrl: SonarCloudClient.sonarCloudBaseUrl)
     }
 
     init(baseUrl: String) {

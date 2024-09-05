@@ -17,6 +17,10 @@ enum ViewLoadingState<T: Equatable>: Equatable {
         switch (lhs, rhs) {
         case let (.loaded(lhsObj), .loaded(rhsObj)):
             lhsObj == rhsObj
+        case let (.failed(lhsErr), .failed(rhsErr)):
+            lhsErr.localizedDescription == rhsErr.localizedDescription
+        case (.isLoading, .isLoading):
+            true
         default:
             false
         }
