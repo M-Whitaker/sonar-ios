@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-private let WRAPPED_VALUE_FATAL_ERROR = "Wrapped value should not be used."
+private let kWrappedValueFatalError = "Wrapped value should not be used."
 
 /**
  https://www.avanderlee.com/swift/appstorage-explained
@@ -49,8 +49,8 @@ struct UserDefault<Value> {
     let defaultValue: Value
 
     var wrappedValue: Value {
-        get { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
-        set { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
+        get { fatalError(kWrappedValueFatalError) }
+        set { fatalError(kWrappedValueFatalError) }
     }
 
     init(wrappedValue: Value, _ key: String) {
@@ -84,8 +84,8 @@ struct CustomUserDefault<Value: Codable> {
     let defaultValue: Value
 
     var wrappedValue: Value {
-        get { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
-        set { fatalError(WRAPPED_VALUE_FATAL_ERROR) }
+        get { fatalError(kWrappedValueFatalError) }
+        set { fatalError(kWrappedValueFatalError) }
     }
 
     init(wrappedValue: Value, _ key: String) {
