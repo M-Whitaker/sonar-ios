@@ -31,10 +31,7 @@ struct ProjectsView: View {
     private func loadedView(projects: [Project]) -> some View {
         List {
             ForEach(Array(projects.enumerated()), id: \.offset) { idx, project in
-                Text(project.key)
-                    .task {
-                        await viewModel.getProjects(index: idx)
-                    }
+                projectSummary(project: project, index: idx)
             }
         }
         .navigationTitle("Projects")
@@ -47,6 +44,13 @@ struct ProjectsView: View {
             viewModel.resetProjects()
             await getProjects()
         }
+    }
+
+    private func projectSummary(project: Project, index: Int) -> some View {
+        Text(project.key)
+            .task {
+                await viewModel.getProjects(index: index)
+            }
     }
 
     private func getProjects() async {

@@ -17,23 +17,9 @@ struct AddProfileView: View {
             }.onChange(of: viewModel.name) {
                 viewModel.formValidate()
             }
-            Picker("Account Type", selection: $viewModel.userDefaultsType) {
-                ForEach(UserDefaultsType.allCases) { option in
-                    Text(String(describing: option))
-                }
-            }.onChange(of: viewModel.userDefaultsType) {
-                viewModel.formValidate()
-            }
+            accountTypePicker()
             if viewModel.userDefaultsType == .sonarQube {
-                TextField(text: $viewModel.baseUrl) {
-                    Text("Base URL")
-                }
-                .keyboardType(.URL)
-                .textContentType(.URL)
-                .textInputAutocapitalization(.never)
-                .onChange(of: viewModel.baseUrl) {
-                    viewModel.formValidate()
-                }
+                baseUrlField()
             }
             TextField(text: $viewModel.apiKey) {
                 Text("API Key")
@@ -50,6 +36,28 @@ struct AddProfileView: View {
                 Text("Add")
             }
             .disabled(!viewModel.valid)
+        }
+    }
+
+    private func accountTypePicker() -> some View {
+        Picker("Account Type", selection: $viewModel.userDefaultsType) {
+            ForEach(UserDefaultsType.allCases) { option in
+                Text(String(describing: option))
+            }
+        }.onChange(of: viewModel.userDefaultsType) {
+            viewModel.formValidate()
+        }
+    }
+
+    private func baseUrlField() -> some View {
+        TextField(text: $viewModel.baseUrl) {
+            Text("Base URL")
+        }
+        .keyboardType(.URL)
+        .textContentType(.URL)
+        .textInputAutocapitalization(.never)
+        .onChange(of: viewModel.baseUrl) {
+            viewModel.formValidate()
         }
     }
 }

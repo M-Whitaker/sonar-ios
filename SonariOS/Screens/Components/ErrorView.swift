@@ -19,7 +19,11 @@ struct ErrorView: View {
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 40).padding()
-            Button(action: { Task { await retryAction() } }, label: { Text("Retry").bold() })
+            retryButton()
         }
+    }
+
+    private func retryButton() -> Button<Text> {
+        Button(action: { Task { await retryAction() } }, label: { Text("Retry").bold() })
     }
 }
