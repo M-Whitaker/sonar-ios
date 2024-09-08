@@ -38,7 +38,6 @@ struct ProfilePicker: View {
     }
 
     func delete(atOffsets: IndexSet) {
-        // TODO: Call delete on the profile associated with the row
         profiles.remove(atOffsets: atOffsets)
     }
 }

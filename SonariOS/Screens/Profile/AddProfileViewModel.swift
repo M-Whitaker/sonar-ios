@@ -16,10 +16,9 @@ class AddProfileViewModel: ObservableObject {
     @Published var apiKey: String = ""
     @Published var baseUrl: String = ""
 
-    @Published var valid = false
+    @Published var valid = true
 
     func formSubmit() {
-        // TODO: Need some validation
         var sonarUserDefaults: SonarUserDefaults? = nil
         if userDefaultsType == .sonarQube {
             sonarUserDefaults = SonarQubeUserDefaults(id: "\(Bundle.main.artifactName).\(name)", name: name, apiKey: apiKey, baseUrl: baseUrl.lowercased())
@@ -29,15 +28,23 @@ class AddProfileViewModel: ObservableObject {
         guard let userDefaults = sonarUserDefaults else {
             return
         }
+        formValidate(sonarUserDefaults: userDefaults)
+        guard valid == true else {
+            print("Not submitting invalid form...")
+            return
+        }
         userDefaults.userDefaults = UserDefaults(suiteName: userDefaults.id)
         profiles.append(SonarUserDefaultsWrapper(userDefaults: userDefaults))
         print("Added new profile")
     }
 
-    func formValidate() {
-        let validators = validatorFactory.getValidators(profileType: userDefaultsType)
+    func formValidate(sonarUserDefaults: SonarUserDefaults) {
+        let validators = validatorFactory.getValidatorsFor(profileType: userDefaultsType)
         for validator in validators {
-            valid = validator.validate()
+            if !validator.validate(userDefaults: sonarUserDefaults) {
+                valid = false
+                break
+            }
         }
     }
 }

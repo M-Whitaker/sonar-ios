@@ -6,15 +6,18 @@
 //
 
 final class ProfileSettingsValidatorFactory {
-    private final let sonarCloudValidators: [ProfileSettingsValidator] = [
+    private final let sonarCloudValidators: [SonarUserDefaultsValidator] = [
         NameValidator(),
+        ApiKeyValidator(),
     ]
 
-    private final let sonarQubeValidators: [ProfileSettingsValidator] = [
+    private final let sonarQubeValidators: [SonarUserDefaultsValidator] = [
+        NameValidator(),
+        ApiKeyValidator(),
         BaseUrlValidator(),
     ]
 
-    func getValidators(profileType: UserDefaultsType) -> [ProfileSettingsValidator] {
+    func getValidatorsFor(profileType: UserDefaultsType) -> [SonarUserDefaultsValidator] {
         switch profileType {
         case .sonarCloud:
             sonarCloudValidators

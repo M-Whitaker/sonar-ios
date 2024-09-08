@@ -15,12 +15,13 @@
 		751256AE2C866172000234C0 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AD2C866172000234C0 /* SecureTextField.swift */; };
 		751256B02C866C27000234C0 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AF2C866C27000234C0 /* Page.swift */; };
 		751256B22C877B36000234C0 /* IntUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256B12C877B36000234C0 /* IntUtils.swift */; };
+		751256D52C8E004F000234C0 /* ApiKeyValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256D42C8E004F000234C0 /* ApiKeyValidator.swift */; };
 		7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */; };
 		7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */; };
 		7545E6E12C7FC90E0078B903 /* AddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E02C7FC90E0078B903 /* AddProfileView.swift */; };
 		7545E6E32C80FEC70078B903 /* SonarCloudUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E22C80FEC70078B903 /* SonarCloudUserDefaults.swift */; };
 		7545E6E52C83498B0078B903 /* SonarUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E42C83498B0078B903 /* SonarUserDefaults.swift */; };
-		7545E6EA2C84D9240078B903 /* ProfileSettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E92C84D9240078B903 /* ProfileSettingsValidator.swift */; };
+		7545E6EA2C84D9240078B903 /* SonarUserDefaultsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E92C84D9240078B903 /* SonarUserDefaultsValidator.swift */; };
 		7545E6EC2C84D97C0078B903 /* ProfileSettingsValidatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6EB2C84D97C0078B903 /* ProfileSettingsValidatorFactory.swift */; };
 		7545E6EF2C84DB190078B903 /* BaseUrlValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6EE2C84DB190078B903 /* BaseUrlValidator.swift */; };
 		7545E6F12C84E1890078B903 /* AddProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6F02C84E1890078B903 /* AddProfileViewModel.swift */; };
@@ -81,12 +82,13 @@
 		751256AD2C866172000234C0 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		751256AF2C866C27000234C0 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		751256B12C877B36000234C0 /* IntUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntUtils.swift; sourceTree = "<group>"; };
+		751256D42C8E004F000234C0 /* ApiKeyValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyValidator.swift; sourceTree = "<group>"; };
 		7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicker.swift; sourceTree = "<group>"; };
 		7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarQubeUserDefaults.swift; sourceTree = "<group>"; };
 		7545E6E02C7FC90E0078B903 /* AddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileView.swift; sourceTree = "<group>"; };
 		7545E6E22C80FEC70078B903 /* SonarCloudUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarCloudUserDefaults.swift; sourceTree = "<group>"; };
 		7545E6E42C83498B0078B903 /* SonarUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarUserDefaults.swift; sourceTree = "<group>"; };
-		7545E6E92C84D9240078B903 /* ProfileSettingsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsValidator.swift; sourceTree = "<group>"; };
+		7545E6E92C84D9240078B903 /* SonarUserDefaultsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarUserDefaultsValidator.swift; sourceTree = "<group>"; };
 		7545E6EB2C84D97C0078B903 /* ProfileSettingsValidatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsValidatorFactory.swift; sourceTree = "<group>"; };
 		7545E6EE2C84DB190078B903 /* BaseUrlValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrlValidator.swift; sourceTree = "<group>"; };
 		7545E6F02C84E1890078B903 /* AddProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileViewModel.swift; sourceTree = "<group>"; };
@@ -194,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				7545E6ED2C84DAFC0078B903 /* Validators */,
-				7545E6E92C84D9240078B903 /* ProfileSettingsValidator.swift */,
+				7545E6E92C84D9240078B903 /* SonarUserDefaultsValidator.swift */,
 				7545E6EB2C84D97C0078B903 /* ProfileSettingsValidatorFactory.swift */,
 			);
 			path = Settings;
@@ -205,6 +207,7 @@
 			children = (
 				7545E6EE2C84DB190078B903 /* BaseUrlValidator.swift */,
 				7545E6F42C8519D20078B903 /* NameValidator.swift */,
+				751256D42C8E004F000234C0 /* ApiKeyValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -529,7 +532,8 @@
 				75EF1A7D2C72B4A800E3D879 /* APIListResponse.swift in Sources */,
 				75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */,
 				751256A52C863988000234C0 /* ProjectListResponse.swift in Sources */,
-				7545E6EA2C84D9240078B903 /* ProfileSettingsValidator.swift in Sources */,
+				7545E6EA2C84D9240078B903 /* SonarUserDefaultsValidator.swift in Sources */,
+				751256D52C8E004F000234C0 /* ApiKeyValidator.swift in Sources */,
 				751256A72C863AB1000234C0 /* OrganizationListResponse.swift in Sources */,
 				7545E6F32C8508580078B903 /* SonarQubeSettingsView.swift in Sources */,
 				7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */,

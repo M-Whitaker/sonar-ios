@@ -14,8 +14,6 @@ struct AddProfileView: View {
         Form {
             TextField(text: $viewModel.name) {
                 Text("Name")
-            }.onChange(of: viewModel.name) {
-                viewModel.formValidate()
             }
             accountTypePicker()
             if viewModel.userDefaultsType == .sonarQube {
@@ -23,8 +21,6 @@ struct AddProfileView: View {
             }
             TextField(text: $viewModel.apiKey) {
                 Text("API Key")
-            }.onChange(of: viewModel.apiKey) {
-                viewModel.formValidate()
             }
         }
         .navigationTitle("Create Profile")
@@ -35,7 +31,6 @@ struct AddProfileView: View {
             } label: {
                 Text("Add")
             }
-            .disabled(!viewModel.valid)
         }
     }
 
@@ -44,8 +39,6 @@ struct AddProfileView: View {
             ForEach(UserDefaultsType.allCases) { option in
                 Text(String(describing: option))
             }
-        }.onChange(of: viewModel.userDefaultsType) {
-            viewModel.formValidate()
         }
     }
 
@@ -56,9 +49,6 @@ struct AddProfileView: View {
         .keyboardType(.URL)
         .textContentType(.URL)
         .textInputAutocapitalization(.never)
-        .onChange(of: viewModel.baseUrl) {
-            viewModel.formValidate()
-        }
     }
 }
 
