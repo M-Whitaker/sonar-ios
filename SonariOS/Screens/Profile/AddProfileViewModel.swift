@@ -43,8 +43,9 @@ class AddProfileViewModel: ObservableObject {
         for validator in validators {
             if !validator.validate(userDefaults: sonarUserDefaults) {
                 valid = false
-                break
+                return
             }
         }
+        valid = true
     }
 }
