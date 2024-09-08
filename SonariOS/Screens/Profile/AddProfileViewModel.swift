@@ -29,7 +29,7 @@ class AddProfileViewModel: ObservableObject {
             return
         }
         formValidate(sonarUserDefaults: userDefaults)
-        guard valid == true else {
+        guard valid else {
             print("Not submitting invalid form...")
             return
         }
