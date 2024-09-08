@@ -66,6 +66,7 @@ class ProjectsViewModel: ObservableObject {
     func resetProjects() {
         itemsLoadedCount = nil
         page = nil
+        state = .loaded([])
     }
 
     /// Determines whether we have meet the threshold for requesting more items.

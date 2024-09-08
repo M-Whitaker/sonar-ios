@@ -11,6 +11,8 @@ struct ErrorView: View {
     let error: Error
     let retryAction: () async -> Void
 
+    @State var isRefreshing = false
+
     var body: some View {
         VStack {
             Text("An Error Occured")
@@ -23,7 +25,14 @@ struct ErrorView: View {
         }
     }
 
-    private func retryButton() -> Button<Text> {
-        Button(action: { Task { await retryAction() } }, label: { Text("Retry").bold() })
+    private func retryButton() -> some View {
+        Button(action: {
+            Task {
+                isRefreshing = true
+                await retryAction()
+                isRefreshing = false
+            }
+        }, label: { Text("Retry").bold() })
+            .disabled(isRefreshing)
     }
 }
