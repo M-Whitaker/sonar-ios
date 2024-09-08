@@ -16,6 +16,9 @@
 		751256B02C866C27000234C0 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AF2C866C27000234C0 /* Page.swift */; };
 		751256B22C877B36000234C0 /* IntUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256B12C877B36000234C0 /* IntUtils.swift */; };
 		751256D52C8E004F000234C0 /* ApiKeyValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256D42C8E004F000234C0 /* ApiKeyValidator.swift */; };
+		751256DB2C8E03AC000234C0 /* BaseUrlValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256DA2C8E03AC000234C0 /* BaseUrlValidatorTests.swift */; };
+		751256E22C8E08B8000234C0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256E12C8E08B8000234C0 /* NameValidatorTests.swift */; };
+		751256E42C8E08CB000234C0 /* ApiKeyValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256E32C8E08CB000234C0 /* ApiKeyValidatorTests.swift */; };
 		7545E6DD2C7E7DF70078B903 /* ProfilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */; };
 		7545E6DF2C7E80C00078B903 /* SonarQubeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */; };
 		7545E6E12C7FC90E0078B903 /* AddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6E02C7FC90E0078B903 /* AddProfileView.swift */; };
@@ -83,6 +86,9 @@
 		751256AF2C866C27000234C0 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		751256B12C877B36000234C0 /* IntUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntUtils.swift; sourceTree = "<group>"; };
 		751256D42C8E004F000234C0 /* ApiKeyValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyValidator.swift; sourceTree = "<group>"; };
+		751256DA2C8E03AC000234C0 /* BaseUrlValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrlValidatorTests.swift; sourceTree = "<group>"; };
+		751256E12C8E08B8000234C0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
+		751256E32C8E08CB000234C0 /* ApiKeyValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyValidatorTests.swift; sourceTree = "<group>"; };
 		7545E6DC2C7E7DF70078B903 /* ProfilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicker.swift; sourceTree = "<group>"; };
 		7545E6DE2C7E80C00078B903 /* SonarQubeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarQubeUserDefaults.swift; sourceTree = "<group>"; };
 		7545E6E02C7FC90E0078B903 /* AddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,40 @@
 				751256B12C877B36000234C0 /* IntUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		751256D62C8E0377000234C0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				751256D72C8E0380000234C0 /* Profile */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		751256D72C8E0380000234C0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				751256D82C8E0385000234C0 /* Settings */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		751256D82C8E0385000234C0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				751256D92C8E038C000234C0 /* Validators */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		751256D92C8E038C000234C0 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				751256DA2C8E03AC000234C0 /* BaseUrlValidatorTests.swift */,
+				751256E12C8E08B8000234C0 /* NameValidatorTests.swift */,
+				751256E32C8E08CB000234C0 /* ApiKeyValidatorTests.swift */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 		7545E6E62C84D8FD0078B903 /* Service */ = {
@@ -278,6 +318,7 @@
 		75E56BF82C70B92A000CA0BC /* SonariOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				751256D62C8E0377000234C0 /* Service */,
 				75E56BF92C70B92A000CA0BC /* ProjectsViewModelTests.swift */,
 			);
 			path = SonariOSTests;
@@ -559,6 +600,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75E56BFA2C70B92A000CA0BC /* ProjectsViewModelTests.swift in Sources */,
+				751256E42C8E08CB000234C0 /* ApiKeyValidatorTests.swift in Sources */,
+				751256E22C8E08B8000234C0 /* NameValidatorTests.swift in Sources */,
+				751256DB2C8E03AC000234C0 /* BaseUrlValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
