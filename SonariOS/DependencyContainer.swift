@@ -8,7 +8,13 @@
 import Factory
 
 extension Container {
-    var sonarClient: Factory<SonarClient> {
-        self { SonarCloudClient() }
+    var profileSettingsValidatorFactory: Factory<ProfileSettingsValidatorFactory> {
+        Factory(self) { ProfileSettingsValidatorFactory() }
+            .singleton
+    }
+
+    var sonarClientFactory: Factory<SonarClientFactory> {
+        Factory(self) { SonarClientFactory() }
+            .singleton
     }
 }

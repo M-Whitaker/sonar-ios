@@ -12,22 +12,19 @@ import HTTPTypesFoundation
 protocol SonarClient {
     var baseUrl: String { get }
     var apiKey: String { get }
+    var urlSession: URLSession { get }
 
     func retrieveIssues(projectKey: String) async throws -> [Issue]
-    func retrieveProjects() async throws -> APIListResponse<Project>
+    func retrieveProjects(page: Page) async throws -> ProjectListResponse
 }
 
 extension SonarClient {
-    func call<T: Decodable>(method: HTTPRequest.Method, path: String) async throws -> T {
+    func call<T: Decodable>(method: HTTPRequest.Method, path: String, type _: T.Type = T.self) async throws -> T {
         let request = buildRequest(method: method, path: path)
         var wrappedResponse: HTTPResponse?
         var wrappedResponseBody: Data?
-        do {
-            logRequest(request: request)
-            (wrappedResponseBody, wrappedResponse) = try await URLSession.shared.data(for: request)
-        } catch {
-            print("Some URL Error")
-        }
+        logRequest(request: request)
+        (wrappedResponseBody, wrappedResponse) = try await urlSession.data(for: request)
 
         guard let response = wrappedResponse else {
             print("Response is empty")
@@ -45,7 +42,6 @@ extension SonarClient {
             throw APIError.httpCode(response.status)
         }
         do {
-            print(String(bytes: responseBody, encoding: .utf8) ?? "nil")
             return try JSONDecoder().decode(T.self, from: responseBody)
         } catch is DecodingError {
             print("Decoding error")
@@ -54,11 +50,19 @@ extension SonarClient {
     }
 
     private func buildRequest(method: HTTPRequest.Method, path: String) -> HTTPRequest {
-        var request = HTTPRequest(method: method, scheme: "https", authority: baseUrl, path: path)
+        var request = HTTPRequest(method: method, scheme: getScheme(), authority: baseUrl, path: path)
         request.headerFields[.accept] = "application/json"
         request.headerFields[.userAgent] = buildUserAgent()
         request.headerFields[.authorization] = buildAuth()
         return request
+    }
+
+    private func getScheme() -> String {
+        if baseUrl.contains("localhost") {
+            "http"
+        } else {
+            "https"
+        }
     }
 
     private func buildAuth() -> String {

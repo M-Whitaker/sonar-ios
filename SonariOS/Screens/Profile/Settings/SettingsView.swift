@@ -8,16 +8,37 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Preference(\.sonarCloudApiKey) var apiKey
+    @Preference(\.profiles) var profiles
+    @Preference(\.currentProfileIdx) var currentProfileIdx
 
     var body: some View {
-        List {
-            Section {
-                Text("One of One")
-                TextField("API Key", text: $apiKey)
+        Form {
+            if !profiles.isEmpty {
+                Group {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            Image(systemName: "person")
+                                .resizable()
+                                .frame(width: 100, height: 100, alignment: .center)
+                            Text("First Second")
+                                .font(.title)
+                            Text("FirstSecond@example.com")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
+                Section(header: Text("Profiles")) {
+                    Text(profiles[currentProfileIdx].userDefaults.type.description)
+                    SecureTextField("Required", prompt: $profiles[currentProfileIdx].userDefaults.apiKey)
+                }
             }
-            Section {
-                Text("One of Two")
+            Section(header: Text("Accounts")) {
+                NavigationLink(destination: ProfilePicker()) { Text("Manage Accounts") }
             }
         }
         .navigationTitle("Settings")

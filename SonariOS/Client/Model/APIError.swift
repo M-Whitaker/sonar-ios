@@ -9,7 +9,7 @@ import Foundation
 
 import HTTPTypes
 
-enum APIError: Swift.Error {
+enum APIError: Swift.Error, Equatable {
     case invalidURL
     case httpCode(HTTPResponse.Status)
     case unexpectedResponse
