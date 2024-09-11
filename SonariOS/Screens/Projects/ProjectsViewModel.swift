@@ -14,9 +14,9 @@ class ProjectsViewModel: ObservableObject {
     @Published var state: ViewLoadingState<[Project]> = .isLoading
     @Published var newItemsLoading = false
 
+    var itemsLoadedCount: Int?
+    var page: Page?
     private let itemsFromEndThreshold = 3
-    private var itemsLoadedCount: Int?
-    private var page: Page?
 
     @MainActor
     func getProjects(index: Int) async {
