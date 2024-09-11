@@ -12,6 +12,12 @@ class SonarQubeClient: SonarClient {
     @SonarQubeUserScopedPreference(\.baseUrl) var baseUrl: String
     @UserScopedPreference(\.apiKey) var apiKey: String
 
+    var urlSession: URLSession
+
+    init() {
+        urlSession = URLSession.shared
+    }
+
     func retrieveIssues(projectKey _: String) async throws -> [Issue] {
         [Issue()]
     }

@@ -1,0 +1,7 @@
+# file options
+
+--exclude Build/
+
+# format options
+
+--asynccapturing assertThrowsAsyncError

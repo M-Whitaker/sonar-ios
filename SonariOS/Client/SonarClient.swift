@@ -12,18 +12,19 @@ import HTTPTypesFoundation
 protocol SonarClient {
     var baseUrl: String { get }
     var apiKey: String { get }
+    var urlSession: URLSession { get }
 
     func retrieveIssues(projectKey: String) async throws -> [Issue]
     func retrieveProjects(page: Page) async throws -> ProjectListResponse
 }
 
 extension SonarClient {
-    func call<T: Decodable>(method: HTTPRequest.Method, path: String) async throws -> T {
+    func call<T: Decodable>(method: HTTPRequest.Method, path: String, type _: T.Type = T.self) async throws -> T {
         let request = buildRequest(method: method, path: path)
         var wrappedResponse: HTTPResponse?
         var wrappedResponseBody: Data?
         logRequest(request: request)
-        (wrappedResponseBody, wrappedResponse) = try await URLSession.shared.data(for: request)
+        (wrappedResponseBody, wrappedResponse) = try await urlSession.data(for: request)
 
         guard let response = wrappedResponse else {
             print("Response is empty")
@@ -94,17 +95,5 @@ extension SonarClient {
         }
         str.append("}")
         return str
-    }
-}
-
-class SonarClientFactory {
-    var current: SonarClient {
-        let type = Preferences.standard.profiles[Preferences.standard.currentProfileIdx].userDefaults.type
-        switch type {
-        case .sonarQube:
-            return SonarQubeClient()
-        case .sonarCloud:
-            return SonarCloudClient()
-        }
     }
 }

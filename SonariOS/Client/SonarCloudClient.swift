@@ -10,8 +10,10 @@ import Foundation
 class SonarCloudClient: SonarClient {
     private static let kSonarCloudBaseUrl = "sonarcloud.io/api"
 
-    var baseUrl: String
     @UserScopedPreference(\.apiKey) var apiKey: String
+
+    var baseUrl: String
+    var urlSession: URLSession
 
     convenience init() {
         self.init(baseUrl: SonarCloudClient.kSonarCloudBaseUrl)
@@ -19,6 +21,7 @@ class SonarCloudClient: SonarClient {
 
     init(baseUrl: String) {
         self.baseUrl = baseUrl
+        urlSession = URLSession.shared
     }
 
     func retrieveIssues(projectKey _: String) async throws -> [Issue] {
