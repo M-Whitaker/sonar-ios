@@ -14,7 +14,6 @@
 		751256AC2C8646D3000234C0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AB2C8646D3000234C0 /* ErrorView.swift */; };
 		751256AE2C866172000234C0 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AD2C866172000234C0 /* SecureTextField.swift */; };
 		751256B02C866C27000234C0 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256AF2C866C27000234C0 /* Page.swift */; };
-		751256B22C877B36000234C0 /* IntUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256B12C877B36000234C0 /* IntUtils.swift */; };
 		751256D52C8E004F000234C0 /* ApiKeyValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256D42C8E004F000234C0 /* ApiKeyValidator.swift */; };
 		751256DB2C8E03AC000234C0 /* BaseUrlValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256DA2C8E03AC000234C0 /* BaseUrlValidatorTests.swift */; };
 		751256E22C8E08B8000234C0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751256E12C8E08B8000234C0 /* NameValidatorTests.swift */; };
@@ -98,7 +97,6 @@
 		751256AB2C8646D3000234C0 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		751256AD2C866172000234C0 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		751256AF2C866C27000234C0 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		751256B12C877B36000234C0 /* IntUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntUtils.swift; sourceTree = "<group>"; };
 		751256D42C8E004F000234C0 /* ApiKeyValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyValidator.swift; sourceTree = "<group>"; };
 		751256DA2C8E03AC000234C0 /* BaseUrlValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrlValidatorTests.swift; sourceTree = "<group>"; };
 		751256E12C8E08B8000234C0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				751256A92C863C4B000234C0 /* ArrayUtils.swift */,
-				751256B12C877B36000234C0 /* IntUtils.swift */,
 				751256E72C8E17F4000234C0 /* ViewUtils.swift */,
 			);
 			path = Utils;
@@ -692,7 +689,6 @@
 				751256E82C8E17F4000234C0 /* ViewUtils.swift in Sources */,
 				75FFC47A2C792D7100FD945E /* SettingsView.swift in Sources */,
 				756AED5C2C78E4EB00F7972C /* Preferences.swift in Sources */,
-				751256B22C877B36000234C0 /* IntUtils.swift in Sources */,
 				7597CBB12C7684AB003810AF /* BundleData.swift in Sources */,
 				751256AA2C863C4B000234C0 /* ArrayUtils.swift in Sources */,
 				75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */,
