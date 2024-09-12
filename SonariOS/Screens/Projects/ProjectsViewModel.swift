@@ -44,6 +44,11 @@ class ProjectsViewModel: ObservableObject {
     func getProjects(requestedPage: Page) async {
         do {
             let projects = try await sonarClientFactory.current.retrieveProjects(page: requestedPage)
+            projects.items = try await projects.items.asyncMap { p in
+                var project = p
+                project.status = try await sonarClientFactory.current.retrieveProjectStatusFor(projectKey: p.key)
+                return project
+            }
             page = projects.paging
             if var itemCount = itemsLoadedCount {
                 itemCount += projects.items.count

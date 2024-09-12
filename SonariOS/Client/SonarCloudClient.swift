@@ -37,4 +37,8 @@ class SonarCloudClient: SonarClient {
             return ProjectListResponse()
         }
     }
+
+    func retrieveProjectStatusFor(projectKey: String) async throws -> ProjectStatus {
+        try await call(method: .get, path: "/qualitygates/project_status?projectKey=\(projectKey)")
+    }
 }

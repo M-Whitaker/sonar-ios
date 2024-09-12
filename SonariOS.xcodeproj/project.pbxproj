@@ -50,6 +50,8 @@
 		7597CBB12C7684AB003810AF /* BundleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597CBB02C7684AB003810AF /* BundleData.swift */; };
 		7597CBB32C768DE4003810AF /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597CBB22C768DE4003810AF /* Headers.swift */; };
 		759C2E472C93697400EFA287 /* ArrayUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */; };
+		759C2E4D2C936E6C00EFA287 /* ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */; };
+		759C2E4F2C93854F00EFA287 /* ProjectSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */; };
 		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
 		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
 		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
@@ -133,6 +135,8 @@
 		7597CBB02C7684AB003810AF /* BundleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleData.swift; sourceTree = "<group>"; };
 		7597CBB22C768DE4003810AF /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtilsTests.swift; sourceTree = "<group>"; };
+		759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatus.swift; sourceTree = "<group>"; };
+		759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSummaryView.swift; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				751256A12C86376A000234C0 /* Organization.swift */,
 				75E56C162C70B9C7000CA0BC /* Project.swift */,
 				756EABD12C71633300EFBE33 /* Issue.swift */,
+				759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				7545E6F22C8508580078B903 /* SonarQubeSettingsView.swift */,
 				751256AB2C8646D3000234C0 /* ErrorView.swift */,
 				751256AD2C866172000234C0 /* SecureTextField.swift */,
+				759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -669,7 +675,9 @@
 				7545E6E12C7FC90E0078B903 /* AddProfileView.swift in Sources */,
 				755A9F122C72214800570528 /* APIError.swift in Sources */,
 				7597CBB32C768DE4003810AF /* Headers.swift in Sources */,
+				759C2E4F2C93854F00EFA287 /* ProjectSummaryView.swift in Sources */,
 				751256AE2C866172000234C0 /* SecureTextField.swift in Sources */,
+				759C2E4D2C936E6C00EFA287 /* ProjectStatus.swift in Sources */,
 				751256AC2C8646D3000234C0 /* ErrorView.swift in Sources */,
 				7545E6F52C8519D20078B903 /* NameValidator.swift in Sources */,
 				7545E6EF2C84DB190078B903 /* BaseUrlValidator.swift in Sources */,

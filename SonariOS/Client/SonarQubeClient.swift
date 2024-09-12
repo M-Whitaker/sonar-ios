@@ -26,4 +26,8 @@ class SonarQubeClient: SonarClient {
         print("Retriving projects from sonarqube url \(baseUrl)...")
         return try await call(method: .get, path: "/api/components/search?qualifiers=TRK")
     }
+
+    func retrieveProjectStatusFor(projectKey _: String) async throws -> ProjectStatus {
+        throw APIError.invalidURL
+    }
 }

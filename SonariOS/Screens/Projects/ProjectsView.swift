@@ -47,7 +47,7 @@ struct ProjectsView: View {
     }
 
     private func projectSummary(project: Project, index: Int) -> some View {
-        Text(project.key)
+        ProjectSummaryView(project: project)
             .task {
                 await viewModel.getProjects(index: index)
             }
