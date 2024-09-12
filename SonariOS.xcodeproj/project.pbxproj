@@ -50,6 +50,7 @@
 		756EABD22C71633300EFBE33 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EABD12C71633300EFBE33 /* Issue.swift */; };
 		7597CBB12C7684AB003810AF /* BundleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597CBB02C7684AB003810AF /* BundleData.swift */; };
 		7597CBB32C768DE4003810AF /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597CBB22C768DE4003810AF /* Headers.swift */; };
+		759C2E472C93697400EFA287 /* ArrayUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */; };
 		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
 		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
 		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
@@ -133,6 +134,7 @@
 		757E278E2C7D07A2002B198F /* FullTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTests.xctestplan; sourceTree = "<group>"; };
 		7597CBB02C7684AB003810AF /* BundleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleData.swift; sourceTree = "<group>"; };
 		7597CBB22C768DE4003810AF /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
+		759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtilsTests.swift; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		751256D62C8E0377000234C0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				759C2E452C93693B00EFA287 /* Utils */,
 				751256D72C8E0380000234C0 /* Profile */,
 			);
 			path = Service;
@@ -351,6 +354,14 @@
 				7545E6E42C83498B0078B903 /* SonarUserDefaults.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		759C2E452C93693B00EFA287 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		75E56BDC2C70B929000CA0BC = {
@@ -699,6 +710,7 @@
 				751256FA2C8E22DF000234C0 /* SonarCloudUserDefaultsTests.swift in Sources */,
 				751256F82C8E22BA000234C0 /* SonarQubeUserDefaultsTests.swift in Sources */,
 				751257562C8F9161000234C0 /* ProjectTests.swift in Sources */,
+				759C2E472C93697400EFA287 /* ArrayUtilsTests.swift in Sources */,
 				751256ED2C8E19FE000234C0 /* ProjectListResponseTests.swift in Sources */,
 				751256F42C8E200D000234C0 /* OrganizationListResponseTests.swift in Sources */,
 				751257662C923303000234C0 /* Assert.swift in Sources */,
