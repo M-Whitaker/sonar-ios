@@ -53,7 +53,7 @@ struct ProjectStatus: Equatable, Decodable {
             case "new_security_hotspots_reviewed":
                 newSecurityHotspotsReviewed = condition
             default:
-                throw URLError(.callIsActive)
+                print("Unknown key: \(condition.metricKey)")
             }
         }
 
