@@ -18,6 +18,18 @@ struct ProjectStatus: Equatable, Decodable {
     var newSecurityHotspotsReviewed: RatingCondition = .init()
     var periods: [Period]
 
+    init(status: String, newReliabilityRating: RatingCondition, newSecurityRating: RatingCondition, newMaintainabilityRating: RatingCondition, newCoverage: RatingCondition, newDuplicatedLinesDensity: RatingCondition, newCodeSmells: RatingCondition, newSecurityHotspotsReviewed: RatingCondition, periods: [Period]) {
+        self.status = status
+        self.newReliabilityRating = newReliabilityRating
+        self.newSecurityRating = newSecurityRating
+        self.newMaintainabilityRating = newMaintainabilityRating
+        self.newCoverage = newCoverage
+        self.newDuplicatedLinesDensity = newDuplicatedLinesDensity
+        self.newCodeSmells = newCodeSmells
+        self.newSecurityHotspotsReviewed = newSecurityHotspotsReviewed
+        self.periods = periods
+    }
+
     init(from decoder: any Decoder) throws {
         let rootContainer = try decoder.container(keyedBy: RootKeys.self)
         let container = try rootContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .projectStatus)

@@ -37,6 +37,7 @@ class ProjectsViewModel: ObservableObject {
     }
 
     func getProjects() async {
+        resetProjects()
         await getProjects(requestedPage: Page(pageSize: 20))
     }
 

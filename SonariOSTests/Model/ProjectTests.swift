@@ -10,7 +10,7 @@ import XCTest
 
 final class ProjectTests: XCTestCase {
     func testShouldMapKeyToId() {
-        let classUnderTest = Project(key: "my-key")
+        let classUnderTest = Project(key: "my-key", name: "", organization: "")
         XCTAssertEqual(classUnderTest.id, "my-key")
     }
 }
