@@ -19,9 +19,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
     func test_GetProjects_Page_ShouldRetrieveProjectListFromSonarClient() async throws {
         let sonarClient = await MockSonarCloudClient()
-        stub(sonarClient) { stub in
-            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: "my-project-1")]))
-        }
+        createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
         stub(sonarClientFactory) { stub in
@@ -32,7 +30,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
         let classUnderTest = ProjectsViewModel()
 
-        let expectedProjects = [Project(key: "my-project-1")]
+        let expectedProjects = [Project(key: "my-project-1", name: "", organization: "", status: buildProjectStatus())]
         await classUnderTest.getProjects()
         XCTAssertEqual(classUnderTest.state, .loaded(expectedProjects))
     }
@@ -58,9 +56,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
     func test_GetProjects_Int_ShouldRetrieveProjectListFromSonarClientIfThresholdMeetAndMoreItemsRemaining() async throws {
         let sonarClient = await MockSonarCloudClient()
-        stub(sonarClient) { stub in
-            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: "my-project-2")]))
-        }
+        createStubClient(projectKey: "my-project-2", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
         stub(sonarClientFactory) { stub in
@@ -69,10 +65,10 @@ final class ProjectsViewModelTests: XCTestCase {
 
         Container.shared.sonarClientFactory.register { sonarClientFactory }
 
-        let expectedProjects = [Project(key: "my-project-1"), Project(key: "my-project-2")]
+        let expectedProjects = [Project(key: "my-project-1", name: "", organization: "", status: buildProjectStatus()), Project(key: "my-project-2", name: "", organization: "", status: buildProjectStatus())]
 
         let classUnderTest = ProjectsViewModel()
-        classUnderTest.state = .loaded([Project(key: "my-project-1")])
+        classUnderTest.state = .loaded([Project(key: "my-project-1", name: "", organization: "", status: buildProjectStatus())])
         classUnderTest.itemsLoadedCount = 15
         classUnderTest.page = Page(pageIndex: 0, pageSize: 5, total: 20)
         await classUnderTest.getProjects(index: 12)
@@ -84,9 +80,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfNoItemsLoaded() async throws {
         let sonarClient = await MockSonarCloudClient()
-        stub(sonarClient) { stub in
-            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: "my-project-1")]))
-        }
+        createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
         stub(sonarClientFactory) { stub in
@@ -104,9 +98,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfThresholdNotMeet() async throws {
         let sonarClient = await MockSonarCloudClient()
-        stub(sonarClient) { stub in
-            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: "my-project-1")]))
-        }
+        createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
         stub(sonarClientFactory) { stub in
@@ -126,9 +118,7 @@ final class ProjectsViewModelTests: XCTestCase {
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfThresholdMeetButMoreItemsNotRemaining() async throws {
         let sonarClient = await MockSonarCloudClient()
-        stub(sonarClient) { stub in
-            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: "my-project-1")]))
-        }
+        createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
         stub(sonarClientFactory) { stub in
@@ -157,5 +147,20 @@ final class ProjectsViewModelTests: XCTestCase {
         XCTAssertNil(classUnderTest.itemsLoadedCount)
         XCTAssertNil(classUnderTest.page)
         XCTAssertEqual(classUnderTest.state, .loaded([]))
+    }
+
+    private func createStubClient(projectKey: String, mockClient: MockSonarCloudClient) {
+        stub(mockClient) { stub in
+            when(stub.retrieveProjects(page: any())).thenReturn(ProjectListResponse(items: [Project(key: projectKey, name: "", organization: "")]))
+            when(stub.retrieveProjectStatusFor(projectKey: projectKey)).thenReturn(buildProjectStatus())
+        }
+    }
+
+    private func buildProjectStatus() -> ProjectStatus {
+        ProjectStatus(status: "", newRatings: buildRatingCondition(), periods: [ProjectStatus.Period(index: 0, mode: "mode", date: "01-02-2024")])
+    }
+
+    private func buildRatingCondition() -> ProjectStatus.NewRatings {
+        .init(conditions: [])
     }
 }

@@ -30,7 +30,7 @@ final class ProjectListResponseTests: XCTestCase {
         """
         let decoded = try JSONDecoder().decode(ProjectListResponse.self, from: body.data(using: .utf8)!)
 
-        let expected = ProjectListResponse(items: [Project(key: "some_repository")])
+        let expected = ProjectListResponse(items: [Project(key: "some_repository", name: "repository", organization: "my-org")])
         XCTAssertEqual(decoded.items, expected.items)
         XCTAssertEqual(decoded.paging, Page(pageIndex: 1, pageSize: 1, total: 42))
     }

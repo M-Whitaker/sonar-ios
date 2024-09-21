@@ -89,5 +89,9 @@ final class SonarClientTests: XCTestCase {
         func retrieveProjects(page _: Page) async throws -> SonariOS.ProjectListResponse {
             ProjectListResponse()
         }
+
+        func retrieveProjectStatusFor(projectKey _: String) async throws -> SonariOS.ProjectStatus {
+            try ProjectStatus(from: JSONDecoder() as! Decoder)
+        }
     }
 }
