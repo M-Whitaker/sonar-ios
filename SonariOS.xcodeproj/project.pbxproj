@@ -52,6 +52,7 @@
 		759C2E472C93697400EFA287 /* ArrayUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */; };
 		759C2E4D2C936E6C00EFA287 /* ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */; };
 		759C2E4F2C93854F00EFA287 /* ProjectSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */; };
+		75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */; };
 		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
 		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
 		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
@@ -137,6 +138,7 @@
 		759C2E462C93697400EFA287 /* ArrayUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtilsTests.swift; sourceTree = "<group>"; };
 		759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatus.swift; sourceTree = "<group>"; };
 		759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSummaryView.swift; sourceTree = "<group>"; };
+		75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatusTests.swift; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		751257512C8F9080000234C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */,
 				751257522C8F90B0000234C0 /* OrganizationTests.swift */,
 				751257552C8F9161000234C0 /* ProjectTests.swift */,
 			);
@@ -727,6 +730,7 @@
 				7512575E2C9225E1000234C0 /* SonarClientTests.swift in Sources */,
 				751256DB2C8E03AC000234C0 /* BaseUrlValidatorTests.swift in Sources */,
 				7512576C2C92337B000234C0 /* SonarClientFactoryTests.swift in Sources */,
+				75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
