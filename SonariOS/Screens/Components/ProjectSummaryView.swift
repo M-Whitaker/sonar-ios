@@ -15,7 +15,7 @@ struct ProjectSummaryView: View {
             Text("\(project.organization)/\(project.name)")
             if let status = project.status {
                 Text(status.status)
-                Text(status.newCoverage.actualValue)
+                Text(status.newRatings.coverage.actualValue)
             }
         }
     }

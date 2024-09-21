@@ -9,24 +9,12 @@ import Foundation
 
 struct ProjectStatus: Equatable, Decodable {
     var status: String
-    var newReliabilityRating: RatingCondition = .init()
-    var newSecurityRating: RatingCondition = .init()
-    var newMaintainabilityRating: RatingCondition = .init()
-    var newCoverage: RatingCondition = .init()
-    var newDuplicatedLinesDensity: RatingCondition = .init()
-    var newCodeSmells: RatingCondition = .init()
-    var newSecurityHotspotsReviewed: RatingCondition = .init()
+    var newRatings: NewRatings = .init(conditions: [])
     var periods: [Period]
 
-    init(status: String, newReliabilityRating: RatingCondition, newSecurityRating: RatingCondition, newMaintainabilityRating: RatingCondition, newCoverage: RatingCondition, newDuplicatedLinesDensity: RatingCondition, newCodeSmells: RatingCondition, newSecurityHotspotsReviewed: RatingCondition, periods: [Period]) {
+    init(status: String, newRatings: NewRatings, periods: [Period]) {
         self.status = status
-        self.newReliabilityRating = newReliabilityRating
-        self.newSecurityRating = newSecurityRating
-        self.newMaintainabilityRating = newMaintainabilityRating
-        self.newCoverage = newCoverage
-        self.newDuplicatedLinesDensity = newDuplicatedLinesDensity
-        self.newCodeSmells = newCodeSmells
-        self.newSecurityHotspotsReviewed = newSecurityHotspotsReviewed
+        self.newRatings = newRatings
         self.periods = periods
     }
 
@@ -34,28 +22,7 @@ struct ProjectStatus: Equatable, Decodable {
         let rootContainer = try decoder.container(keyedBy: RootKeys.self)
         let container = try rootContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .projectStatus)
         status = try container.decode(String.self, forKey: .status)
-        let conditions = try container.decode([RatingCondition].self, forKey: .conditions)
-
-        for condition in conditions {
-            switch condition.metricKey {
-            case "new_reliability_rating":
-                newReliabilityRating = condition
-            case "new_security_rating":
-                newSecurityRating = condition
-            case "new_maintainability_rating":
-                newMaintainabilityRating = condition
-            case "new_coverage":
-                newCoverage = condition
-            case "new_duplicated_lines_density":
-                newDuplicatedLinesDensity = condition
-            case "new_code_smells":
-                newCodeSmells = condition
-            case "new_security_hotspots_reviewed":
-                newSecurityHotspotsReviewed = condition
-            default:
-                print("Unknown key: \(condition.metricKey)")
-            }
-        }
+        newRatings = try NewRatings(conditions: container.decode([RatingCondition].self, forKey: .conditions))
 
         periods = try container.decode([Period].self, forKey: .periods)
     }
@@ -68,6 +35,39 @@ struct ProjectStatus: Equatable, Decodable {
         case status
         case conditions
         case periods
+    }
+
+    struct NewRatings: Equatable {
+        var reliabilityRating: RatingCondition = .init()
+        var securityRating: RatingCondition = .init()
+        var maintainabilityRating: RatingCondition = .init()
+        var coverage: RatingCondition = .init()
+        var duplicatedLinesDensity: RatingCondition = .init()
+        var codeSmells: RatingCondition = .init()
+        var securityHotspotsReviewed: RatingCondition = .init()
+
+        init(conditions: [RatingCondition]) {
+            for condition in conditions {
+                switch condition.metricKey {
+                case "new_reliability_rating":
+                    reliabilityRating = condition
+                case "new_security_rating":
+                    securityRating = condition
+                case "new_maintainability_rating":
+                    maintainabilityRating = condition
+                case "new_coverage":
+                    coverage = condition
+                case "new_duplicated_lines_density":
+                    duplicatedLinesDensity = condition
+                case "new_code_smells":
+                    codeSmells = condition
+                case "new_security_hotspots_reviewed":
+                    securityHotspotsReviewed = condition
+                default:
+                    print("Unknown key: \(condition.metricKey)")
+                }
+            }
+        }
     }
 
     struct RatingCondition: Equatable, Codable {

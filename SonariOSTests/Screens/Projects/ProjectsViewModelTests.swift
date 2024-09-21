@@ -157,10 +157,10 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     private func buildProjectStatus() -> ProjectStatus {
-        ProjectStatus(status: "", newReliabilityRating: buildRatingCondition(), newSecurityRating: buildRatingCondition(), newMaintainabilityRating: buildRatingCondition(), newCoverage: buildRatingCondition(), newDuplicatedLinesDensity: buildRatingCondition(), newCodeSmells: buildRatingCondition(), newSecurityHotspotsReviewed: buildRatingCondition(), periods: [ProjectStatus.Period(index: 0, mode: "mode", date: "01-02-2024")])
+        ProjectStatus(status: "", newRatings: buildRatingCondition(), periods: [ProjectStatus.Period(index: 0, mode: "mode", date: "01-02-2024")])
     }
 
-    private func buildRatingCondition() -> ProjectStatus.RatingCondition {
-        .init()
+    private func buildRatingCondition() -> ProjectStatus.NewRatings {
+        .init(conditions: [])
     }
 }
