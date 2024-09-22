@@ -46,18 +46,18 @@ extension SonarClient {
             return try JSONDecoder().decode(T.self, from: responseBody)
         } catch let error as DecodingError {
             print("Decoding error for object: (\(T.self))...")
-          switch error {
-                      case .typeMismatch(let key, let value):
-                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                      case .valueNotFound(let key, let value):
-                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                      case .keyNotFound(let key, let value):
-                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                      case .dataCorrupted(let key):
-                        print("error \(key), and ERROR: \(error.localizedDescription)")
-                      default:
-                        print("ERROR: \(error.localizedDescription)")
-                      }
+            switch error {
+            case let .typeMismatch(key, value):
+                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+            case let .valueNotFound(key, value):
+                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+            case let .keyNotFound(key, value):
+                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+            case let .dataCorrupted(key):
+                print("error \(key), and ERROR: \(error.localizedDescription)")
+            default:
+                print("ERROR: \(error.localizedDescription)")
+            }
             print(String(decoding: responseBody, as: Unicode.UTF8.self))
             throw APIError.unexpectedResponse
         }

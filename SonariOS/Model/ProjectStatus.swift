@@ -25,9 +25,9 @@ struct ProjectStatus: Equatable, Decodable {
         newRatings = try NewRatings(conditions: container.decode([RatingCondition].self, forKey: .conditions))
 
         if let period = try container.decodeIfPresent(Period.self, forKey: .period) {
-          periods = [period]
+            periods = [period]
         } else {
-          periods = try container.decodeIfPresent([Period].self, forKey: .periods) ?? []
+            periods = try container.decodeIfPresent([Period].self, forKey: .periods) ?? []
         }
     }
 
@@ -82,28 +82,26 @@ struct ProjectStatus: Equatable, Decodable {
         var periodIndex: Int = 0
         var errorThreshold: String = ""
         var actualValue: String = ""
-      
-        init() {
-          
-        }
-      
+
+        init() {}
+
         init(status: String, metricKey: String, comparator: String, periodIndex: Int, errorThreshold: String, actualValue: String) {
-          self.status = status
-          self.metricKey = metricKey
-          self.comparator = comparator
-          self.periodIndex = periodIndex
-          self.errorThreshold = errorThreshold
-          self.actualValue = actualValue
+            self.status = status
+            self.metricKey = metricKey
+            self.comparator = comparator
+            self.periodIndex = periodIndex
+            self.errorThreshold = errorThreshold
+            self.actualValue = actualValue
         }
-      
+
         init(from decoder: Decoder) throws {
-          let container = try decoder.container(keyedBy: CodingKeys.self)
-          status = try container.decode(String.self, forKey: .status)
-          metricKey = try container.decode(String.self, forKey: .metricKey)
-          comparator = try container.decode(String.self, forKey: .comparator)
-          periodIndex = try container.decodeIfPresent(Int.self, forKey: .periodIndex) ?? 0
-          errorThreshold = try container.decode(String.self, forKey: .errorThreshold)
-          actualValue = try container.decode(String.self, forKey: .actualValue)
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            status = try container.decode(String.self, forKey: .status)
+            metricKey = try container.decode(String.self, forKey: .metricKey)
+            comparator = try container.decode(String.self, forKey: .comparator)
+            periodIndex = try container.decodeIfPresent(Int.self, forKey: .periodIndex) ?? 0
+            errorThreshold = try container.decode(String.self, forKey: .errorThreshold)
+            actualValue = try container.decode(String.self, forKey: .actualValue)
         }
     }
 
@@ -111,18 +109,18 @@ struct ProjectStatus: Equatable, Decodable {
         var index: Int
         var mode: String
         var date: String
-      
-      init (index: Int, mode: String, date: String) {
-        self.index = index
-        self.mode = mode
-        self.date = date
-      }
-      
-      init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.index = try container.decodeIfPresent(Int.self, forKey: CodingKeys.index) ?? 0
-        self.mode = try container.decode(String.self, forKey: CodingKeys.mode)
-        self.date = try container.decode(String.self, forKey: CodingKeys.date)
-      }
+
+        init(index: Int, mode: String, date: String) {
+            self.index = index
+            self.mode = mode
+            self.date = date
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            index = try container.decodeIfPresent(Int.self, forKey: CodingKeys.index) ?? 0
+            mode = try container.decode(String.self, forKey: CodingKeys.mode)
+            date = try container.decode(String.self, forKey: CodingKeys.date)
+        }
     }
 }

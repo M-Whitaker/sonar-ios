@@ -53,6 +53,8 @@
 		759C2E4D2C936E6C00EFA287 /* ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4C2C936E6C00EFA287 /* ProjectStatus.swift */; };
 		759C2E4F2C93854F00EFA287 /* ProjectSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C2E4E2C93854F00EFA287 /* ProjectSummaryView.swift */; };
 		75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */; };
+		75DC3EC02CA0BF7500DA0030 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EBF2CA0BF7500DA0030 /* HTTPTypes */; };
+		75DC3EC22CA0BF7500DA0030 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EC12CA0BF7500DA0030 /* HTTPTypesFoundation */; };
 		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
 		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
 		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
@@ -141,6 +143,7 @@
 		75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatusTests.swift; sourceTree = "<group>"; };
 		75DC3EB22CA0693C00DA0030 /* pretest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pretest.sh; sourceTree = "<group>"; };
 		75DC3EB32CA0722900DA0030 /* posttest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = posttest.sh; sourceTree = "<group>"; };
+		75DC3EBA2CA091A900DA0030 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75DC3EC02CA0BF7500DA0030 /* HTTPTypes in Frameworks */,
+				75DC3EC22CA0BF7500DA0030 /* HTTPTypesFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +378,7 @@
 		75E56BDC2C70B929000CA0BC = {
 			isa = PBXGroup;
 			children = (
+				75DC3EBA2CA091A900DA0030 /* UITests.xctestplan */,
 				75DC3EB32CA0722900DA0030 /* posttest.sh */,
 				75DC3EB22CA0693C00DA0030 /* pretest.sh */,
 				757E278E2C7D07A2002B198F /* FullTests.xctestplan */,
@@ -1099,6 +1105,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75E56C262C70C341000CA0BC /* XCRemoteSwiftPackageReference "Cuckoo" */;
 			productName = "plugin:CuckooPluginSingleFile";
+		};
+		75DC3EBF2CA0BF7500DA0030 /* HTTPTypes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 755A9F0C2C72124200570528 /* XCRemoteSwiftPackageReference "swift-http-types" */;
+			productName = HTTPTypes;
+		};
+		75DC3EC12CA0BF7500DA0030 /* HTTPTypesFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 755A9F0C2C72124200570528 /* XCRemoteSwiftPackageReference "swift-http-types" */;
+			productName = HTTPTypesFoundation;
 		};
 		75E56C1D2C70BACA000CA0BC /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
