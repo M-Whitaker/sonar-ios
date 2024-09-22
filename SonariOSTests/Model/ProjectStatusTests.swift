@@ -9,7 +9,7 @@
 import XCTest
 
 final class ProjectStatusTests: XCTestCase {
-    func test_Decode_Should() throws {
+    func test_Decode_ShouldDecodeSuccessfullyForCloudResponse() throws {
         let body = """
         {
           "projectStatus": {
@@ -89,4 +89,49 @@ final class ProjectStatusTests: XCTestCase {
         let expected = ProjectStatus(status: "ERROR", newRatings: ProjectStatus.NewRatings(conditions: conditions), periods: [.init(index: 1, mode: "previous_version", date: "2024-08-18T00:44:01+0200")])
         XCTAssertEqual(decoded, expected)
     }
+  
+  func test_Decode_ShouldDecodeSuccessfullyForQubeFirstResponse() throws {
+      let body = """
+      {
+        "projectStatus": {
+          "status": "OK",
+          "conditions": [],
+          "ignoredConditions": false,
+          "caycStatus": "compliant"
+        }
+      }
+      """
+      let decoded = try JSONDecoder().decode(ProjectStatus.self, from: body.data(using: .utf8)!)
+      let expected = ProjectStatus(status: "OK", newRatings: ProjectStatus.NewRatings(conditions: []), periods: [])
+      XCTAssertEqual(decoded, expected)
+  }
+  
+  func test_Decode_ShouldDecodeSuccessfullyForQubeSecondResponse() throws {
+      let body = """
+      {
+        "projectStatus": {
+          "status": "OK",
+          "conditions": [
+            {
+              "status": "OK",
+              "metricKey": "new_violations",
+              "comparator": "GT",
+              "errorThreshold": "0",
+              "actualValue": "0"
+            }
+          ],
+          "ignoredConditions": false,
+          "period": {
+            "mode": "PREVIOUS_VERSION",
+            "date": "2024-09-22T17:12:43+0000"
+          },
+          "caycStatus": "compliant"
+        }
+      }
+      """
+      let decoded = try JSONDecoder().decode(ProjectStatus.self, from: body.data(using: .utf8)!)
+
+      let expected = ProjectStatus(status: "OK", newRatings: ProjectStatus.NewRatings(conditions: []), periods: [.init(index: 0, mode: "PREVIOUS_VERSION", date: "2024-09-22T17:12:43+0000")])
+      XCTAssertEqual(decoded, expected)
+  }
 }

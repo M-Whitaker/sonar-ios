@@ -44,8 +44,21 @@ extension SonarClient {
         }
         do {
             return try JSONDecoder().decode(T.self, from: responseBody)
-        } catch is DecodingError {
-            print("Decoding error")
+        } catch let error as DecodingError {
+            print("Decoding error for object: (\(T.self))...")
+          switch error {
+                      case .typeMismatch(let key, let value):
+                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                      case .valueNotFound(let key, let value):
+                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                      case .keyNotFound(let key, let value):
+                        print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                      case .dataCorrupted(let key):
+                        print("error \(key), and ERROR: \(error.localizedDescription)")
+                      default:
+                        print("ERROR: \(error.localizedDescription)")
+                      }
+            print(String(decoding: responseBody, as: Unicode.UTF8.self))
             throw APIError.unexpectedResponse
         }
     }

@@ -14,7 +14,7 @@ final class SonariOSUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testExample() throws {
+    func testCreateProfileOnFirstLaunch() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
