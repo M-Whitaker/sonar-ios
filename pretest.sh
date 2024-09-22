@@ -15,3 +15,11 @@ done
 
 echo "Sonar has started on http://localhost:9000"
 echo "$(curl --silent --fail -L -u admin:admin "http://localhost:9000/api/system/health")"
+
+cd "${PROJECT_DIR:-$(pwd)}/SonariOSUITests/sonar-scanning-examples/sonar-scanner-maven/maven-basic"
+
+sonarToken=$(curl -X POST -L -u admin:admin "http://localhost:9000/api/user_tokens/generate?name=maven-example" | jq -r '.token')
+
+echo "Sonar Token:" $sonarToken
+
+/opt/homebrew/bin/mvn clean verify sonar:sonar -Dsonar.token=$sonarToken
