@@ -30,3 +30,5 @@ playground.xcworkspace
 .build/
 Build/
 Coverage.xml
+
+*.log

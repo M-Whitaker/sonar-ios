@@ -28,6 +28,42 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "exec &quot;${PROJECT_DIR}/pretest.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "75E56BFE2C70B92A000CA0BC"
+                     BuildableName = "SonariOSUITests.xctest"
+                     BlueprintName = "SonariOSUITests"
+                     ReferencedContainer = "container:SonariOS.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "exec &quot;${PROJECT_DIR}/posttest.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "75E56BFE2C70B92A000CA0BC"
+                     BuildableName = "SonariOSUITests.xctest"
+                     BlueprintName = "SonariOSUITests"
+                     ReferencedContainer = "container:SonariOS.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <TestPlans>
          <TestPlanReference
             reference = "container:FullTests.xctestplan"
