@@ -45,7 +45,7 @@ final class SonariOSUITests: XCTestCase {
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCTAssert(app.staticTexts["Projects"].exists)
-        XCTAssert(app.staticTexts["Example of basic Maven project"].exists)
+        XCTAssert(app.staticTexts["Example of basic Maven project"].waitForExistence(timeout: 5))
     }
 
     func createApiKey() async throws {
