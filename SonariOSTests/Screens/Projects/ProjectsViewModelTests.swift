@@ -136,13 +136,13 @@ final class ProjectsViewModelTests: XCTestCase {
         verifyNoMoreInteractions(sonarClient)
     }
 
-    func test_ResetProjects_ShouldResetItemsLoadedCountAndPageAndState() {
+    func test_ResetProjects_ShouldResetItemsLoadedCountAndPageAndState() async {
         let classUnderTest = ProjectsViewModel()
         classUnderTest.itemsLoadedCount = 15
         classUnderTest.page = Page(pageIndex: 0, pageSize: 0, total: 0)
         classUnderTest.state = .isLoading
 
-        classUnderTest.resetProjects()
+        await classUnderTest.resetProjects()
 
         XCTAssertNil(classUnderTest.itemsLoadedCount)
         XCTAssertNil(classUnderTest.page)
