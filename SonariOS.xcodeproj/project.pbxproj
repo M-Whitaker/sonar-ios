@@ -42,6 +42,7 @@
 		7545E6F12C84E1890078B903 /* AddProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6F02C84E1890078B903 /* AddProfileViewModel.swift */; };
 		7545E6F32C8508580078B903 /* SonarQubeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6F22C8508580078B903 /* SonarQubeSettingsView.swift */; };
 		7545E6F52C8519D20078B903 /* NameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545E6F42C8519D20078B903 /* NameValidator.swift */; };
+		754ADB952CA20CA600A97DE8 /* UITestStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754ADB942CA20CA000A97DE8 /* UITestStartup.swift */; };
 		755A9F0E2C72124200570528 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 755A9F0D2C72124200570528 /* HTTPTypes */; };
 		755A9F102C72124200570528 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 755A9F0F2C72124200570528 /* HTTPTypesFoundation */; };
 		755A9F122C72214800570528 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755A9F112C72214800570528 /* APIError.swift */; };
@@ -130,6 +131,7 @@
 		7545E6F02C84E1890078B903 /* AddProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProfileViewModel.swift; sourceTree = "<group>"; };
 		7545E6F22C8508580078B903 /* SonarQubeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarQubeSettingsView.swift; sourceTree = "<group>"; };
 		7545E6F42C8519D20078B903 /* NameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidator.swift; sourceTree = "<group>"; };
+		754ADB942CA20CA000A97DE8 /* UITestStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestStartup.swift; sourceTree = "<group>"; };
 		755A9F112C72214800570528 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		756AED5B2C78E4EB00F7972C /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		756EABCE2C7152B400EFBE33 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 		75E56C022C70B92A000CA0BC /* SonariOSUITests */ = {
 			isa = PBXGroup;
 			children = (
+				754ADB942CA20CA000A97DE8 /* UITestStartup.swift */,
 				75E56C032C70B92A000CA0BC /* SonariOSUITests.swift */,
 				75E56C052C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift */,
 			);
@@ -750,6 +753,7 @@
 			files = (
 				75E56C062C70B92A000CA0BC /* SonariOSUITestsLaunchTests.swift in Sources */,
 				75E56C042C70B92A000CA0BC /* SonariOSUITests.swift in Sources */,
+				754ADB952CA20CA600A97DE8 /* UITestStartup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

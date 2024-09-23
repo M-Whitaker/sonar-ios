@@ -5,19 +5,14 @@
 //  Created by Matt Whitaker on 17/08/2024.
 //
 
-import HTTPTypes
-import HTTPTypesFoundation
 import XCTest
 
-struct APIKeyResponse: Codable {
-    let token: String
-}
-
 final class SonariOSUITests: XCTestCase {
-    private var apiKey: String = ""
+    var uiTestStartup: UITestStartup?
 
     override func setUp() async throws {
-        try await createApiKey()
+        uiTestStartup = UITestStartup.getInstance()
+        try await uiTestStartup!.createApiKey()
         continueAfterFailure = false
     }
 
@@ -35,7 +30,7 @@ final class SonariOSUITests: XCTestCase {
 
         let apiKeyTextField = app.textFields["API Key"]
         apiKeyTextField.tap()
-        apiKeyTextField.typeText(apiKey)
+        apiKeyTextField.typeText(uiTestStartup!.apiKey)
 
         let baseUrlField = app.textFields["Base URL"]
         baseUrlField.tap()
@@ -46,23 +41,5 @@ final class SonariOSUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCTAssert(app.staticTexts["Projects"].exists)
         XCTAssert(app.staticTexts["Example of basic Maven project"].waitForExistence(timeout: 5))
-    }
-
-    func createApiKey() async throws {
-        var request = HTTPRequest(method: .post, scheme: "http", authority: "localhost:9000", path: "/api/user_tokens/generate?name=ui-tests")
-        request.headerFields[.accept] = "application/json"
-        request.headerFields[.userAgent] = "SonariOSUITests"
-        request.headerFields[.authorization] = buildAuth()
-
-        let (responseBody, response) = try await URLSession.shared.data(for: request)
-        XCTAssertEqual(response.status, 200)
-        let tokens = try JSONDecoder().decode(APIKeyResponse.self, from: responseBody)
-        apiKey = tokens.token
-    }
-
-    private func buildAuth() -> String {
-        let loginString = "admin:admin"
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        return "Basic \(loginData.base64EncodedString())"
     }
 }
