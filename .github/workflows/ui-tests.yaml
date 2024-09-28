@@ -1,0 +1,32 @@
+name: "UI Tests"
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build_project:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Cancel Previous Runs
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and UI Test
+        run: |
+          xcodebuild \
+           -project SonariOS.xcodeproj \
+           -scheme "UI Tests" -testPlan UITests \
+           -skipPackagePluginValidation \
+           -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.0' \
+           -derivedDataPath Build/ -allowProvisioningUpdates -enableCodeCoverage YES clean test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || exit 1
+      - name: Archive test script results
+        if: '!cancelled()'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-post-test-logs
+          path: |
+            pretest.log
+            posttest.log

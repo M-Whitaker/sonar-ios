@@ -3,6 +3,12 @@
 exec > "${PROJECT_DIR:-$(pwd)}/pretest.log" 2>&1
 set -o pipefail
 set -e
+
+if ! docker info > /dev/null 2>&1; then
+  echo "This script uses docker, and it isn't running - please start docker and try again!"
+  exit 1
+fi
+
 echo "Removing running sonarqube instance..."
 docker rm -f sonarqube 2> /dev/null
 echo "Starting sonarqube instance..."
