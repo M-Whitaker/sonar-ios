@@ -33,7 +33,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "exec &quot;${PROJECT_DIR}/pretest.sh&quot;&#10;">
+               scriptText = "&quot;${PROJECT_DIR}/pretest.sh&quot;&#10;"
+               shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -51,7 +52,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "exec &quot;${PROJECT_DIR}/posttest.sh&quot;&#10;return $?&#10;">
+               scriptText = "&quot;${PROJECT_DIR}/posttest.sh&quot;&#10;"
+               shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

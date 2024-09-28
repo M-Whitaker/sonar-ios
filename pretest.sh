@@ -4,6 +4,18 @@ exec > "${PROJECT_DIR:-$(pwd)}/pretest.log" 2>&1
 set -o pipefail
 set -e
 
+echo '------ENV START------'
+printenv
+echo '------ENV STOP------'
+
+echo '------SYSTEM INFO START------'
+uname -a
+echo '------SYSTEM INFO END------'
+
+if [ "$(uname -m)" = "arm64" ]; then
+  PATH="/opt/homebrew/bin:$PATH"
+fi
+
 if ! docker info > /dev/null 2>&1; then
   echo "This script uses docker, and it isn't running - please start docker and try again!"
   exit 1
@@ -28,4 +40,4 @@ sonarToken=$(curl -X POST -L -u admin:admin "http://localhost:9000/api/user_toke
 
 echo "Sonar Token:" $sonarToken
 
-/opt/homebrew/bin/mvn clean verify sonar:sonar -Dsonar.token=$sonarToken
+mvn clean verify sonar:sonar -Dsonar.token=$sonarToken
