@@ -1,5 +1,5 @@
 //
-//  SecureTextField.swift
+//  SecureTextFieldView.swift
 //  SonariOS
 //
 //  Created by Matt Whitaker on 02/09/2024.
