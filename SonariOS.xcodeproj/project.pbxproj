@@ -56,6 +56,7 @@
 		75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */; };
 		75DC3EC02CA0BF7500DA0030 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EBF2CA0BF7500DA0030 /* HTTPTypes */; };
 		75DC3EC22CA0BF7500DA0030 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EC12CA0BF7500DA0030 /* HTTPTypesFoundation */; };
+		75DE1C0A2CB33C8C00545380 /* UserDefaultsTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE1C092CB33C8800545380 /* UserDefaultsTypeTests.swift */; };
 		75E56BE92C70B929000CA0BC /* SonariOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BE82C70B929000CA0BC /* SonariOSApp.swift */; };
 		75E56BEB2C70B929000CA0BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E56BEA2C70B929000CA0BC /* ContentView.swift */; };
 		75E56BED2C70B92A000CA0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E56BEC2C70B92A000CA0BC /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 		75DC3EB22CA0693C00DA0030 /* pretest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pretest.sh; sourceTree = "<group>"; };
 		75DC3EB32CA0722900DA0030 /* posttest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = posttest.sh; sourceTree = "<group>"; };
 		75DC3EBA2CA091A900DA0030 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
+		75DE1C092CB33C8800545380 /* UserDefaultsTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTypeTests.swift; sourceTree = "<group>"; };
 		75E56BE52C70B929000CA0BC /* SonariOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonariOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E56BE82C70B929000CA0BC /* SonariOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonariOSApp.swift; sourceTree = "<group>"; };
 		75E56BEA2C70B929000CA0BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		751256F62C8E2270000234C0 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				75DE1C092CB33C8800545380 /* UserDefaultsTypeTests.swift */,
 				751256F72C8E22BA000234C0 /* SonarQubeUserDefaultsTests.swift */,
 				751256F92C8E22DF000234C0 /* SonarCloudUserDefaultsTests.swift */,
 			);
@@ -735,6 +738,7 @@
 				751256F42C8E200D000234C0 /* OrganizationListResponseTests.swift in Sources */,
 				751257662C923303000234C0 /* Assert.swift in Sources */,
 				75E56BFA2C70B92A000CA0BC /* ProjectsViewModelTests.swift in Sources */,
+				75DE1C0A2CB33C8C00545380 /* UserDefaultsTypeTests.swift in Sources */,
 				751257022C8E319B000234C0 /* AddProfileViewModelTests.swift in Sources */,
 				751257612C922B4B000234C0 /* MockURLProtocol.swift in Sources */,
 				751256E42C8E08CB000234C0 /* ApiKeyValidatorTests.swift in Sources */,
