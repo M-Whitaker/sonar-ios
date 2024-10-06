@@ -1,5 +1,5 @@
 //
-//  ProfilePicker.swift
+//  ProfilePickerView.swift
 //  SonariOS
 //
 //  Created by Matt Whitaker on 27/08/2024.
