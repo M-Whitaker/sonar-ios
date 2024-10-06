@@ -12,7 +12,7 @@ struct ProjectSummaryView: View {
 
     var body: some View {
         VStack {
-            Text("\(project.organization)/\(project.name)")
+            Text("\(project.organization.map { "\($0)/\(project.name)" } ?? project.name)")
             if let status = project.status {
                 Text(status.status)
                 Text(status.newRatings.coverage.actualValue)

@@ -22,6 +22,8 @@ struct AddProfileView: View {
             TextField(text: $viewModel.apiKey) {
                 Text("API Key")
             }
+            .textContentType(.password)
+            .textInputAutocapitalization(.never)
         }
         .navigationTitle("Create Profile")
         .navigationBarTitleDisplayMode(.inline)

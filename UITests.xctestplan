@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "5CB4E4D5-B52A-4E4B-B5EE-23ED814C1883",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SonariOS.xcodeproj",
+      "identifier" : "75E56BE42C70B929000CA0BC",
+      "name" : "SonariOS"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SonariOS.xcodeproj",
+        "identifier" : "75E56BFE2C70B92A000CA0BC",
+        "name" : "SonariOSUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

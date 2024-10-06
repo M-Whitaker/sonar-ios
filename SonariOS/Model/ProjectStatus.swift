@@ -24,7 +24,11 @@ struct ProjectStatus: Equatable, Decodable {
         status = try container.decode(String.self, forKey: .status)
         newRatings = try NewRatings(conditions: container.decode([RatingCondition].self, forKey: .conditions))
 
-        periods = try container.decode([Period].self, forKey: .periods)
+        if let period = try container.decodeIfPresent(Period.self, forKey: .period) {
+            periods = [period]
+        } else {
+            periods = try container.decodeIfPresent([Period].self, forKey: .periods) ?? []
+        }
     }
 
     enum RootKeys: CodingKey {
@@ -34,6 +38,7 @@ struct ProjectStatus: Equatable, Decodable {
     enum CodingKeys: CodingKey {
         case status
         case conditions
+        case period
         case periods
     }
 
@@ -77,11 +82,45 @@ struct ProjectStatus: Equatable, Decodable {
         var periodIndex: Int = 0
         var errorThreshold: String = ""
         var actualValue: String = ""
+
+        init() {}
+
+        init(status: String, metricKey: String, comparator: String, periodIndex: Int, errorThreshold: String, actualValue: String) {
+            self.status = status
+            self.metricKey = metricKey
+            self.comparator = comparator
+            self.periodIndex = periodIndex
+            self.errorThreshold = errorThreshold
+            self.actualValue = actualValue
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            status = try container.decode(String.self, forKey: .status)
+            metricKey = try container.decode(String.self, forKey: .metricKey)
+            comparator = try container.decode(String.self, forKey: .comparator)
+            periodIndex = try container.decodeIfPresent(Int.self, forKey: .periodIndex) ?? 0
+            errorThreshold = try container.decode(String.self, forKey: .errorThreshold)
+            actualValue = try container.decode(String.self, forKey: .actualValue)
+        }
     }
 
     struct Period: Equatable, Codable {
         var index: Int
         var mode: String
         var date: String
+
+        init(index: Int, mode: String, date: String) {
+            self.index = index
+            self.mode = mode
+            self.date = date
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            index = try container.decodeIfPresent(Int.self, forKey: CodingKeys.index) ?? 0
+            mode = try container.decode(String.self, forKey: CodingKeys.mode)
+            date = try container.decode(String.self, forKey: CodingKeys.date)
+        }
     }
 }

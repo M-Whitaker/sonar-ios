@@ -1,6 +1,6 @@
 # file options
 
---exclude Build/
+--exclude Build/,SonariOSUITests/sonar-scanning-examples
 
 # format options
 

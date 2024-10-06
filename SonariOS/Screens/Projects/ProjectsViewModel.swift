@@ -37,7 +37,7 @@ class ProjectsViewModel: ObservableObject {
     }
 
     func getProjects() async {
-        resetProjects()
+        await resetProjects()
         await getProjects(requestedPage: Page(pageSize: 20))
     }
 
@@ -69,6 +69,7 @@ class ProjectsViewModel: ObservableObject {
         }
     }
 
+    @MainActor
     func resetProjects() {
         itemsLoadedCount = nil
         page = nil

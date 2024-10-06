@@ -12,7 +12,7 @@ struct Project: Equatable, Decodable, Identifiable {
 
     var key: String
     var name: String
-    var organization: String
+    var organization: String?
     var status: ProjectStatus?
 
     enum CodingKeys: CodingKey {
