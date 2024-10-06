@@ -47,9 +47,7 @@ extension SonarClient {
         } catch let error as DecodingError {
             print("Decoding error for object: (\(T.self))...")
             switch error {
-            case let .typeMismatch(key, value):
-                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-            case let .valueNotFound(key, value):
+            case let .typeMismatch(key, value), let .valueNotFound(key, value):
                 print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
             case let .keyNotFound(key, value):
                 print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
