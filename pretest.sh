@@ -41,3 +41,17 @@ sonarToken=$(curl -X POST -L -u admin:admin "http://localhost:9000/api/user_toke
 echo "Sonar Token:" $sonarToken
 
 mvn clean verify sonar:sonar -Dsonar.token=$sonarToken
+
+file="./target/sonar/report-task.txt"
+
+while IFS='=' read -r key value
+do
+    key=$(echo $key | tr '.' '_')
+    eval ${key}=\${value}
+done < "$file"
+
+while ! { curl --silent --fail -u admin:admin "${ceTaskUrl}" \
+          | jq -e '.task.status == "SUCCESS"' >/dev/null; }; do
+    echo "Waiting for sonarqube report to finish. Trying again in 10 seconds."
+    sleep 10
+done

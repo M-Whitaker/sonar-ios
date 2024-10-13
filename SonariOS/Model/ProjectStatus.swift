@@ -76,14 +76,21 @@ struct ProjectStatus: Equatable, Decodable {
     }
 
     struct RatingCondition: Equatable, Codable {
-        var status: String = ""
-        var metricKey: String = ""
-        var comparator: String = ""
-        var periodIndex: Int = 0
-        var errorThreshold: String = ""
-        var actualValue: String = ""
+        var status: String
+        var metricKey: String
+        var comparator: String
+        var periodIndex: Int
+        var errorThreshold: String
+        var actualValue: String
 
-        init() {}
+        init() {
+            status = ""
+            metricKey = ""
+            comparator = ""
+            periodIndex = 0
+            errorThreshold = ""
+            actualValue = ""
+        }
 
         init(status: String, metricKey: String, comparator: String, periodIndex: Int, errorThreshold: String, actualValue: String) {
             self.status = status
