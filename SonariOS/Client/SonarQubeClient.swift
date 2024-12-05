@@ -12,10 +12,10 @@ class SonarQubeClient: SonarClient {
     @SonarQubeUserScopedPreference(\.baseUrl) var baseUrl: String
     @UserScopedPreference(\.apiKey) var apiKey: String
 
-    var urlSession: URLSession
+    var sonarHttpClient: SonarHttpClient
 
-    init() {
-        urlSession = URLSession.shared
+    init(sonarHttpClient: SonarHttpClient) {
+        self.sonarHttpClient = sonarHttpClient
     }
 
     func retrieveIssues(projectKey _: String) async throws -> [Issue] {
@@ -23,10 +23,10 @@ class SonarQubeClient: SonarClient {
     }
 
     func retrieveProjects(page _: Page) async throws -> ProjectListResponse {
-        try await call(method: .get, path: "/api/components/search?qualifiers=TRK")
+        try await sonarHttpClient.call(baseUrl: baseUrl, apiKey: apiKey, method: .get, path: "/api/components/search?qualifiers=TRK")
     }
 
     func retrieveProjectStatusFor(projectKey: String) async throws -> ProjectStatus {
-        try await call(method: .get, path: "/api/qualitygates/project_status?projectKey=\(projectKey)")
+        try await sonarHttpClient.call(baseUrl: baseUrl, apiKey: apiKey, method: .get, path: "/api/qualitygates/project_status?projectKey=\(projectKey)")
     }
 }

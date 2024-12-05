@@ -12,13 +12,15 @@ import XCTest
 import Factory
 
 final class ProjectsViewModelTests: XCTestCase {
+    let mockSonarHttpClient = MockSonarHttpClient()
+
     override func setUp() {
         super.setUp()
         Container.shared.reset()
     }
 
     func test_GetProjects_Page_ShouldRetrieveProjectListFromSonarClient() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
@@ -36,7 +38,7 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     func test_GetProjects_Page_ShouldErrorStateWhenErrorFromSonarClient() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         stub(sonarClient) { stub in
             when(stub.retrieveProjects(page: any())).thenThrow(APIError.httpCode(.forbidden))
         }
@@ -55,7 +57,7 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     func test_GetProjects_Int_ShouldRetrieveProjectListFromSonarClientIfThresholdMeetAndMoreItemsRemaining() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         createStubClient(projectKey: "my-project-2", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
@@ -79,7 +81,7 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfNoItemsLoaded() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
@@ -97,7 +99,7 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfThresholdNotMeet() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()
@@ -117,7 +119,7 @@ final class ProjectsViewModelTests: XCTestCase {
     }
 
     func test_GetProjects_Int_ShouldNotRetrieveProjectListFromSonarClientIfThresholdMeetButMoreItemsNotRemaining() async throws {
-        let sonarClient = await MockSonarCloudClient()
+        let sonarClient = await MockSonarCloudClient(sonarHttpClient: mockSonarHttpClient)
         createStubClient(projectKey: "my-project-1", mockClient: sonarClient)
 
         let sonarClientFactory = MockSonarClientFactory()

@@ -59,4 +59,10 @@ final class ProjectListResponseTests: XCTestCase {
         XCTAssertEqual(decoded.items, expected.items)
         XCTAssertEqual(decoded.paging, Page(pageIndex: 1, pageSize: 1, total: 55))
     }
+
+    func test_DefaultConstructor() {
+        let actual = ProjectListResponse()
+        XCTAssertEqual(actual.items, [])
+        XCTAssertEqual(actual.paging, Page(pageIndex: 1, pageSize: 100, total: 0))
+    }
 }
