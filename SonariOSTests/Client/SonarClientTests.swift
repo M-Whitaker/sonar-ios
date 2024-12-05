@@ -8,7 +8,7 @@
 @testable import SonariOS
 import XCTest
 
-final class SonarClientTests: XCTestCase {
+final class SonarHttpClientTests: XCTestCase {
     func test_Call_ShouldSendHttpRequestWithCorrectParamsAndDecodeResponseSuccessfullyWhenStatusCode200() async throws {
         var urlSession: URLSession {
             let configuration: URLSessionConfiguration = .ephemeral
@@ -31,9 +31,9 @@ final class SonarClientTests: XCTestCase {
             return (response, data)
         }
 
-        let classUnderTest = SonarCloudTestingStub(baseUrl: "example.com", apiKey: "key_12345", urlSession: urlSession)
+        let classUnderTest = SonarHttpClient(urlSession: urlSession)
 
-        let obj: ExampleResponse = try await classUnderTest.call(method: .get, path: "/path/to/resource")
+        let obj: ExampleResponse = try await classUnderTest.call(baseUrl: "example.com", apiKey: "key_12345", method: .get, path: "/path/to/resource")
 
         XCTAssertEqual(obj.foo, "bar")
     }
@@ -60,9 +60,9 @@ final class SonarClientTests: XCTestCase {
             return (response, data)
         }
 
-        let classUnderTest = SonarCloudTestingStub(baseUrl: "example.com", apiKey: "key_12345", urlSession: urlSession)
+        let classUnderTest = SonarHttpClient(urlSession: urlSession)
 
-        try await assertThrowsAsyncError(await classUnderTest.call(method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
+        try await assertThrowsAsyncError(await classUnderTest.call(baseUrl: "example.com", apiKey: "key_12345", method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
             XCTAssertEqual(error as! APIError, APIError.httpCode(.notFound))
         }
     }
@@ -89,9 +89,9 @@ final class SonarClientTests: XCTestCase {
             return (response, data)
         }
 
-        let classUnderTest = SonarCloudTestingStub(baseUrl: "example.com", apiKey: "key_12345", urlSession: urlSession)
+        let classUnderTest = SonarHttpClient(urlSession: urlSession)
 
-        try await assertThrowsAsyncError(await classUnderTest.call(method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
+        try await assertThrowsAsyncError(await classUnderTest.call(baseUrl: "example.com", apiKey: "key_12345", method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
             XCTAssertEqual(error as! APIError, APIError.unexpectedResponse)
         }
     }
@@ -118,38 +118,14 @@ final class SonarClientTests: XCTestCase {
             return (response, data)
         }
 
-        let classUnderTest = SonarCloudTestingStub(baseUrl: "example.com", apiKey: "key_12345", urlSession: urlSession)
+        let classUnderTest = SonarHttpClient(urlSession: urlSession)
 
-        try await assertThrowsAsyncError(await classUnderTest.call(method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
+        try await assertThrowsAsyncError(await classUnderTest.call(baseUrl: "example.com", apiKey: "key_12345", method: .get, path: "/path/to/resource", type: ExampleResponse.self)) { error in
             XCTAssertEqual(error as! APIError, APIError.unexpectedResponse)
         }
     }
 
     struct ExampleResponse: Codable {
         var foo: String
-    }
-
-    class SonarCloudTestingStub: SonarClient {
-        var baseUrl: String
-        var apiKey: String
-        var urlSession: URLSession
-
-        init(baseUrl: String, apiKey: String, urlSession: URLSession) {
-            self.baseUrl = baseUrl
-            self.apiKey = apiKey
-            self.urlSession = urlSession
-        }
-
-        func retrieveIssues(projectKey _: String) async throws -> [SonariOS.Issue] {
-            []
-        }
-
-        func retrieveProjects(page _: Page) async throws -> SonariOS.ProjectListResponse {
-            ProjectListResponse()
-        }
-
-        func retrieveProjectStatusFor(projectKey _: String) async throws -> SonariOS.ProjectStatus {
-            try ProjectStatus(from: JSONDecoder() as! Decoder)
-        }
     }
 }

@@ -12,16 +12,10 @@ class SonarCloudClient: SonarClient {
 
     @UserScopedPreference(\.apiKey) var apiKey: String
 
-    var baseUrl: String
-    var urlSession: URLSession
+    var sonarHttpClient: SonarHttpClient
 
-    convenience init() {
-        self.init(baseUrl: SonarCloudClient.kSonarCloudBaseUrl)
-    }
-
-    init(baseUrl: String) {
-        self.baseUrl = baseUrl
-        urlSession = URLSession.shared
+    init(sonarHttpClient: SonarHttpClient) {
+        self.sonarHttpClient = sonarHttpClient
     }
 
     func retrieveIssues(projectKey _: String) async throws -> [Issue] {
@@ -30,15 +24,15 @@ class SonarCloudClient: SonarClient {
 
     func retrieveProjects(page: Page) async throws -> ProjectListResponse {
         print("Retriving projects from sonar cloud...")
-        let orgs: OrganizationListResponse = try await call(method: .get, path: "/organizations/search?member=true")
+        let orgs: OrganizationListResponse = try await sonarHttpClient.call(baseUrl: SonarCloudClient.kSonarCloudBaseUrl, apiKey: apiKey, method: .get, path: "/organizations/search?member=true")
         if let org = orgs.items.find(at: 0) {
-            return try await call(method: .get, path: "/components/search?organization=\(org.key)&p=\(page.pageIndex)&ps=\(page.pageSize)")
+            return try await sonarHttpClient.call(baseUrl: SonarCloudClient.kSonarCloudBaseUrl, apiKey: apiKey, method: .get, path: "/components/search?organization=\(org.key)&p=\(page.pageIndex)&ps=\(page.pageSize)")
         } else {
             return ProjectListResponse()
         }
     }
 
     func retrieveProjectStatusFor(projectKey: String) async throws -> ProjectStatus {
-        try await call(method: .get, path: "/qualitygates/project_status?projectKey=\(projectKey)")
+        try await sonarHttpClient.call(baseUrl: SonarCloudClient.kSonarCloudBaseUrl, apiKey: apiKey, method: .get, path: "/qualitygates/project_status?projectKey=\(projectKey)")
     }
 }

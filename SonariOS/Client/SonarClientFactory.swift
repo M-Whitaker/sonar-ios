@@ -10,9 +10,9 @@ class SonarClientFactory {
         let type = Preferences.standard.profiles[Preferences.standard.currentProfileIdx].userDefaults.type
         switch type {
         case .sonarQube:
-            return SonarQubeClient()
+            return SonarQubeClient(sonarHttpClient: SonarHttpClient())
         case .sonarCloud:
-            return SonarCloudClient()
+            return SonarCloudClient(sonarHttpClient: SonarHttpClient())
         }
     }
 }

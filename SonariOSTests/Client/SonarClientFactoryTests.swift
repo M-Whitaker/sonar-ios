@@ -11,13 +11,15 @@ import Foundation
 import XCTest
 
 final class SonarClientFactoryTests: XCTestCase {
+    let mockSonarHttpClient = MockSonarHttpClient()
+
     func test_Current_ShouldReturnSonarCloudClientWhenProfileUserDefaultsTypeIsSonarCloud() {
         let classUnderTest = SonarClientFactory()
 
         Preferences.standard.profiles = [SonarUserDefaultsWrapper(userDefaults: SonarQubeUserDefaults(id: "", name: "", apiKey: "", baseUrl: "")), SonarUserDefaultsWrapper(userDefaults: SonarCloudUserDefaults(id: "", name: "", apiKey: ""))]
         Preferences.standard.currentProfileIdx = 1
 
-        XCTAssertTrue(object_getClass(classUnderTest.current) === object_getClass(SonarCloudClient()), "Is not instance of SonarCloudClient")
+        XCTAssertTrue(object_getClass(classUnderTest.current) === object_getClass(SonarCloudClient(sonarHttpClient: mockSonarHttpClient)), "Is not instance of SonarCloudClient")
     }
 
     func test_Current_ShouldReturnSonarQubeClientWhenProfileUserDefaultsTypeIsSonarQube() {
@@ -26,6 +28,6 @@ final class SonarClientFactoryTests: XCTestCase {
         Preferences.standard.profiles = [SonarUserDefaultsWrapper(userDefaults: SonarQubeUserDefaults(id: "", name: "", apiKey: "", baseUrl: ""))]
         Preferences.standard.currentProfileIdx = 0
 
-        XCTAssertTrue(object_getClass(classUnderTest.current) === object_getClass(SonarQubeClient()), "Is not instance of SonarQubeClient")
+        XCTAssertTrue(object_getClass(classUnderTest.current) === object_getClass(SonarQubeClient(sonarHttpClient: mockSonarHttpClient)), "Is not instance of SonarQubeClient")
     }
 }

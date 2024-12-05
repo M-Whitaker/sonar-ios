@@ -10,18 +10,20 @@ import HTTPTypes
 import HTTPTypesFoundation
 
 protocol SonarClient {
-    var baseUrl: String { get }
-    var apiKey: String { get }
-    var urlSession: URLSession { get }
-
     func retrieveIssues(projectKey: String) async throws -> [Issue]
     func retrieveProjects(page: Page) async throws -> ProjectListResponse
     func retrieveProjectStatusFor(projectKey: String) async throws -> ProjectStatus
 }
 
-extension SonarClient {
-    func call<T: Decodable>(method: HTTPRequest.Method, path: String, type _: T.Type = T.self) async throws -> T {
-        let request = buildRequest(method: method, path: path)
+class SonarHttpClient {
+    private var urlSession: URLSession
+
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
+
+    func call<T: Decodable>(baseUrl: String, apiKey: String, method: HTTPRequest.Method, path: String, type _: T.Type = T.self) async throws -> T {
+        let request = buildRequest(baseUrl: baseUrl, apiKey: apiKey, method: method, path: path)
         var wrappedResponse: HTTPResponse?
         var wrappedResponseBody: Data?
         logRequest(request: request)
@@ -61,15 +63,15 @@ extension SonarClient {
         }
     }
 
-    private func buildRequest(method: HTTPRequest.Method, path: String) -> HTTPRequest {
-        var request = HTTPRequest(method: method, scheme: getScheme(), authority: baseUrl, path: path)
+    private func buildRequest(baseUrl: String, apiKey: String, method: HTTPRequest.Method, path: String) -> HTTPRequest {
+        var request = HTTPRequest(method: method, scheme: getScheme(baseUrl: baseUrl), authority: baseUrl, path: path)
         request.headerFields[.accept] = "application/json"
         request.headerFields[.userAgent] = buildUserAgent()
-        request.headerFields[.authorization] = buildAuth()
+        request.headerFields[.authorization] = buildAuth(apiKey: apiKey)
         return request
     }
 
-    private func getScheme() -> String {
+    private func getScheme(baseUrl: String) -> String {
         if baseUrl.contains("localhost") {
             "http"
         } else {
@@ -77,7 +79,7 @@ extension SonarClient {
         }
     }
 
-    private func buildAuth() -> String {
+    private func buildAuth(apiKey: String) -> String {
         let loginString = "\(apiKey):"
         let loginData = loginString.data(using: String.Encoding.utf8)!
         return "Basic \(loginData.base64EncodedString())"
