@@ -8,6 +8,9 @@ on:
 jobs:
   build_project:
     runs-on: macos-latest
+    permissions:
+      security-events: write
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -22,6 +25,11 @@ jobs:
         run: swiftformat . --lint --reporter github-actions-log
       # - name: SwiftLint
       #   run: swiftlint lint --strict
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: swift
+          build-mode: manual
       - name: Build and Test
         run: |
           xcodebuild \
@@ -38,3 +46,7 @@ jobs:
           sonar-scanner -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.coverageReportPaths=Coverage.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:swift"
