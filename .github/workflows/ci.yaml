@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 jobs:
-  build_project:
+  build:
     runs-on: macos-latest
     permissions:
       security-events: write
@@ -18,9 +18,6 @@ jobs:
         uses: n1hility/cancel-previous-runs@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: 🛠️ Install Tools
-        run: |
-          brew install sonar-scanner
       - name: SwiftFormat
         run: swiftformat . --lint --reporter github-actions-log
       # - name: SwiftLint
@@ -30,7 +27,31 @@ jobs:
         with:
           languages: swift
           build-mode: manual
-      - name: Build and Test
+      - name: Build
+        run: |
+            xcodebuild \
+            -project SonariOS.xcodeproj \
+            -scheme CI \
+            -skipPackagePluginValidation \
+            -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5' \
+            -derivedDataPath Build/ -allowProvisioningUpdates clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || exit 1
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:swift"
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Cancel Previous Runs
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🛠️ Install Tools
+        run: |
+          brew install sonar-scanner
+      - name: Test
         run: |
           xcodebuild \
            -project SonariOS.xcodeproj \
@@ -46,7 +67,3 @@ jobs:
           sonar-scanner -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.coverageReportPaths=Coverage.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:swift"
