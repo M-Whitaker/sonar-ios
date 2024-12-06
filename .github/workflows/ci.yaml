@@ -6,7 +6,40 @@ on:
     branches: [master]
 
 jobs:
-  build_project:
+  build:
+    runs-on: macos-latest
+    permissions:
+      security-events: write
+      packages: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Cancel Previous Runs
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: SwiftFormat
+        run: swiftformat . --lint --reporter github-actions-log
+      # - name: SwiftLint
+      #   run: swiftlint lint --strict
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: swift
+          build-mode: manual
+      - name: Build
+        run: |
+            xcodebuild \
+            -project SonariOS.xcodeproj \
+            -scheme CI \
+            -skipPackagePluginValidation \
+            -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5' \
+            -derivedDataPath Build/ -allowProvisioningUpdates clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || exit 1
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:swift"
+  test:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -18,11 +51,7 @@ jobs:
       - name: 🛠️ Install Tools
         run: |
           brew install sonar-scanner
-      - name: SwiftFormat
-        run: swiftformat . --lint --reporter github-actions-log
-      # - name: SwiftLint
-      #   run: swiftlint lint --strict
-      - name: Build and Test
+      - name: Test
         run: |
           xcodebuild \
            -project SonariOS.xcodeproj \
