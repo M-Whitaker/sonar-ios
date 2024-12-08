@@ -50,4 +50,37 @@ final class SonarQubeClientTests: XCTestCase {
         let projectStatus = try? await classUnderTest.retrieveProjectStatusFor(projectKey: "")
         XCTAssertEqual(projectStatus?.status, "PASS")
     }
+
+    func test_retrieveCurrentUser_ShouldReturnCurrentUserFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/api/users/current"), type: any())).thenReturn(User(name: "My Name", email: nil))
+        }
+        let classUnderTest = await SonarQubeClient(sonarHttpClient: sonarHttpClient)
+        let currentUser = try? await classUnderTest.retrieveCurrentUser()
+        XCTAssertEqual(currentUser?.name, "My Name")
+        XCTAssertNil(currentUser?.email)
+    }
+
+    func test_retrieveBranches_ShouldReturnBranchesFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/api/project_branches/list?project=my-project-key"), type: any())).thenReturn(ProjectBranchesResponse(branches: [ProjectBranch(name: "my-branch-name", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: nil, vulnerabilities: nil, codeSmells: nil), analysisDate: Date())]))
+        }
+        let classUnderTest = await SonarQubeClient(sonarHttpClient: sonarHttpClient)
+        let branches = try? await classUnderTest.retrieveBranches(projectKey: "my-project-key")
+        XCTAssertEqual(branches?.first?.name, "my-branch-name")
+        XCTAssertTrue((branches?.first?.isMain) != nil)
+        XCTAssertEqual(branches?.first?.status, ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: nil, vulnerabilities: nil, codeSmells: nil))
+    }
+
+    func test_retrieveEffort_ShouldReturnEffortFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/api/issues/search?components=my-project-key&s=FILE_LINE&issueStatuses=CONFIRMED%2COPEN&ps=1"), type: any())).thenReturn(Effort(effortTotal: 15))
+        }
+        let classUnderTest = await SonarQubeClient(sonarHttpClient: sonarHttpClient)
+        let effort = try? await classUnderTest.retrieveEffort(projectKey: "my-project-key")
+        XCTAssertEqual(effort?.effortTotal, 15)
+    }
 }

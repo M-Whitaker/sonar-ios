@@ -64,4 +64,37 @@ final class SonarCloudClientTests: XCTestCase {
         let projectStatus = try? await classUnderTest.retrieveProjectStatusFor(projectKey: "")
         XCTAssertEqual(projectStatus?.status, "PASS")
     }
+
+    func test_retrieveCurrentUser_ShouldReturnCurrentUserFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/users/current"), type: any())).thenReturn(User(name: "My Name", email: "my.name@example.com"))
+        }
+        let classUnderTest = await SonarCloudClient(sonarHttpClient: sonarHttpClient)
+        let currentUser = try? await classUnderTest.retrieveCurrentUser()
+        XCTAssertEqual(currentUser?.name, "My Name")
+        XCTAssertEqual(currentUser?.email, "my.name@example.com")
+    }
+
+    func test_retrieveBranches_ShouldReturnBranchesFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/project_branches/list?project=my-project-key"), type: any())).thenReturn(ProjectBranchesResponse(branches: [ProjectBranch(name: "my-branch-name", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: 1, vulnerabilities: 2, codeSmells: 3), analysisDate: Date())]))
+        }
+        let classUnderTest = await SonarCloudClient(sonarHttpClient: sonarHttpClient)
+        let branches = try? await classUnderTest.retrieveBranches(projectKey: "my-project-key")
+        XCTAssertEqual(branches?.first?.name, "my-branch-name")
+        XCTAssertTrue((branches?.first?.isMain) != nil)
+        XCTAssertEqual(branches?.first?.status, ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: 1, vulnerabilities: 2, codeSmells: 3))
+    }
+
+    func test_retrieveEffort_ShouldReturnEffortFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/issues/search?projects=my-project-key&s=FILE_LINE&issueStatuses=CONFIRMED%2COPEN&ps=1"), type: any())).thenReturn(Effort(effortTotal: 15))
+        }
+        let classUnderTest = await SonarCloudClient(sonarHttpClient: sonarHttpClient)
+        let effort = try? await classUnderTest.retrieveEffort(projectKey: "my-project-key")
+        XCTAssertEqual(effort?.effortTotal, 15)
+    }
 }

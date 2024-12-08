@@ -27,6 +27,13 @@ struct ProjectBranch: Equatable, Decodable {
         return formatter
     }()
 
+    init(name: String, isMain: Bool, status: ProjectBranchStatus?, analysisDate: Date) {
+        self.name = name
+        self.isMain = isMain
+        self.status = status
+        self.analysisDate = analysisDate
+    }
+
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
