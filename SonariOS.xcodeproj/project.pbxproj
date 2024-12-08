@@ -62,8 +62,11 @@
 		75AE9F562D04E7DE000747AD /* IssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F552D04E7DE000747AD /* IssuesViewModel.swift */; };
 		75AE9F582D04E92B000747AD /* IssueListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F572D04E92B000747AD /* IssueListResponse.swift */; };
 		75AE9F5B2D04F708000747AD /* ProjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F5A2D04F702000747AD /* ProjectDetailViewModel.swift */; };
-		75AE9F5D2D04F88C000747AD /* ProjectBranches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F5C2D04F889000747AD /* ProjectBranches.swift */; };
+		75AE9F5D2D04F88C000747AD /* ProjectBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F5C2D04F889000747AD /* ProjectBranch.swift */; };
 		75AE9F5F2D05C12F000747AD /* Effort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F5E2D05C12B000747AD /* Effort.swift */; };
+		75AE9F672D062F99000747AD /* ProjectBranchesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F662D062F95000747AD /* ProjectBranchesResponse.swift */; };
+		75AE9F6A2D062FB1000747AD /* ProjectBranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F692D062FAC000747AD /* ProjectBranchTests.swift */; };
+		75AE9F712D065C6E000747AD /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F702D065C6B000747AD /* IssueTests.swift */; };
 		75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */; };
 		75DC3EC02CA0BF7500DA0030 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EBF2CA0BF7500DA0030 /* HTTPTypes */; };
 		75DC3EC22CA0BF7500DA0030 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EC12CA0BF7500DA0030 /* HTTPTypesFoundation */; };
@@ -163,8 +166,11 @@
 		75AE9F552D04E7DE000747AD /* IssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesViewModel.swift; sourceTree = "<group>"; };
 		75AE9F572D04E92B000747AD /* IssueListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponse.swift; sourceTree = "<group>"; };
 		75AE9F5A2D04F702000747AD /* ProjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewModel.swift; sourceTree = "<group>"; };
-		75AE9F5C2D04F889000747AD /* ProjectBranches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranches.swift; sourceTree = "<group>"; };
+		75AE9F5C2D04F889000747AD /* ProjectBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranch.swift; sourceTree = "<group>"; };
 		75AE9F5E2D05C12B000747AD /* Effort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effort.swift; sourceTree = "<group>"; };
+		75AE9F662D062F95000747AD /* ProjectBranchesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranchesResponse.swift; sourceTree = "<group>"; };
+		75AE9F692D062FAC000747AD /* ProjectBranchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranchTests.swift; sourceTree = "<group>"; };
+		75AE9F702D065C6B000747AD /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
 		75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatusTests.swift; sourceTree = "<group>"; };
 		75DC3EB22CA0693C00DA0030 /* pretest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pretest.sh; sourceTree = "<group>"; };
 		75DC3EB32CA0722900DA0030 /* posttest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = posttest.sh; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 		751256A32C863959000234C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				75AE9F662D062F95000747AD /* ProjectBranchesResponse.swift */,
 				755A9F112C72214800570528 /* APIError.swift */,
 				75EF1A7C2C72B4A800E3D879 /* APIListResponse.swift */,
 				751256A42C863988000234C0 /* ProjectListResponse.swift */,
@@ -342,6 +349,8 @@
 		751257512C8F9080000234C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				75AE9F702D065C6B000747AD /* IssueTests.swift */,
+				75AE9F692D062FAC000747AD /* ProjectBranchTests.swift */,
 				75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */,
 				751257522C8F90B0000234C0 /* OrganizationTests.swift */,
 				751257552C8F9161000234C0 /* ProjectTests.swift */,
@@ -518,7 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				75AE9F5E2D05C12B000747AD /* Effort.swift */,
-				75AE9F5C2D04F889000747AD /* ProjectBranches.swift */,
+				75AE9F5C2D04F889000747AD /* ProjectBranch.swift */,
 				751256A12C86376A000234C0 /* Organization.swift */,
 				75E56C162C70B9C7000CA0BC /* Project.swift */,
 				756EABD12C71633300EFBE33 /* Issue.swift */,
@@ -746,7 +755,7 @@
 				755A9F122C72214800570528 /* APIError.swift in Sources */,
 				7597CBB32C768DE4003810AF /* Headers.swift in Sources */,
 				759C2E4F2C93854F00EFA287 /* ProjectSummaryView.swift in Sources */,
-				75AE9F5D2D04F88C000747AD /* ProjectBranches.swift in Sources */,
+				75AE9F5D2D04F88C000747AD /* ProjectBranch.swift in Sources */,
 				751256AE2C866172000234C0 /* SecureTextFieldView.swift in Sources */,
 				759C2E4D2C936E6C00EFA287 /* ProjectStatus.swift in Sources */,
 				751256AC2C8646D3000234C0 /* ErrorView.swift in Sources */,
@@ -768,6 +777,7 @@
 				75E56C192C70BA11000CA0BC /* SonarQubeClient.swift in Sources */,
 				75FFC47C2C792EAB00FD945E /* ProfileView.swift in Sources */,
 				7545E6E32C80FEC70078B903 /* SonarCloudUserDefaults.swift in Sources */,
+				75AE9F672D062F99000747AD /* ProjectBranchesResponse.swift in Sources */,
 				751256E82C8E17F4000234C0 /* ViewUtils.swift in Sources */,
 				75FFC47A2C792D7100FD945E /* SettingsView.swift in Sources */,
 				756AED5C2C78E4EB00F7972C /* Preferences.swift in Sources */,
@@ -795,6 +805,7 @@
 				751256ED2C8E19FE000234C0 /* ProjectListResponseTests.swift in Sources */,
 				751256F42C8E200D000234C0 /* OrganizationListResponseTests.swift in Sources */,
 				751257662C923303000234C0 /* Assert.swift in Sources */,
+				75AE9F6A2D062FB1000747AD /* ProjectBranchTests.swift in Sources */,
 				752E53452D025B65005061BE /* SonarCloudClientTests.swift in Sources */,
 				752E533D2D025766005061BE /* SonarQubeClientTests.swift in Sources */,
 				75E56BFA2C70B92A000CA0BC /* ProjectsViewModelTests.swift in Sources */,
@@ -808,6 +819,7 @@
 				751256DB2C8E03AC000234C0 /* BaseUrlValidatorTests.swift in Sources */,
 				7512576C2C92337B000234C0 /* SonarClientFactoryTests.swift in Sources */,
 				75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */,
+				75AE9F712D065C6E000747AD /* IssueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

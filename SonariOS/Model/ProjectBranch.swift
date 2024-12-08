@@ -6,10 +6,6 @@
 //
 import Foundation
 
-struct ProjectBranchesResponse: Equatable, Decodable {
-    let branches: [ProjectBranch]
-}
-
 struct ProjectBranch: Equatable, Decodable {
     let name: String
     let isMain: Bool
@@ -24,6 +20,7 @@ struct ProjectBranch: Equatable, Decodable {
     // Custom date decoding strategy
     let dateFormatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
         return formatter
     }()
 
