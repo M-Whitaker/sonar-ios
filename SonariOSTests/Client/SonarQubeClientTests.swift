@@ -12,11 +12,17 @@ import Foundation
 import XCTest
 
 final class SonarQubeClientTests: XCTestCase {
-    func test_retrieveIssues_ShouldReturnListOfOneIssue() async {
-        let classUnderTest = await SonarQubeClient(sonarHttpClient: MockSonarHttpClient())
+    func test_retrieveIssues_ShouldReturnListOfIssuesFromClient() async {
+        let sonarHttpClient = MockSonarHttpClient()
+        stub(sonarHttpClient) { stub in
+            when(stub.call(baseUrl: any(), apiKey: any(), method: equal(to: .get), path: equal(to: "/api/issues/search?assignees=__me__&p=1&ps=100"), type: any())).thenReturn(IssueListResponse(items: [Issue(key: "my-key", rule: "rule:12345", severity: "", component: "")]))
+        }
+        let classUnderTest = await SonarQubeClient(sonarHttpClient: sonarHttpClient)
 
-        let issues = try? await classUnderTest.retrieveIssues(projectKey: "")
-        XCTAssertEqual(issues?.count, 1)
+        let issues = try? await classUnderTest.retrieveIssues(page: Page())
+        XCTAssertEqual(issues?.items.count, 1)
+        XCTAssertEqual(issues?.items[0].key, "my-key")
+        XCTAssertEqual(issues?.items[0].rule, "rule:12345")
     }
 
     func test_retrieveProjects_ShouldReturnListOfProjectResponseFromClient() async {
