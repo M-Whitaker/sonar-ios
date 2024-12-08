@@ -11,17 +11,23 @@ import SwiftUI
 class ProjectDetailViewModel: ObservableObject {
     @Injected(\.sonarClientFactory) var sonarClientFactory
 
-    @Published var branches: [ProjectBranch] = []
-    @Published var mainBranch: ProjectBranch?
-    @Published var techDept: Int = 0
+    @Published var state: ViewLoadingState<ProjectDetailViewModelState> = .isLoading
 
     @MainActor
     func refreshData(projectKey: String) async throws {
         let effort = try await sonarClientFactory.current.retrieveEffort(projectKey: projectKey)
-        techDept = effort.effortTotal
-        branches = try await sonarClientFactory.current.retrieveBranches(projectKey: projectKey)
+        let techDept = effort.effortTotal
+        let branches = try await sonarClientFactory.current.retrieveBranches(projectKey: projectKey)
+        var mainBranch: ProjectBranch?
         for branch in branches where branch.isMain {
             mainBranch = branch
         }
+        state = .loaded(ProjectDetailViewModelState(branches: branches, mainBranch: mainBranch, techDept: techDept))
     }
+}
+
+struct ProjectDetailViewModelState: Equatable {
+    var branches: [ProjectBranch] = []
+    var mainBranch: ProjectBranch?
+    var techDept: Int = 0
 }

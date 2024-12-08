@@ -13,8 +13,26 @@ struct ProjectDetailView: View {
     var project: Project
 
     var body: some View {
+        Group {
+            switch viewModel.state {
+            case .isLoading:
+                loadingView()
+            case let .loaded(projectDetail):
+                loadedView(projectDetail: projectDetail)
+            case let .failed(error):
+                failedView(error)
+            }
+        }
+        .onAppear {
+            Task {
+                try await refreshData()
+            }
+        }
+    }
+
+    private func loadedView(projectDetail: ProjectDetailViewModelState) -> some View {
         ScrollView {
-            if let mainBranch = viewModel.mainBranch, let projectStatus = project.status {
+            if let mainBranch = projectDetail.mainBranch, let projectStatus = project.status {
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
                         Text(project.name)
@@ -31,7 +49,7 @@ struct ProjectDetailView: View {
                         VStack(alignment: .leading) {
                             Text("Project Key: \(project.key)")
                                 .font(.subheadline)
-                            Text("Technical Debt: \(viewModel.techDept)min effort")
+                            Text("Technical Debt: \(projectDetail.techDept)min effort")
                                 .font(.subheadline)
                         }
                         Spacer()
@@ -80,10 +98,30 @@ struct ProjectDetailView: View {
         }
         .navigationTitle("Project Detail")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
+        .refreshable {
             Task {
-                try await viewModel.refreshData(projectKey: project.key)
+                try await refreshData()
             }
         }
+    }
+
+    private func refreshData() async throws {
+        try await viewModel.refreshData(projectKey: project.key)
+    }
+}
+
+// MARK: - Loading Content
+
+private extension ProjectDetailView {
+    func loadingView() -> some View {
+        AnyView(ProgressView().padding())
+    }
+
+    func failedView(_ error: Error) -> some View {
+        ErrorView(error: error, retryAction: {
+            Task {
+                try await refreshData()
+            }
+        })
     }
 }
