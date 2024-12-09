@@ -37,10 +37,7 @@ final class ProjectBranchTests: XCTestCase {
         """
         let decoded = try JSONDecoder().decode(ProjectBranch.self, from: body.data(using: .utf8)!)
         let expected = ProjectBranch(name: "master", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: 1, vulnerabilities: 2, codeSmells: 0), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_733_514_087)))
-        XCTAssertEqual(decoded.name, expected.name)
-        XCTAssertEqual(decoded.isMain, expected.isMain)
-        XCTAssertEqual(decoded.status, expected.status)
-        XCTAssertEqual(decoded.analysisDate, expected.analysisDate)
+        XCTAssertEqual(decoded, expected)
     }
 
     func test_Decode_ShouldDecodeSuccessfullyForQubeResponse() throws {
@@ -57,9 +54,23 @@ final class ProjectBranchTests: XCTestCase {
         """
         let decoded = try JSONDecoder().decode(ProjectBranch.self, from: body.data(using: .utf8)!)
         let expected = ProjectBranch(name: "branch-3.4.1-lts", isMain: false, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: nil, vulnerabilities: nil, codeSmells: nil), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_638_565_928)))
-        XCTAssertEqual(decoded.name, expected.name)
-        XCTAssertEqual(decoded.isMain, expected.isMain)
-        XCTAssertEqual(decoded.status, expected.status)
-        XCTAssertEqual(decoded.analysisDate, expected.analysisDate)
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func test_Decode_ShouldThrowForInvalidDateFormatResponse() {
+        let body = """
+        {
+          "name": "branch-3.4.1-lts",
+          "isMain": false,
+          "type": "BRANCH",
+          "status": { "qualityGateStatus": "OK" },
+          "analysisDate": "2021-12-0321:12:08+0000",
+          "excludedFromPurge": true,
+          "branchId": "AX2CJSGtUqFHQDDY7ryg"
+        }
+        """
+        XCTAssertThrowsError(try JSONDecoder().decode(ProjectBranch.self, from: body.data(using: .utf8)!)) { error in
+            XCTAssertEqual((error as? DecodingError)?.localizedDescription, "The data couldn’t be read because it isn’t in the correct format.")
+        }
     }
 }

@@ -18,7 +18,7 @@ struct ProjectBranch: Equatable, Decodable {
     }
 
     // Custom date decoding strategy
-    let dateFormatter: ISO8601DateFormatter = {
+    static let dateFormatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]
         return formatter
@@ -37,7 +37,7 @@ struct ProjectBranch: Equatable, Decodable {
         isMain = try container.decode(Bool.self, forKey: .isMain)
         status = try container.decodeIfPresent(ProjectBranchStatus.self, forKey: .status)
         let analysisDateString = try container.decode(String.self, forKey: .analysisDate)
-        guard let analysisDate = dateFormatter.date(from: analysisDateString) else {
+        guard let analysisDate = ProjectBranch.dateFormatter.date(from: analysisDateString) else {
             throw DecodingError.dataCorruptedError(forKey: .analysisDate, in: container, debugDescription: "Invalid date format.")
         }
         self.analysisDate = analysisDate

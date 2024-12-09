@@ -67,6 +67,9 @@
 		75AE9F672D062F99000747AD /* ProjectBranchesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F662D062F95000747AD /* ProjectBranchesResponse.swift */; };
 		75AE9F6A2D062FB1000747AD /* ProjectBranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F692D062FAC000747AD /* ProjectBranchTests.swift */; };
 		75AE9F712D065C6E000747AD /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F702D065C6B000747AD /* IssueTests.swift */; };
+		75AE9F762D065E3B000747AD /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F752D065E39000747AD /* SettingsViewModelTests.swift */; };
+		75AE9F7E2D0665C7000747AD /* ProjectDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F7D2D0665C4000747AD /* ProjectDetailViewModelTests.swift */; };
+		75AE9F872D06692C000747AD /* IssuesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE9F862D06692C000747AD /* IssuesViewModelTests.swift */; };
 		75DC3E9D2C9EE9CA00DA0030 /* ProjectStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */; };
 		75DC3EC02CA0BF7500DA0030 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EBF2CA0BF7500DA0030 /* HTTPTypes */; };
 		75DC3EC22CA0BF7500DA0030 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 75DC3EC12CA0BF7500DA0030 /* HTTPTypesFoundation */; };
@@ -171,6 +174,9 @@
 		75AE9F662D062F95000747AD /* ProjectBranchesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranchesResponse.swift; sourceTree = "<group>"; };
 		75AE9F692D062FAC000747AD /* ProjectBranchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBranchTests.swift; sourceTree = "<group>"; };
 		75AE9F702D065C6B000747AD /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
+		75AE9F752D065E39000747AD /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		75AE9F7D2D0665C4000747AD /* ProjectDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewModelTests.swift; sourceTree = "<group>"; };
+		75AE9F862D06692C000747AD /* IssuesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesViewModelTests.swift; sourceTree = "<group>"; };
 		75DC3E9C2C9EE9C400DA0030 /* ProjectStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatusTests.swift; sourceTree = "<group>"; };
 		75DC3EB22CA0693C00DA0030 /* pretest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pretest.sh; sourceTree = "<group>"; };
 		75DC3EB32CA0722900DA0030 /* posttest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = posttest.sh; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 		751256F12C8E1F8D000234C0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				75AE9F852D066924000747AD /* Issues */,
 				751257002C8E3178000234C0 /* Profile */,
 				751256F22C8E1F94000234C0 /* Projects */,
 			);
@@ -323,6 +330,7 @@
 		751256F22C8E1F94000234C0 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				75AE9F7C2D0665B4000747AD /* Detail */,
 				75E56BF92C70B92A000CA0BC /* ProjectsViewModelTests.swift */,
 			);
 			path = Projects;
@@ -341,6 +349,7 @@
 		751257002C8E3178000234C0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				75AE9F742D065E2E000747AD /* Settings */,
 				751257012C8E319B000234C0 /* AddProfileViewModelTests.swift */,
 			);
 			path = Profile;
@@ -430,6 +439,30 @@
 				75AE9F4C2D04C761000747AD /* ProjectDetailView.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		75AE9F742D065E2E000747AD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				75AE9F752D065E39000747AD /* SettingsViewModelTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		75AE9F7C2D0665B4000747AD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				75AE9F7D2D0665C4000747AD /* ProjectDetailViewModelTests.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		75AE9F852D066924000747AD /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				75AE9F862D06692C000747AD /* IssuesViewModelTests.swift */,
+			);
+			path = Issues;
 			sourceTree = "<group>";
 		};
 		75E56BDC2C70B929000CA0BC = {
@@ -798,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75AE9F872D06692C000747AD /* IssuesViewModelTests.swift in Sources */,
 				751256FA2C8E22DF000234C0 /* SonarCloudUserDefaultsTests.swift in Sources */,
 				751256F82C8E22BA000234C0 /* SonarQubeUserDefaultsTests.swift in Sources */,
 				751257562C8F9161000234C0 /* ProjectTests.swift in Sources */,
@@ -809,9 +843,11 @@
 				752E53452D025B65005061BE /* SonarCloudClientTests.swift in Sources */,
 				752E533D2D025766005061BE /* SonarQubeClientTests.swift in Sources */,
 				75E56BFA2C70B92A000CA0BC /* ProjectsViewModelTests.swift in Sources */,
+				75AE9F762D065E3B000747AD /* SettingsViewModelTests.swift in Sources */,
 				75DE1C0A2CB33C8C00545380 /* UserDefaultsTypeTests.swift in Sources */,
 				751257022C8E319B000234C0 /* AddProfileViewModelTests.swift in Sources */,
 				751257612C922B4B000234C0 /* MockURLProtocol.swift in Sources */,
+				75AE9F7E2D0665C7000747AD /* ProjectDetailViewModelTests.swift in Sources */,
 				751256E42C8E08CB000234C0 /* ApiKeyValidatorTests.swift in Sources */,
 				751256E22C8E08B8000234C0 /* NameValidatorTests.swift in Sources */,
 				751257532C8F90B0000234C0 /* OrganizationTests.swift in Sources */,
