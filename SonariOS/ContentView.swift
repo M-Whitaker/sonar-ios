@@ -22,7 +22,7 @@ struct ContentView: View {
                         Image(systemName: "house.fill")
                         Text("Projects")
                     }
-                Text("Issues")
+                IssuesView()
                     .tabItem {
                         Image(systemName: "exclamationmark.triangle")
                         Text("Issues")
