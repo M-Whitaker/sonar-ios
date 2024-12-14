@@ -19,7 +19,6 @@ class SonarCloudClient: SonarClient {
     }
 
     func retrieveProjects(page: Page) async throws -> ProjectListResponse {
-        print("Retriving projects from sonar cloud...")
         let orgs: OrganizationListResponse = try await sonarHttpClient.call(baseUrl: SonarCloudClient.kSonarCloudBaseUrl, apiKey: apiKey, method: .get, path: "/organizations/search?member=true")
         if let org = orgs.items.find(at: 0) {
             return try await sonarHttpClient.call(baseUrl: SonarCloudClient.kSonarCloudBaseUrl, apiKey: apiKey, method: .get, path: "/components/search?organization=\(org.key)&p=\(page.pageIndex)&ps=\(page.pageSize)")

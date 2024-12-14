@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProjectDetailView: View {
     @StateObject var viewModel = ProjectDetailViewModel()
+    @State private var showingPopover = false
 
     var project: Project
 
@@ -49,7 +50,7 @@ struct ProjectDetailView: View {
                         VStack(alignment: .leading) {
                             Text("Project Key: \(project.key)")
                                 .font(.subheadline)
-                            Text("Technical Debt: \(projectDetail.techDept)min effort")
+                            Text("Technical Debt: \(projectDetail.techDept.formatted(.units(width: .narrow))) effort")
                                 .font(.subheadline)
                         }
                         Spacer()
@@ -94,6 +95,12 @@ struct ProjectDetailView: View {
                     Spacer()
                 }
                 .padding()
+            }
+            Button("Choose Branch") {
+                showingPopover = true
+            }
+            .popover(isPresented: $showingPopover) {
+                BranchSelectionView(branches: projectDetail.branches, showingPopover: $showingPopover)
             }
         }
         .navigationTitle("Project Detail")

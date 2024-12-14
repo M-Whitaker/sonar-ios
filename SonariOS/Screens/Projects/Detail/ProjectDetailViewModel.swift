@@ -22,12 +22,12 @@ class ProjectDetailViewModel: ObservableObject {
         for branch in branches where branch.isMain {
             mainBranch = branch
         }
-        state = .loaded(ProjectDetailViewModelState(branches: branches, mainBranch: mainBranch, techDept: techDept))
+        state = .loaded(ProjectDetailViewModelState(branches: branches, mainBranch: mainBranch, techDept: .seconds(techDept * 60)))
     }
 }
 
 struct ProjectDetailViewModelState: Equatable {
     var branches: [ProjectBranch] = []
     var mainBranch: ProjectBranch?
-    var techDept: Int = 0
+    var techDept: Duration
 }

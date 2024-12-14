@@ -79,7 +79,7 @@ final class SonarCloudClientTests: XCTestCase {
     func test_retrieveBranches_ShouldReturnBranchesFromClient() async {
         let sonarHttpClient = MockSonarHttpClient()
         stub(sonarHttpClient) { stub in
-            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/project_branches/list?project=my-project-key"), type: any())).thenReturn(ProjectBranchesResponse(branches: [ProjectBranch(name: "my-branch-name", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: 1, vulnerabilities: 2, codeSmells: 3), analysisDate: Date())]))
+            when(stub.call(baseUrl: any(), apiKey: any(), method: any(), path: equal(to: "/project_branches/list?project=my-project-key"), type: any())).thenReturn(ProjectBranchesResponse(branches: [ProjectBranch(name: "my-branch-name", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "TRUE", bugs: 1, vulnerabilities: 2, codeSmells: 3), analysisDate: Date(), branchId: "7ba97f9e-5b60-449e-9eb9-7f4c165d03b3")]))
         }
         let classUnderTest = await SonarCloudClient(sonarHttpClient: sonarHttpClient)
         let branches = try? await classUnderTest.retrieveBranches(projectKey: "my-project-key")

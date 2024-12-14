@@ -36,7 +36,7 @@ final class ProjectBranchTests: XCTestCase {
         }
         """
         let decoded = try JSONDecoder().decode(ProjectBranch.self, from: body.data(using: .utf8)!)
-        let expected = ProjectBranch(name: "master", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: 1, vulnerabilities: 2, codeSmells: 0), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_733_514_087)))
+        let expected = ProjectBranch(name: "master", isMain: true, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: 1, vulnerabilities: 2, codeSmells: 0), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_733_514_087)), branchId: "ba1c19d0-9dbb-4a70-ab03-a0059e825f62")
         XCTAssertEqual(decoded, expected)
     }
 
@@ -53,7 +53,7 @@ final class ProjectBranchTests: XCTestCase {
         }
         """
         let decoded = try JSONDecoder().decode(ProjectBranch.self, from: body.data(using: .utf8)!)
-        let expected = ProjectBranch(name: "branch-3.4.1-lts", isMain: false, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: nil, vulnerabilities: nil, codeSmells: nil), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_638_565_928)))
+        let expected = ProjectBranch(name: "branch-3.4.1-lts", isMain: false, status: ProjectBranchStatus(qualityGateStatus: "OK", bugs: nil, vulnerabilities: nil, codeSmells: nil), analysisDate: Date(timeIntervalSince1970: TimeInterval(1_638_565_928)), branchId: "AX2CJSGtUqFHQDDY7ryg")
         XCTAssertEqual(decoded, expected)
     }
 

@@ -9,6 +9,7 @@ import Foundation
 
 struct ProjectStatus: Equatable, Decodable {
     var status: String
+    var ratings: Ratings = .init(conditions: [])
     var newRatings: NewRatings = .init(conditions: [])
     var periods: [Period]
 
@@ -22,6 +23,7 @@ struct ProjectStatus: Equatable, Decodable {
         let rootContainer = try decoder.container(keyedBy: RootKeys.self)
         let container = try rootContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .projectStatus)
         status = try container.decode(String.self, forKey: .status)
+        ratings = try Ratings(conditions: container.decode([RatingCondition].self, forKey: .conditions))
         newRatings = try NewRatings(conditions: container.decode([RatingCondition].self, forKey: .conditions))
 
         if let period = try container.decodeIfPresent(Period.self, forKey: .period) {
@@ -40,6 +42,26 @@ struct ProjectStatus: Equatable, Decodable {
         case conditions
         case period
         case periods
+    }
+
+    struct Ratings: Equatable {
+        var coverage: RatingCondition = .init()
+        var codeSmells: RatingCondition = .init()
+
+        init(conditions: [RatingCondition]) {
+            for condition in conditions {
+                switch condition.metricKey {
+                case "coverage":
+                    coverage = condition
+                case "code_smells":
+                    codeSmells = condition
+                default:
+                    if !condition.metricKey.starts(with: "new_") {
+                        print("Unknown key: \(condition.metricKey)")
+                    }
+                }
+            }
+        }
     }
 
     struct NewRatings: Equatable {
@@ -69,7 +91,9 @@ struct ProjectStatus: Equatable, Decodable {
                 case "new_security_hotspots_reviewed":
                     securityHotspotsReviewed = condition
                 default:
-                    print("Unknown key: \(condition.metricKey)")
+                    if condition.metricKey.starts(with: "new_") {
+                        print("Unknown key: \(condition.metricKey)")
+                    }
                 }
             }
         }
@@ -82,6 +106,22 @@ struct ProjectStatus: Equatable, Decodable {
         var periodIndex: Int
         var errorThreshold: String
         var actualValue: String
+        var value: String {
+            switch actualValue {
+            case "1":
+                "A"
+            case "2":
+                "B"
+            case "3":
+                "C"
+            case "4":
+                "D"
+            case "5":
+                "E"
+            default:
+                "?"
+            }
+        }
 
         init() {
             status = ""
