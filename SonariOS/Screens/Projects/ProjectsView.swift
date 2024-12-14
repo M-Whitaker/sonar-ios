@@ -38,6 +38,8 @@ struct ProjectsView: View {
                 }
             }
         }
+        .listRowSeparator(.hidden)
+        .listRowSpacing(15)
         .navigationTitle("Projects")
         .overlay {
             if viewModel.newItemsLoading {

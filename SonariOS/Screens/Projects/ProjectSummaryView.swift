@@ -24,7 +24,7 @@ struct ProjectSummaryView: View {
                         Text("Passed")
                             .bold()
                     } else {
-                        Image(systemName: "xmark.square")
+                        Image(systemName: "xmark")
                             .bold()
                             .background(Color.red)
                         Text("Failed")
