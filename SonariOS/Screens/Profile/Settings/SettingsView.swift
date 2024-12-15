@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject var viewModel = SettingsViewModel()
+
     @Preference(\.profiles) var profiles
     @Preference(\.currentProfileIdx) var currentProfileIdx
 
@@ -22,9 +24,9 @@ struct SettingsView: View {
                             Image(systemName: "person")
                                 .resizable()
                                 .frame(width: 100, height: 100, alignment: .center)
-                            Text("First Second")
+                            Text("\(viewModel.name)")
                                 .font(.title)
-                            Text("FirstSecond@example.com")
+                            Text("\(viewModel.email)")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                             Spacer()
@@ -44,6 +46,11 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
         .listStyle(GroupedListStyle())
+        .onAppear {
+            Task {
+                try await viewModel.retrieveUserInfo()
+            }
+        }
     }
 }
 

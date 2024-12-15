@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:     
+        include:
         - version: '17.2'
           runtime: 'iOS-17-2'
           device: 'iPhone 15'
@@ -30,10 +30,8 @@ jobs:
         uses: n1hility/cancel-previous-runs@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install QEMU 9.0.2
-        uses: docker/actions-toolkit/.github/actions/macos-setup-qemu@19ca9ade20f5da695f76a10988d6532058575f82
       - name: Set up Docker
-        uses: crazy-max/ghaction-setup-docker@v3
+        uses: docker/setup-docker-action@v4
       - name: Prepare custom devices
         run: |
           sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes

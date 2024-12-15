@@ -31,9 +31,15 @@ struct ProjectsView: View {
     private func loadedView(projects: [Project]) -> some View {
         List {
             ForEach(Array(projects.enumerated()), id: \.offset) { idx, project in
-                projectSummary(project: project, index: idx)
+                NavigationLink {
+                    ProjectDetailView(project: project)
+                } label: {
+                    projectSummary(project: project, index: idx)
+                }
             }
         }
+        .listRowSeparator(.hidden)
+        .listRowSpacing(15)
         .navigationTitle("Projects")
         .overlay {
             if viewModel.newItemsLoading {

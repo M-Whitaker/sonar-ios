@@ -10,9 +10,13 @@ import HTTPTypes
 import HTTPTypesFoundation
 
 protocol SonarClient {
-    func retrieveIssues(projectKey: String) async throws -> [Issue]
     func retrieveProjects(page: Page) async throws -> ProjectListResponse
     func retrieveProjectStatusFor(projectKey: String) async throws -> ProjectStatus
+    func retrieveCurrentUser() async throws -> User
+    func retrieveIssues(page: Page) async throws -> IssueListResponse
+    func retrieveBranches(projectKey: String) async throws -> [ProjectBranch]
+    func retrieveEffort(projectKey: String) async throws -> Effort
+    func retreivePullRequests(projectKey: String) async throws -> [PullRequest]
 }
 
 class SonarHttpClient {
