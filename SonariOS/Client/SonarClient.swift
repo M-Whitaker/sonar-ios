@@ -16,6 +16,7 @@ protocol SonarClient {
     func retrieveIssues(page: Page) async throws -> IssueListResponse
     func retrieveBranches(projectKey: String) async throws -> [ProjectBranch]
     func retrieveEffort(projectKey: String) async throws -> Effort
+    func retreivePullRequests(projectKey: String) async throws -> [PullRequest]
 }
 
 class SonarHttpClient {

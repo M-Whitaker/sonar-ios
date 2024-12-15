@@ -42,4 +42,9 @@ class SonarQubeClient: SonarClient {
     func retrieveEffort(projectKey: String) async throws -> Effort {
         try await sonarHttpClient.call(baseUrl: baseUrl, apiKey: apiKey, method: .get, path: "/api/issues/search?components=\(projectKey)&s=FILE_LINE&issueStatuses=CONFIRMED%2COPEN&ps=1")
     }
+
+    func retreivePullRequests(projectKey: String) async throws -> [PullRequest] {
+        let res: ProjectPullRequestsResponse = try await sonarHttpClient.call(baseUrl: baseUrl, apiKey: apiKey, method: .get, path: "/api/project_pull_requests/list?project=\(projectKey)")
+        return res.pullRequests
+    }
 }

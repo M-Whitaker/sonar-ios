@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProjectDetailView: View {
     @StateObject var viewModel = ProjectDetailViewModel()
-    @State private var showingPopover = false
+    @State private var showingBranchSelection = false
+    @State private var showingPullRequestSelection = false
 
     var project: Project
 
@@ -97,10 +98,16 @@ struct ProjectDetailView: View {
                 .padding()
             }
             Button("Choose Branch") {
-                showingPopover = true
+                showingBranchSelection = true
             }
-            .popover(isPresented: $showingPopover) {
-                BranchSelectionView(branches: projectDetail.branches, showingPopover: $showingPopover)
+            Button("Choose Pull Request") {
+                showingPullRequestSelection = true
+            }
+            .popover(isPresented: $showingBranchSelection) {
+                BranchSelectionView(branches: projectDetail.branches, showingPopover: $showingBranchSelection)
+            }
+            .popover(isPresented: $showingPullRequestSelection) {
+                PullRequestSelectionView(projectKey: project.key, showingPopover: $showingPullRequestSelection)
             }
         }
         .navigationTitle("Project Detail")
